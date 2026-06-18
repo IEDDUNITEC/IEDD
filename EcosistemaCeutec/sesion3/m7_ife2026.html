@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Education Summit | IFE Conference 2026 • Monterrey, México</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',    /* Base y Autoridad */
+                            vermilion: '#E04332',  /* Acentos vibrantes y CTA */
+                            crimson: '#D91A2A',    /* Elementos interactivos */
+                            light: '#F8FAFC',      /* Fondo limpio */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* REGLAS ESTRICTAS DE MARCA CEUTEC: CERO SOMBRAS, CERO BORDES REDONDOS */
+        * {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        body { font-family: 'Poppins', sans-serif; background-color: #F8FAFC; }
+        
+        /* Personalización de los reproductores de audio para mantener la geometría plana */
+        audio::-webkit-media-controls-panel {
+            background-color: #F8FAFC;
+            border-radius: 0;
+            border: 2px solid #E2E8F0;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button {
+            background-color: #E04332;
+            border-radius: 0;
+        }
+
+        /* Hover states for solid cards */
+        .solid-card {
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .solid-card:hover {
+            border-color: #E04332;
+            transform: translateY(-4px);
+        }
+
+        .diamond-border-top { border-top: 8px solid #9B0616; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-ceutec-vermilion selection:text-white flex flex-col min-h-screen">
+
+    <header class="bg-white z-50 relative flex flex-col sticky top-0 shadow-md shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center w-full">
+            
+            <a href="index.html" class="flex items-center cursor-pointer">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logo CEUTEC" class="h-10 object-contain">
+            </a>
+
+            <div class="flex items-center gap-6">
+                
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="h-10 w-0.5 bg-ceutec-carmine"></div>
+                    <div class="flex flex-col justify-center text-right">
+                        <span class="text-ceutec-carmine font-bold text-sm tracking-widest leading-tight uppercase">Programa de Formación Docente</span>
+                        <span class="text-ceutec-vermilion text-xs font-medium tracking-wider leading-tight uppercase mt-1">Módulo 7</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="h-4 w-full bg-ceutec-carmine"></div>
+    </header>
+    <header class="bg-ceutec-carmine text-white py-16 lg:py-24 relative overflow-hidden border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <span class="bg-ceutec-vermilion text-white text-xs font-black px-4 py-1.5 uppercase tracking-widest mb-6 inline-block border border-ceutec-vermilion">
+                    IFE Conference 2026 • Monterrey, México
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
+                    AI in Education Summit <span class="text-ceutec-vermilion">Reflexiones y Apuntes Clave</span>
+                </h1>
+                <p class="text-lg md:text-xl text-red-100 font-light leading-relaxed mb-8">
+                    Profundiza en las discusiones globales sobre cómo la Inteligencia Artificial está reconfigurando la cognición, el aprendizaje y nuestras instituciones. Un paso adelante en la construcción de nuestro ecosistema.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#audios" class="bg-ceutec-vermilion hover:bg-ceutec-crimson text-white font-bold py-3.5 px-8 transition-colors flex items-center gap-3 uppercase tracking-widest text-sm border-2 border-ceutec-vermilion">
+                        <i class="fa-solid fa-headphones"></i> Escuchar Análisis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="audios">
+        
+        <div class="mb-12 border-l-8 border-ceutec-carmine pl-6">
+            <h2 class="text-3xl font-black text-ceutec-carmine mb-3">Un Paso Adelante en la Transformación</h2>
+            <p class="text-slate-600 font-light text-lg">
+               La IA ha cambiado el contexto en la Educación Superior, y globalmente el mundo se está preparando para transformar sus modelos. Todos los insumos discutidos en este <strong>AI in Education Summit</strong> son altamente relevantes para nuestro proceso de formación.
+                    </p>
+                    <p class="text-gray-600 font-light leading-relaxed text-lg mt-4">
+                        Ahora que estas discusiones recién comienzan en las diferentes universidades del mundo, <strong>nosotros en UNITEC y CEUTEC estamos un paso adelante</strong> en la construcción de este ecosistema de aprendizaje. Nuestro enfoque en las capacidades humanas (3Cs) nos permite no solo adaptar herramientas, sino <em>humanizar</em> el aprendizaje en esta nueva era.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            
+            <article class="bg-white solid-card diamond-border-top flex flex-col h-full">
+                <div class="p-8 flex-grow">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <span class="text-[10px] font-black text-ceutec-vermilion uppercase tracking-widest border border-ceutec-vermilion px-2 py-1">Episodio 1</span>
+                    </div>
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">Conferencia Inaugural</span>
+                    <h3 class="text-2xl font-black text-ceutec-carmine mb-3 leading-tight">Humanizar el aprendizaje en la era IA</h3>
+                    <p class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Michael Fung, Roberto Iñiguez, Paulo Blikstein, Genaro Zavala
+</p>
+                    <p class="text-slate-600 font-light leading-relaxed mb-6">
+                        Análisis de cómo la Inteligencia Artificial está transformando el sector educativo. Se aborda la necesidad de crear estrategias institucionales y enfrentar los retos éticos y de diseño al integrar estas herramientas para potenciar competencias humanas esenciales.
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-6 border-t-2 border-gray-200">
+                    <audio controls class="w-full mb-4">
+                        <source src="AUD/Humanizar_el_aprendizaje_en_la_era_IA.ogg" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <a href="DOC/1%20La%20IA%20no%20va%20a%20reemplazar%20la%20retroalimentaci%C3%B3n.pdf" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-ceutec-carmine hover:text-ceutec-vermilion transition-colors">
+                        <i class="fa-regular fa-file-pdf text-lg text-ceutec-vermilion"></i>
+                        Leer descripción y contexto completo
+                    </a>
+                </div>
+            </article>
+
+            <article class="bg-white solid-card diamond-border-top flex flex-col h-full">
+                <div class="p-8 flex-grow">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <span class="text-[10px] font-black text-ceutec-vermilion uppercase tracking-widest border border-ceutec-vermilion px-2 py-1">Episodio 2</span>
+                    </div>
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">Centering Learning Sciences in AI</span>
+                    <h3 class="text-2xl font-black text-ceutec-carmine mb-3 leading-tight">No automatices un sistema educativo roto</h3>
+                    <p class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Raquel Coelho</p>
+                    <p class="text-slate-600 font-light leading-relaxed mb-6">
+                        Diseñar experiencias poderosas con IA requiere basarse en las ciencias del aprendizaje. En lugar de utilizar la IA para automatizar prácticas repetitivas de un sistema deficiente, debemos "reestructurar" por completo lo que es posible aprender.
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-6 border-t-2 border-gray-200">
+                    <audio controls class="w-full mb-4">
+                        <source src="AUD/No_automatices_un_sistema_educativo_roto.ogg" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <a href="DOC/2%20La%20democratizaci%C3%B3n%20de%20la%20tutor%C3%ADa.pdf" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-ceutec-carmine hover:text-ceutec-vermilion transition-colors">
+                        <i class="fa-regular fa-file-pdf text-lg text-ceutec-vermilion"></i>
+                        Leer descripción y contexto completo
+                    </a>
+                </div>
+            </article>
+
+            <article class="bg-white solid-card diamond-border-top flex flex-col h-full">
+                <div class="p-8 flex-grow">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <span class="text-[10px] font-black text-ceutec-vermilion uppercase tracking-widest border border-ceutec-vermilion px-2 py-1">Episodio 3</span>
+                    </div>
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">Can AI Really Change Schools?</span>
+                    <h3 class="text-2xl font-black text-ceutec-carmine mb-3 leading-tight">El docente frente a Silicon Valley</h3>
+                    <p class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">P. Blikstein, S. Vakil, Y. Kafai, J. Reich
+</p>
+                    <p class="text-slate-600 font-light leading-relaxed mb-6">
+                        Un profundo panel que desafía las narrativas corporativas tecnológicas. Discute la necesidad de investigación empírica rigurosa y reafirma que el futuro del aprendizaje debe mantenerse anclado en la irreemplazable conexión humana.
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-6 border-t-2 border-gray-200">
+                    <audio controls class="w-full mb-4">
+                        <source src="AUD/El_docente_frente_a_Silicon_Valley.ogg" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <a href="DOC/3%20El%20fin%20del%20ensayo%20universitario.pdf" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-ceutec-carmine hover:text-ceutec-vermilion transition-colors">
+                        <i class="fa-regular fa-file-pdf text-lg text-ceutec-vermilion"></i>
+                        Leer descripción y contexto completo
+                    </a>
+                </div>
+            </article>
+
+            <article class="bg-white solid-card diamond-border-top flex flex-col h-full">
+                <div class="p-8 flex-grow">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <span class="text-[10px] font-black text-ceutec-vermilion uppercase tracking-widest border border-ceutec-vermilion px-2 py-1">Episodio 4</span>
+                    </div>
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 block">Generative AI in Higher Ed</span>
+                    <h3 class="text-2xl font-black text-ceutec-carmine mb-3 leading-tight">La IA solo iluminó un sistema roto</h3>
+                    <p class="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Conferencia: Dr. George Siemens</p>
+                    <p class="text-slate-600 font-light leading-relaxed mb-6">
+                        Reflexión final. La IA generativa no "rompió" la educación, solo hizo evidente que pedir a los estudiantes que actúen como computadoras (memorizar y escupir datos) ya no tiene sentido. Es hora de volver a evaluar lo humano.
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-6 border-t-2 border-gray-200">
+                    <audio controls class="w-full mb-4">
+                        <source src="AUD/La_IA_solo_iluminó_un_sistema_roto.ogg" type="audio/ogg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <a href="DOC/4%20La%20IA%20solo%20ilumin%C3%B3%20un%20sistema%20roto.pdf" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-ceutec-carmine hover:text-ceutec-vermilion transition-colors">
+                        <i class="fa-regular fa-file-pdf text-lg text-ceutec-vermilion"></i>
+                        Leer descripción y contexto completo
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-3 px-6 shrink-0 relative z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.03)] mt-auto">
+        <div class="max-w-7xl mx-auto flex items-center justify-center">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logo CEUTEC" class="h-6 object-contain">
+        </div>
+    </footer>
+
+</body>
+</html>

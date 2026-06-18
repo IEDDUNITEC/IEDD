@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositorio de Experiencias | Programa de Formación Docente CEUTEC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ceutec-carmine: #9B0616;
+            --ceutec-vermilion: #E04332;
+            --ceutec-ink: #232323;
+            --ceutec-muted: #6B6B6B;
+            --ceutec-line: #E8DEDE;
+            --ceutec-soft: #FBF7F7;
+            --ceutec-white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", Arial, sans-serif;
+            color: var(--ceutec-ink);
+            background: var(--ceutec-soft);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* --- NUEVO ESTILO DE FRANJA BLANCA (ENCABEZADO) --- */
+        .hero {
+            background: #ffffff;
+            border-bottom: 8px solid var(--ceutec-carmine);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 16px 0;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .hero-isotype {
+            display: none;
+            flex-shrink: 0;
+        }
+
+        .ceutec-logo {
+            display: block;
+            height: 32px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .brand-separator {
+            width: 2px;
+            height: 32px;
+            background-color: #d1d5db;
+            display: none;
+            margin: 0 4px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-title {
+            color: var(--ceutec-carmine);
+            font-weight: 900;
+            font-size: 0.85rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .brand-subtitle {
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.6rem;
+            line-height: 1;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .hero-content {
+            padding-top: 16px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            color: var(--ceutec-carmine);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            line-height: 1.2;
+            font-weight: 900;
+        }
+
+        .hero p {
+            margin: 6px 0 0;
+            color: #475569;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            font-weight: 300;
+            max-width: 800px;
+        }
+
+        @media (min-width: 640px) {
+            .hero-isotype { display: block; }
+            .brand-separator { display: block; }
+            .brand-row { gap: 16px; }
+            .ceutec-logo { height: 40px; }
+            .brand-separator { height: 40px; }
+            .brand-title { font-size: 1rem; }
+            .brand-subtitle { font-size: 0.75rem; }
+            .hero h1 { font-size: clamp(1.5rem, 4vw, 1.75rem); }
+            .hero p { font-size: clamp(0.85rem, 1.5vw, 1rem); }
+        }
+        /* --- FIN DE ESTILOS DEL ENCABEZADO --- */
+
+        main {
+            padding: 54px 0 72px;
+        }
+
+        .intro-panel {
+            background: var(--ceutec-white);
+            border: 1px solid var(--ceutec-line);
+            border-left: 8px solid var(--ceutec-carmine);
+            padding: 28px;
+            margin-bottom: 30px;
+        }
+
+        .intro-panel p {
+            margin: 0;
+            color: var(--ceutec-muted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .experience-card {
+            background: var(--ceutec-white);
+            border: 1px solid var(--ceutec-line);
+            overflow: hidden;
+        }
+
+        .card-accent {
+            height: 8px;
+            background: var(--ceutec-carmine);
+        }
+
+        .card-body {
+            position: relative;
+            padding: 30px;
+        }
+
+        .activity-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            padding: 8px 14px;
+            background: var(--ceutec-carmine);
+            color: var(--ceutec-white);
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+        }
+
+        .label-diamond,
+        .mini-diamond {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--ceutec-vermilion);
+            clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+        }
+
+        .experience-card h2 {
+            margin: 0;
+            color: var(--ceutec-carmine);
+            font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+            line-height: 1.15;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .professor {
+            margin: 8px 0 0;
+            color: var(--ceutec-vermilion);
+            font-size: 0.84rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .experience-card h3 {
+            margin: 22px 0 0;
+            color: var(--ceutec-ink);
+            font-size: 1.06rem;
+            font-weight: 700;
+        }
+
+        .challenge {
+            margin-top: 18px;
+            padding: 18px 20px;
+            background: var(--ceutec-soft);
+            border-left: 4px solid var(--ceutec-carmine);
+        }
+
+        .challenge p {
+            margin: 0;
+            color: var(--ceutec-muted);
+            font-size: 0.92rem;
+        }
+
+        .challenge strong {
+            color: var(--ceutec-carmine);
+            font-weight: 800;
+        }
+
+        .challenge span {
+            display: block;
+            margin-top: 12px;
+            color: var(--ceutec-muted);
+            font-size: 0.82rem;
+            font-style: italic;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 24px;
+            padding-top: 22px;
+            border-top: 1px solid var(--ceutec-line);
+        }
+
+        .metric-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--ceutec-muted);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .stars {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3px;
+            color: var(--ceutec-vermilion);
+            font-size: 1.15rem;
+        }
+
+        .stars .empty {
+            color: #D8CCCC;
+        }
+
+        .stars strong {
+            margin-left: 8px;
+            color: var(--ceutec-carmine);
+            font-size: 1.12rem;
+            font-weight: 900;
+        }
+
+        .accordion {
+            border-top: 1px solid var(--ceutec-line);
+        }
+
+        .accordion-item + .accordion-item {
+            border-top: 1px solid var(--ceutec-line);
+        }
+
+        .accordion-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 18px 30px;
+            border: 0;
+            background: var(--ceutec-white);
+            color: var(--ceutec-carmine);
+            font-family: "Poppins", Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .accordion-button:hover,
+        .accordion-button:focus {
+            background: var(--ceutec-soft);
+            outline: none;
+        }
+
+        .accordion-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .accordion-control {
+            width: 32px;
+            height: 32px;
+            display: inline-grid;
+            place-items: center;
+            flex: 0 0 auto;
+            border: 1px solid var(--ceutec-line);
+            color: var(--ceutec-carmine);
+            font-weight: 900;
+            transition: transform 180ms ease;
+        }
+
+        .accordion-button[aria-expanded="true"] .accordion-control {
+            transform: scaleY(-1);
+        }
+
+        .accordion-panel {
+            padding: 0 30px 26px;
+            background: var(--ceutec-soft);
+            color: var(--ceutec-muted);
+            font-size: 0.92rem;
+        }
+
+        .accordion-panel p {
+            margin: 0 0 12px;
+        }
+
+        .accordion-panel strong {
+            color: var(--ceutec-carmine);
+            font-weight: 800;
+        }
+
+        .accordion-panel em {
+            color: var(--ceutec-ink);
+        }
+
+        .accordion-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 0;
+        }
+
+        .accordion-panel li {
+            position: relative;
+            padding-left: 22px;
+            margin: 14px 0;
+        }
+
+        .accordion-panel li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--ceutec-vermilion);
+            font-size: 0.72rem;
+        }
+
+        .accordion-panel > div {
+            margin-top: 14px;
+            padding: 16px 18px;
+            background: var(--ceutec-white);
+            border-left: 4px solid var(--ceutec-vermilion);
+        }
+
+        .accordion-panel h4 {
+            margin: 0 0 8px;
+            color: var(--ceutec-carmine);
+            font-size: 0.76rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        footer {
+            background: var(--ceutec-white);
+            border-top: 1px solid var(--ceutec-line);
+            padding: 34px 0;
+            text-align: center;
+            color: var(--ceutec-muted);
+        }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand .ceutec-logo {
+            height: 30px;
+        }
+
+        footer p {
+            margin: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 880px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .card-body,
+            .accordion-button,
+            .accordion-panel {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <!-- Fila Superior: Franja Blanca Institucional (Logo + Títulos) -->
+            <div class="brand-row" aria-label="Identidad CEUTEC">
+                <!-- Isotipo -->
+                <!-- Logotipo -->
+                <img class="ceutec-logo" src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC">
+                <!-- Separador -->
+                <div class="brand-separator"></div>
+                <!-- Textos -->
+                <div class="brand-text">
+                    <span class="brand-title">Programa de Formación Docente</span>
+                    <span class="brand-subtitle">Ecosistema de Aprendizaje</span>
+                </div>
+            </div>
+            
+            <!-- Fila Inferior: Título de la Página -->
+            <div class="hero-content">
+                <h1>Evaluación Auténtica en Acción</h1>
+                <p>Repositorio colaborativo donde los docentes comparten experiencias reales, desafíos y aprendizajes al implementar actividades auténticas en el aula.</p>
+            </div>
+        </div>
+   
+            <section class="grid" aria-label="Experiencias docentes">
+                
+        <article class="experience-card">
+            <div class="card-accent" aria-hidden="true"></div>
+            <div class="card-body">
+                <div class="activity-label"><span class="label-diamond" aria-hidden="true"></span> Actividad GRASPS</div>
+                <h2>Análisis Estructural</h2>
+                <p class="professor">Prof. Marco Canales</p>
+                <h3>Proyecto de Modelación Estructural</h3>
+                <div class="challenge">
+                    <p><strong>El Reto:</strong> Los estudiantes asumen el rol de ingenieros estructurales para crear un modelo digital de una edificación real a partir de un juego de planos, aplicando el código CHOC para la asignación precisa de cargas (Muerta, Viva, Viento, Sismo). <span>*Nota de diseño: Esta actividad fue inicialmente planteada como una alternativa opcional al examen tradicional.</span></p>
+                </div>
+                <div class="metrics" aria-label="Métricas de la actividad">
+                    <div class="metric">
+                        <span class="metric-label">Efectividad global</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Receptividad estudiantil</span>
+                        <div class="stars" aria-label="4/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span class="empty" aria-hidden="true">★</span> <strong>4/5</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion">
+                
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-0-0">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Impacto en las 3Cs (Evaluación)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-0-0" hidden>
+                    <p>La actividad permitió evaluar claramente metas conceptuales, de competencia y de carácter de forma integral:</p><ul><li><p><strong>Conceptual:</strong> Se evidenció la comprensión profunda del estudiante al identificar y justificar correctamente <em>qué</em> cargas utilizar según la normativa.</p></li><li><p><strong>Competencia:</strong> Se verificó la habilidad técnica y destreza aplicada en la creación del modelo digital a partir de planos físicos.</p></li><li><p><strong>Carácter:</strong> Se puso en práctica el respeto, la responsabilidad y la colaboración al momento de <em>dar y recibir retroalimentación</em> entre colegas.</p></li></ul>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-0-1">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Realidad del Aula (Fidelidad)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-0-1" hidden>
+                    <div><h4>Desafíos en la Ejecución</h4><p>
+Se requirieron <strong>ajustes sobre la marcha</strong>. El obstáculo principal fue la falta de tiempo en aula y la necesidad de buscar una vía más rápida para proveer retroalimentación (Assessment FOR learning).
+</p></div><div><h4>La Solución Implementada</h4><p>
+Para mitigar el factor tiempo, se habilitaron <strong>foros asincrónicos públicos</strong>. Esto permitió que las dudas y retroalimentaciones fuesen visibles para todos, fomentando el aprendizaje entre pares.
+</p></div><div><h4> Reacción de los Estudiantes</h4><p>
+Hubo temor inicial. Algunos alumnos sintieron resistencia e incluso miedo a participar al enfrentarse a un problema abierto sin "una única respuesta correcta". Sin embargo, a medida que avanzaron, descubrieron que el reto era realizable, mejorando radicalmente la receptividad hacia el final.
+</p></div>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-0-2">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Lecciones y Consejos</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-0-2" hidden>
+                    <div><h4>¿Qué cambiaría en el futuro?</h4><div><p>
+"No les daría la opción de elegir su forma de evaluación [entre el examen tradicional y este proyecto]. Muchos no toman una decisión sabia respecto a qué es lo mejor para su propio aprendizaje."
+</p></div></div><div><h4>
+Consejo para otros colegas
+</h4><p>
+"Debe estar listo para reconocer si algo no está funcionando en el momento y tener la disposición de hacer ajustes sobre la marcha."
+</p></div>
+                </div>
+            </section>
+        
+            </div>
+        </article>
+    
+
+        <article class="experience-card">
+            <div class="card-accent" aria-hidden="true"></div>
+            <div class="card-body">
+                <div class="activity-label"><span class="label-diamond" aria-hidden="true"></span> Actividad GRASPS</div>
+                <h2>Métodos Cuantitativos</h2>
+                <p class="professor">Prof. Carlos E. Alvarenga</p>
+                <h3>Proyecto Final - Aula Invertida</h3>
+                <div class="challenge">
+                    <p><strong>El Reto:</strong> Los estudiantes asumen roles de alta dirección (gerentes, presidentes de equipos) en una simulación de escenarios reales. Deben analizar un caso corporativo y brindar soluciones viables aplicando herramientas financieras clave, como el valor del dinero en el tiempo y el análisis de rentabilidad.</p>
+                </div>
+                <div class="metrics" aria-label="Métricas de la actividad">
+                    <div class="metric">
+                        <span class="metric-label">Efectividad global</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Receptividad estudiantil</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion">
+                
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-1-0">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Impacto en las 3Cs (Evaluación)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-1-0" hidden>
+                    <p>La actividad permitió evaluar integralmente vinculando el lado humano con las competencias técnicas de cada profesional:</p><ul><li><p><strong>Conceptual:</strong> Evaluación precisa de conceptos matemáticos y financieros de la clase.</p></li><li><p><strong>Competencia:</strong> Aplicación práctica del valor del dinero en el tiempo para medir la rentabilidad de proyectos reales.</p></li><li><p><strong>Carácter:</strong> Superación del miedo hacia la estadística y las finanzas, asumiendo liderazgo gerencial con gran esfuerzo y madurez.</p></li></ul>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-1-1">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Realidad del Aula (Fidelidad)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-1-1" hidden>
+                    <div><h4>Ejecución Impecable</h4><p>
+Se desarrolló <strong>exactamente como se planificó</strong>. No hubo obstáculos imprevistos gracias a que los estudiantes tenían una claridad absoluta de sus roles y los roles de sus compañeros.
+</p></div><div><h4> Reacción de los Estudiantes</h4><p>
+Fue un verdadero reto. La mayoría no manejaba los conceptos financieros y la estadística era un temor común. Sin embargo, al entender que debían demostrar dominio técnico para resolver el caso, se esforzaron enormemente y <strong>lograron cumplir todas las expectativas</strong>.
+</p></div>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-1-2">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Lecciones y Consejos</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-1-2" hidden>
+                    <div><h4>¿Qué cambiaría en el futuro?</h4><div><p>
+"En esta edición había casos diferentes para cada grupo. En el futuro, sería interesante asignar un <strong>mismo caso para todos</strong> y evaluar las diferentes estrategias competitivas que cada equipo implementa para tratar de ganar la simulación."
+</p></div></div><div><h4>
+Consejo para otros colegas
+</h4><p>
+"Las actividades GRASPS mantienen una mejor estructuración; ese nivel de detalle favorece enormemente la comprensión y genera valor para el alumno. El estudiante necesita tener <strong>claros los criterios que están en juego</strong> para poder desarrollar la actividad con éxito."
+</p></div>
+                </div>
+            </section>
+        
+            </div>
+        </article>
+    
+
+        <article class="experience-card">
+            <div class="card-accent" aria-hidden="true"></div>
+            <div class="card-body">
+                <div class="activity-label"><span class="label-diamond" aria-hidden="true"></span> Actividad GRASPS</div>
+                <h2>Métodos Cuantitativos</h2>
+                <p class="professor">Prof. David A. Diaz Giron</p>
+                <h3>Datos que Deciden</h3>
+                <div class="challenge">
+                    <p><strong>El Reto:</strong> Los maestrantes asumen un rol gerencial para aplicar estadísticas y analizar el contexto hondureño. A través de la identificación de variables y el análisis exploratorio, el objetivo es transform datos crudos en evidencia útil para la toma de decisiones estratégicas.</p>
+                </div>
+                <div class="metrics" aria-label="Métricas de la actividad">
+                    <div class="metric">
+                        <span class="metric-label">Efectividad global</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Receptividad estudiantil</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion">
+                
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-2-0">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Impacto en las 3Cs (Evaluación)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-2-0" hidden>
+                    <p>La actividad evaluó holísticamente la capacidad del maestrante para transmitir opiniones y fundamentar decisiones:</p><ul><li><p><strong>Conceptual:</strong> Comprensión profunda de la estadística y el análisis exploratorio de variables en el contexto hondureño.</p></li><li><p><strong>Competencia:</strong> Capacidad técnica para procesar y transformar datos en evidencia sustentable para la toma de decisiones.</p></li><li><p><strong>Carácter:</strong> Seguridad y liderazgo para comunicar y sustentar los hallazgos ante autoridades y pares de manera efectiva.</p></li></ul>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-2-1">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Realidad del Aula (Fidelidad)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-2-1" hidden>
+                    <div><h4>Desafíos en la Ejecución</h4><p>
+El principal obstáculo fue la <strong>comprensión inicial de la actividad</strong> por parte de los maestrantes, lo cual requirió pausas estratégicas para brindar claridad.
+</p></div><div><h4>La Solución Implementada</h4><p>
+Fue necesario <strong>retroalimentar y dar seguimiento constante</strong> a los grupos, clarificando las instrucciones en tiempo real para asegurar el rumbo del análisis exploratorio.
+</p></div><div><h4> Reacción de los Estudiantes</h4><p>
+La experiencia fue percibida como muy retadora. Aplicar herramientas analíticas para exponer a nivel gerencial les ayudó a <strong>sintetizar información</strong>, mejorando radicalmente su manera de comunicarse y dar a entender los hallazgos con efectividad.
+</p></div>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-2-2">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Lecciones y Consejos</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-2-2" hidden>
+                    <div><h4>¿Qué cambiaría en el futuro?</h4><div><p>
+"Afinaría algunos detalles en las instrucciones de los entregables para asegurar que el producto final de todos los equipos sea más uniforme y comparable."
+</p></div></div><div><h4>
+Consejo para otros colegas
+</h4><p>
+"Acompañe a sus estudiantes durante el proceso. Es fundamental dar <strong>retroalimentación y seguimiento continuo</strong> para asegurar que comprendan la magnitud de la actividad y puedan superarla con éxito."
+</p></div>
+                </div>
+            </section>
+        
+            </div>
+        </article>
+    
+
+        <article class="experience-card">
+            <div class="card-accent" aria-hidden="true"></div>
+            <div class="card-body">
+                <div class="activity-label"><span class="label-diamond" aria-hidden="true"></span> Actividad GRASPS</div>
+                <h2>Ofimática Avanzada</h2>
+                <p class="professor">Prof. César J. Morán Díaz</p>
+                <h3>Semana 7: "Detectives de Datos"</h3>
+                <div class="challenge">
+                    <p><strong>El Reto:</strong> Los estudiantes asumen el rol de "detectives de datos" analizando patrones ocultos en grandes tablas de Excel. A través de la construcción estratégica de tablas dinámicas, gráficos y segmentación, culminan la semana diseñando un Dashboard de control interactivo que resume hallazgos relevantes para la toma de decisiones.</p>
+                </div>
+                <div class="metrics" aria-label="Métricas de la actividad">
+                    <div class="metric">
+                        <span class="metric-label">Efectividad global</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Receptividad estudiantil</span>
+                        <div class="stars" aria-label="5/5"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span> <strong>5/5</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion">
+                
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-3-0">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Impacto en las 3Cs (Evaluación)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-3-0" hidden>
+                    <p>La actividad permitió evaluar claramente metas de competencia, concepto y carácter de forma integral:</p><ul><li><p><strong>Conceptual:</strong> Capacidad analítica para identificar e interpretar patrones de datos dentro de grandes volúmenes de información.</p></li><li><p><strong>Competencia:</strong> Dominio técnico en el uso de herramientas de Excel para consolidar datos, generar tablas dinámicas y diseñar informes interactivos.</p></li><li><p><strong>Carácter:</strong> Fortalecimiento del trabajo en equipo, interacción activa y resolución proactiva de dudas mediante la generación de ideas conjuntas.</p></li></ul>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-3-1">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Realidad del Aula (Fidelidad)</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-3-1" hidden>
+                    <div><h4>Desafíos en la Ejecución</h4><p>
+Se requirieron <strong>ajustes sobre la marcha</strong>. Fue necesario destinar tiempo adicional para explicar a fondo cómo estructurar una tabla resumen y guiar el proceso de escritura de patrones encontrados.
+</p></div><div><h4>La Solución Implementada</h4><p>
+Se implementaron <strong>explicaciones breves y directas</strong> abordando específicamente lo que se esperaba como resultado, guiando a los estudiantes paso a paso en el abordaje metodológico.
+</p></div><div><h4> Reacción de los Estudiantes</h4><p>
+¡Altamente receptivos! Se mostraron muy interesados frente al reto. Pasaron la sesión analizando, generando ideas, interactuando constantemente y preguntando sin dudar sobre los procedimientos técnicos.
+</p></div>
+                </div>
+            </section>
+        
+            <section class="accordion-item">
+                <button class="accordion-button" type="button" aria-expanded="false" aria-controls="panel-3-2">
+                    <span class="accordion-title"><span class="mini-diamond" aria-hidden="true"></span>Lecciones y Consejos</span>
+                    <span class="accordion-control" aria-hidden="true">⌄</span>
+                </button>
+                <div class="accordion-panel" id="panel-3-2" hidden>
+                    <div><h4>¿Qué cambiaría en el futuro?</h4><div><p>
+"Dedicaría más tiempo a la fase inicial de identificación de patrones y a enseñar cómo consolidar los datos adecuadamente antes de pasar al diseño del dashboard final."
+</p></div></div><div><h4>
+Consejo para otros colegas
+</h4><p>
+"Solamente experimentando se pueden lograr resultados diferentes. ¡Atrévase a cambiar métodos, técnicas y sus sistemas de evaluación tradicionales!"
+</p></div>
+                </div>
+            </section>
+        
+            </div>
+        </article>
+    
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-brand" aria-label="Identidad CEUTEC">
+                <img class="ceutec-logo" src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC">
+            </div>
+            <p>&copy; 2026 CEUTEC.</p>
+            <p>Programa de Formación Docente | Formando solucionadores de problemas empáticos.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.accordion-button').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const panel = document.getElementById(button.getAttribute('aria-controls'));
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    button.setAttribute('aria-expanded', String(!isExpanded));
+                    panel.hidden = isExpanded;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

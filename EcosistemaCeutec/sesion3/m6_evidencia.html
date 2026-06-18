@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller: Ecosistema de Herramientas | Programa de Formación Docente CEUTEC</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',    /* Base y Autoridad */
+                            vermilion: '#E04332',  /* Acentos vibrantes y CTA */
+                            crimson: '#D91A2A',    /* Elementos interactivos */
+                            light: '#F8FAFC',      /* Fondo limpio */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* REGLAS ESTRICTAS DE MARCA CEUTEC: CERO SOMBRAS, CERO BORDES REDONDOS */
+        * {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        body { font-family: 'Poppins', sans-serif; }
+        
+        .fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cortes de Diamante (Estética Sólida CEUTEC) */
+        .diamond-tag { clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+        .diamond-icon-bg { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        .diamond-border-top { border-top: 8px solid #E04332; } /* Vermilion */
+
+        .activity-card {
+            transition: all 0.3s ease;
+            border: 4px solid transparent;
+        }
+        .activity-card:hover {
+            border-color: #E04332;
+            transform: translateY(-4px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8FAFC; }
+        ::-webkit-scrollbar-thumb { background: #9B0616; }
+        ::-webkit-scrollbar-thumb:hover { background: #E04332; }
+    </style>
+</head>
+<body class="bg-ceutec-light text-slate-800 h-screen flex flex-col overflow-hidden font-sans selection:bg-ceutec-vermilion selection:text-white">
+
+    <header class="bg-white z-50 relative flex flex-col shrink-0 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center w-full">
+            
+            <a href="index.html" class="flex items-center cursor-pointer">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logo CEUTEC" class="h-10 object-contain">
+            </a>
+
+            <div class="flex items-center gap-6">
+                
+                <div class="flex items-center gap-6 text-xs font-bold tracking-wider uppercase">
+                    <button id="btn-home" onclick="goHome()" class="hidden flex items-center gap-2 text-ceutec-carmine border border-ceutec-carmine px-4 py-1.5 rounded-sm hover:bg-gray-50 transition-colors">
+                        <i class="fa-solid fa-house text-base"></i> Menú Principal
+                    </button>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="h-10 w-0.5 bg-ceutec-carmine"></div>
+                    <div class="flex flex-col justify-center text-right">
+                        <span class="text-ceutec-carmine font-bold text-sm tracking-widest leading-tight uppercase">Programa de Formación Docente</span>
+                        <span class="text-ceutec-vermilion text-xs font-medium tracking-wider leading-tight uppercase mt-1">Transformación Pedagógica</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="h-4 w-full bg-ceutec-carmine"></div>
+    </header>
+    <div class="flex flex-1 overflow-hidden relative" id="main-container">
+        
+        <div id="home-view" class="w-full h-full overflow-y-auto p-6 md:p-10 fade-in absolute inset-0 bg-ceutec-light z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 bg-white p-8 border-4 border-gray-200 diamond-border-top relative overflow-hidden group">
+                    <div class="absolute -top-10 -left-10 opacity-5 transition-transform duration-500 group-hover:rotate-12">
+                        <i class="fa-solid fa-layer-group text-9xl text-ceutec-carmine"></i>
+                    </div>
+                    <span class="diamond-tag inline-block px-4 py-1.5 bg-ceutec-carmine text-white text-[10px] font-black tracking-widest mb-4 uppercase relative z-10">Diseño de Tareas de Desempeño</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-ceutec-carmine mb-4 leading-tight relative z-10">Hackeando el Entregable Tradicional</h2>
+                    <p class="text-lg text-slate-600 max-w-4xl mx-auto font-light leading-relaxed relative z-10">
+                        <strong class="font-bold text-ceutec-vermilion uppercase tracking-wider text-xs block mb-2">Instrucciones para los Docentes:</strong> 
+                        Cada equipo debe elegir una de las siguientes 5 herramientas de transformación. Analicen qué tipo de evaluación tradicional desean hackear hoy y seleccionen la tarjeta correspondiente para ingresar a su entorno interactivo de rediseño. Tienen <span class="font-bold text-white bg-ceutec-carmine px-2 py-0.5">30 minutos</span> en total.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div onclick="openActivity(1)" class="activity-card bg-white p-8 border-2 border-gray-200 cursor-pointer flex flex-col h-full diamond-border-top bg-white">
+                        <div class="diamond-icon-bg w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-people-arrows"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 leading-tight">1. Foro Dinámico: El Tira y Afloja</h3>
+                        <p class="text-sm text-slate-500 font-light mb-6 flex-grow leading-relaxed">Ideal para transformar el tradicional y aburrido foro de discusión ("Aporte su opinión y comente a dos compañeros").</p>
+                        <div class="text-xs font-black text-white bg-ceutec-vermilion uppercase tracking-widest mt-auto flex items-center p-3">
+                            <i class="fa-solid fa-wrench mr-2"></i> Herramienta: Tug-of-War
+                        </div>
+                    </div>
+
+                    <div onclick="openActivity(2)" class="activity-card bg-white p-8 border-2 border-gray-200 cursor-pointer flex flex-col h-full diamond-border-top bg-white">
+                        <div class="diamond-icon-bg w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 leading-tight">2. Del Ensayo al Ecosistema</h3>
+                        <p class="text-sm text-slate-500 font-light mb-6 flex-grow leading-relaxed">Ideal para transformar el típico ensayo descriptivo, resumen o reporte de investigación lineal en un análisis sistémico.</p>
+                        <div class="text-xs font-black text-white bg-ceutec-vermilion uppercase tracking-widest mt-auto flex items-center p-3">
+                            <i class="fa-solid fa-wrench mr-2"></i> Herramienta: Causal Interaction Map
+                        </div>
+                    </div>
+
+                    <div onclick="openActivity(3)" class="activity-card bg-white p-8 border-2 border-gray-200 cursor-pointer flex flex-col h-full diamond-border-top bg-white">
+                        <div class="diamond-icon-bg w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-puzzle-piece"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 leading-tight">3. La Tarea Reflexiva</h3>
+                        <p class="text-sm text-slate-500 font-light mb-6 flex-grow leading-relaxed">Ideal para transformar las guías de ejercicios matemáticos, físicos o de programación mecánicos y repetitivos.</p>
+                        <div class="text-xs font-black text-white bg-ceutec-vermilion uppercase tracking-widest mt-auto flex items-center p-3">
+                            <i class="fa-solid fa-wrench mr-2"></i> Herramienta: Struggles & Puzzles
+                        </div>
+                    </div>
+
+                    <div onclick="openActivity(4)" class="activity-card bg-white p-8 border-2 border-gray-200 cursor-pointer flex flex-col h-full diamond-border-top bg-white">
+                        <div class="diamond-icon-bg w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 leading-tight">4. Investigación Inversa</h3>
+                        <p class="text-sm text-slate-500 font-light mb-6 flex-grow leading-relaxed">Ideal para transformar el inicio de un tema nuevo o una aburrida tarea directa de "investigue los siguientes conceptos".</p>
+                        <div class="text-xs font-black text-white bg-ceutec-vermilion uppercase tracking-widest mt-auto flex items-center p-3">
+                            <i class="fa-solid fa-wrench mr-2"></i> Herramienta: QFT Framework
+                        </div>
+                    </div>
+
+                    <div onclick="openActivity(5)" class="activity-card bg-white p-8 border-2 border-gray-200 cursor-pointer flex flex-col h-full md:col-span-2 lg:col-span-1 diamond-border-top bg-white">
+                        <div class="diamond-icon-bg w-14 h-14 bg-ceutec-carmine text-white flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-user-secret"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 leading-tight">5. Autopsia de un Caso</h3>
+                        <p class="text-sm text-slate-500 font-light mb-6 flex-grow leading-relaxed">Ideal para transformar un simple control de lectura o el análisis de un caso de estudio tradicional en un debate profundo.</p>
+                        <div class="text-xs font-black text-white bg-ceutec-vermilion uppercase tracking-widest mt-auto flex items-center p-3">
+                            <i class="fa-solid fa-wrench mr-2"></i> Herramienta: The Story Routine
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="activity-view" class="w-full h-full flex hidden absolute inset-0 bg-ceutec-light z-0">
+            <aside class="w-72 bg-white z-0 hidden md:flex flex-col border-r-2 border-gray-200 shrink-0">
+                <div class="p-6 pb-2">
+                    <h2 class="text-xs font-black text-ceutec-vermilion uppercase tracking-widest mb-1">Ruta del Taller</h2>
+                    <p class="text-xs text-slate-400 font-medium mb-6">Navegación de Fases</p>
+                </div>
+                <nav class="px-4 space-y-2 overflow-y-auto custom-scrollbar pb-6 flex-1">
+                    <button onclick="goToPhase(0)" id="nav-0" class="w-full text-left px-5 py-4 transition-all duration-300 border-l-8 flex items-center gap-3 group bg-white text-ceutec-carmine border-ceutec-vermilion font-black">
+                        <div class="w-8 h-8 flex items-center justify-center transition-colors bg-ceutec-vermilion text-white" id="icon-bg-0">
+                            <i class="fa-solid fa-flag text-sm"></i>
+                        </div>
+                        <span class="text-sm leading-tight">Inicio</span>
+                    </button>
+                    <button onclick="goToPhase(1)" id="nav-1" class="w-full text-left px-5 py-4 transition-all duration-300 border-l-8 flex items-center gap-3 group text-slate-500 border-transparent font-semibold hover:bg-slate-50">
+                        <div class="w-8 h-8 flex items-center justify-center transition-colors bg-slate-200 text-slate-500 group-hover:bg-ceutec-carmine group-hover:text-white" id="icon-bg-1">
+                            <i class="fa-solid fa-1 text-sm"></i>
+                        </div>
+                        <span id="lbl-nav-1" class="text-sm leading-tight">Fase 1</span>
+                    </button>
+                    <button onclick="goToPhase(2)" id="nav-2" class="w-full text-left px-5 py-4 transition-all duration-300 border-l-8 flex items-center gap-3 group text-slate-500 border-transparent font-semibold hover:bg-slate-50">
+                        <div class="w-8 h-8 flex items-center justify-center transition-colors bg-slate-200 text-slate-500 group-hover:bg-ceutec-carmine group-hover:text-white" id="icon-bg-2">
+                            <i class="fa-solid fa-2 text-sm"></i>
+                        </div>
+                        <span id="lbl-nav-2" class="text-sm leading-tight">Fase 2</span>
+                    </button>
+                    <button onclick="goToPhase(3)" id="nav-3" class="w-full text-left px-5 py-4 transition-all duration-300 border-l-8 flex items-center gap-3 group text-slate-500 border-transparent font-semibold hover:bg-slate-50">
+                        <div class="w-8 h-8 flex items-center justify-center transition-colors bg-slate-200 text-slate-500 group-hover:bg-ceutec-carmine group-hover:text-white" id="icon-bg-3">
+                            <i class="fa-solid fa-3 text-sm"></i>
+                        </div>
+                        <span id="lbl-nav-3" class="text-sm leading-tight">Fase 3</span>
+                    </button>
+                    <button onclick="goToPhase(4)" id="nav-4" class="w-full text-left px-5 py-4 transition-all duration-300 border-l-8 flex items-center gap-3 group text-slate-500 border-transparent font-semibold hover:bg-slate-50">
+                        <div class="w-8 h-8 flex items-center justify-center transition-colors bg-slate-200 text-slate-500 group-hover:bg-ceutec-carmine group-hover:text-white" id="icon-bg-4">
+                            <i class="fa-solid fa-link text-sm"></i>
+                        </div>
+                        <span class="text-sm leading-tight">Alineación</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <main class="flex-1 relative overflow-y-auto p-6 md:p-10 pb-32 custom-scrollbar" id="dynamic-content">
+                </main>
+        </div>
+    </div>
+
+    <div id="timer-container" class="fixed bottom-0 w-full bg-white border-t-4 border-gray-200 transition-transform transform translate-y-full z-50">
+        <div class="h-2 w-full bg-slate-200 absolute top-0 left-0">
+            <div id="time-progress" class="h-full bg-ceutec-carmine w-full transition-all duration-1000 ease-linear"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center pt-6">
+            <div class="flex items-center gap-4 mb-3 md:mb-0">
+                <div class="diamond-icon-bg bg-ceutec-vermilion text-white w-10 h-10 flex items-center justify-center animate-pulse">
+                    <i class="fa-solid fa-hourglass-half text-sm"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-0.5">Control de Tiempo</span>
+                    <span id="timer-phase-title" class="font-black text-ceutec-carmine text-lg md:text-xl uppercase tracking-wide leading-none">Fase de Trabajo</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div id="time-display" class="text-4xl md:text-5xl font-mono font-black text-ceutec-carmine tracking-tighter w-32 text-center">
+                    00:00
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="toggleTimer()" id="btn-play-pause" class="bg-ceutec-carmine hover:bg-ceutec-vermilion text-white w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-colors focus:outline-none border-2 border-ceutec-carmine group">
+                        <i class="fa-solid fa-play text-xl group-hover:scale-110 transition-transform" id="icon-play-pause"></i>
+                    </button>
+                    <button onclick="resetTimer()" class="bg-white border-2 border-slate-300 hover:border-ceutec-carmine text-slate-600 hover:text-ceutec-carmine w-12 h-12 md:w-14 md:h-14 flex items-center justify-center transition-colors focus:outline-none group">
+                        <i class="fa-solid fa-rotate-right text-lg group-hover:-rotate-90 transition-transform duration-300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="msg-modal" class="fixed inset-0 bg-ceutec-carmine/90 z-[110] flex items-center justify-center hidden opacity-0 transition-opacity backdrop-blur-none">
+        <div class="bg-white border-8 border-ceutec-vermilion p-10 max-w-md w-full text-center transform transition-transform" id="msg-content">
+            <div class="w-20 h-20 bg-ceutec-vermilion text-white flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-bell text-4xl animate-bounce"></i>
+            </div>
+            <h3 class="text-3xl font-black text-ceutec-carmine mb-3 uppercase">¡Tiempo Terminado!</h3>
+            <p class="text-slate-600 mb-8 font-light text-lg">Por favor, prepárense para pasar a la siguiente fase.</p>
+            <button onclick="closeModal()" class="bg-ceutec-carmine hover:bg-ceutec-vermilion text-white font-bold py-4 px-8 w-full transition-colors uppercase tracking-widest text-sm border-2 border-ceutec-carmine">Entendido</button>
+        </div>
+    </div>
+
+    <script>
+        // Database of all 5 activities (Option A - CEUTEC Strict Brand Classes inside strings)
+        const activitiesDB = {
+            1: {
+                title: "Foro Dinámico: El Tira y Afloja de las Decisiones Técnicas",
+                tool: "Tug-of-War",
+                section: "Conceptual Learning -> Connecting",
+                icon: "fa-people-arrows",
+                purpose: "Transformar el tradicional y aburrido foro de discusión ('Aporte su opinión y comente a dos compañeros').",
+                transform: "En lugar de pedir una opinión plana sobre un tema técnico, el docente diseñará un foro basado en un dilema donde dos principios válidos 'tiran' en direcciones opuestas (Ej. en Ingeniería Civil: Reducción extrema de costos vs. Máxima mitigación de impacto ambiental). Los estudiantes deberán colocar su argumento en algún punto de la 'cuerda' y justifycarlo.",
+                phases: [
+                    { id: 0, title: "Inicio", navTitle: "Inicio", time: 0 },
+                    { id: 1, title: "Seleccionar Foro", navTitle: "Seleccionar", time: 5,
+                      content: `<ul class="space-y-6 mb-6">
+                                  <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Seleccionen</strong> un foro de discusión tradicional y plano de una de sus clases actuales.</span>
+                                  </li>
+                                </ul>` 
+                    },
+                    { id: 2, title: "Rediseño con la Herramienta", navTitle: "Rediseño", time: 15,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">Reconstruyan el foro utilizando el principio de 'Tug-of-War' (Tira y Afloja):</p>
+                                <div class="grid gap-6">
+                                    <div class="bg-slate-50 border-l-8 border-ceutec-carmine p-6">
+                                        <h4 class="font-black text-ceutec-carmine mb-2 flex items-center gap-2"><i class="fa-solid fa-1 text-ceutec-vermilion"></i> Identificar Extremos</h4>
+                                        <p class="text-sm text-slate-600 font-light leading-relaxed">Encuentren los dos "extremos" del dilema técnico (los dos lados de la cuerda). Ej. Rendimiento Absoluto vs. Eficiencia Energética.</p>
+                                    </div>
+                                    <div class="bg-white border-2 border-gray-200 p-6">
+                                        <h4 class="font-black text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-2 text-ceutec-vermilion"></i> Pregunta de Encuadre</h4>
+                                        <p class="text-sm text-slate-600 font-light leading-relaxed">Formulen la pregunta o el escenario que obligará al estudiante a posicionarse en la cuerda.</p>
+                                    </div>
+                                </div>`
+                    },
+                    { id: 3, title: "Reglas de Interacción", navTitle: "Reglas", time: 10,
+                      content: `<ul class="space-y-6 mb-8">
+                                    <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-1 text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Redacten las nuevas instrucciones</strong> del foro.</span>
+                                    </li>
+                                    <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-2 text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light">Asegúrense de requerir que los alumnos no solo comenten, sino que intenten <strong class="font-bold text-ceutec-vermilion">"jalar" el argumento</strong> de un compañero hacia su lado usando evidencia técnica (Competencia).</span>
+                                    </li>
+                                </ul>
+                                <div class="bg-ceutec-carmine p-8 text-white relative overflow-hidden border-t-8 border-ceutec-vermilion">
+                                    <p class="text-lg font-light italic leading-relaxed relative z-10 pl-4 border-l-4 border-white">"No basta con decir 'estoy de acuerdo'. Debes proveer un dato o principio ingenieril que mueva el peso del argumento hacia tu postura."</p>
+                                </div>`
+                    },
+                    { id: 4, title: "Alineación", navTitle: "Alineación", time: 0,
+                      align1: { title: "Aprendizaje Conceptual", desc: "Fomenta el aprendizaje conceptual al mostrar que en ingeniería rara vez hay respuestas absolutas de 'blanco o negro'." },
+                      align2: { title: "Visión CEUTEC 2030", desc: "Desarrolla el rasgo de <strong class='font-bold text-ceutec-carmine'>Pensador Crítico</strong>, obligando a los estudiantes a sopesar variables opuestas y tomar decisiones fundamentadas." }
+                    }
+                ]
+            },
+            2: {
+                title: "Del Ensayo al Ecosistema: Mapeo de Interacciones Causales",
+                tool: "Causal Interaction Map",
+                section: "Conceptual Learning -> Constructing",
+                icon: "fa-diagram-project",
+                purpose: "Transformar el típico ensayo descriptivo, resumen o reporte de investigación lineal.",
+                transform: "En lugar de pedir a los alumnos que 'redacten un resumen de 2 páginas sobre termodinámica' (que fácilmente puede hacer una IA), el docente diseñará una tarea donde el alumno deba crear un mapa visual que explique cómo una alteración en la variable A causa un efecto dominó en B y C.",
+                phases: [
+                    { id: 0, title: "Inicio", navTitle: "Inicio", time: 0 },
+                    { id: 1, title: "Tomar Tarea", navTitle: "Tomar Tarea", time: 5,
+                      content: `<ul class="space-y-6 mb-6">
+                                  <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Tomen</strong> una tarea de investigación, ensayo o resumen tradicional de su clase.</span>
+                                  </li>
+                                </ul>` 
+                    },
+                    { id: 2, title: "Rediseño Visual", navTitle: "Rediseño", time: 15,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">Construyan el andamiaje para el Causal Interaction Map:</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="bg-slate-50 border-l-8 border-ceutec-carmine p-6">
+                                        <h4 class="font-black text-ceutec-carmine mb-2 flex items-center gap-2"><i class="fa-solid fa-1 text-ceutec-vermilion"></i> Variables</h4>
+                                        <p class="text-sm text-slate-600 font-light leading-relaxed">Identificar al menos 5 variables interdependientes del tema técnico.</p>
+                                    </div>
+                                    <div class="bg-white border-2 border-gray-200 p-6">
+                                        <h4 class="font-black text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-2 text-ceutec-vermilion"></i> Diseño de Instrucción</h4>
+                                        <p class="text-sm text-slate-600 font-light leading-relaxed">Definan cómo el alumno construirá el mapa (ej. usar flechas, grosores de línea para indicar la fuerza de la causa).</p>
+                                    </div>
+                                </div>`
+                    },
+                    { id: 3, title: "El Entregable", navTitle: "Entregable", time: 10,
+                      content: `<ul class="space-y-6 mb-8">
+                                    <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-1 text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Redacten la consigna final.</strong></span>
+                                    </li>
+                                </ul>
+                                <div class="bg-ceutec-carmine p-8 text-white relative overflow-hidden border-t-8 border-ceutec-vermilion">
+                                    <p class="text-lg font-light italic leading-relaxed relative z-10 pl-4 border-l-4 border-white">"El alumno entregará el mapa gráfico y un breve párrafo metacognitivo explicando la conexión más crítica del sistema y por qué la eligió."</p>
+                                </div>`
+                    },
+                    { id: 4, title: "Alineación", navTitle: "Alineación", time: 0,
+                      align1: { title: "Pensamiento Sistémico", desc: "Transforma la memorización aislada en Pensamiento Sistémico, obligando a construir teorías sobre cómo funcionan las cosas en red." },
+                      align2: { title: "Visión CEUTEC 2030", desc: "Es vital para formar al <strong class='font-bold text-ceutec-carmine'>Solucionador de Problemas Empático</strong> que entiende el 'efecto dominó' de sus diseños." }
+                    }
+                ]
+            },
+            3: {
+                title: "La Tarea Reflexiva: Tropezones, Rompecabezas y Revelaciones",
+                tool: "Struggles, Puzzles, Insights",
+                section: "Conceptual Learning -> Contributing",
+                icon: "fa-puzzle-piece",
+                purpose: "Transformar las guías de ejercicios matemáticos, físicos o de programación mecánicos y repetitivos.",
+                transform: "En el modelo tradicional, el alumno resuelve 15 ejercicios mecánicamente. En este rediseño, el docente pedirá resolver solo 3 o 4 problemas de alta complejidad, pero añadirá obligatoriamente una rutina metacognitiva al final de la tarea.",
+                phases: [
+                    { id: 0, title: "Inicio", navTitle: "Inicio", time: 0 },
+                    { id: 1, title: "Seleccionar Guía", navTitle: "Seleccionar", time: 5,
+                      content: `<ul class="space-y-6 mb-6">
+                                  <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Seleccionen</strong> una guía de ejercicios o problem set tradicional denso (esos de 15+ ejercicios mecánicos).</span>
+                                  </li>
+                                </ul>` 
+                    },
+                    { id: 2, title: "Curación de Ejercicios", navTitle: "Curación", time: 10,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">Menos es más. Apliquen curación profunda:</p>
+                                <div class="bg-slate-50 border-l-8 border-ceutec-carmine p-8">
+                                    <h4 class="font-black text-ceutec-carmine mb-4 flex items-center gap-2"><i class="fa-solid fa-filter text-ceutec-vermilion"></i> Selección Estratégica</h4>
+                                    <p class="text-sm text-slate-600 font-light leading-relaxed">Seleccionen únicamente los <strong class="font-bold text-ceutec-vermilion">3 ejercicios más representativos o desafiantes</strong>. Aquellos que realmente expongan si el estudiante comprendió el concepto o solo memorizó la fórmula.</p>
+                                </div>`
+                    },
+                    { id: 3, title: "Integración Metacognitiva", navTitle: "Integración", time: 15,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">Diseñen la plantilla de entrega. Además del procedimiento matemático, el alumno debe documentar obligatoriamente:</p>
+                                <ul class="space-y-4">
+                                    <li class="bg-white p-5 border-2 border-gray-200 flex gap-4 items-center">
+                                        <div class="w-10 h-10 bg-slate-100 text-ceutec-carmine flex items-center justify-center shrink-0"><i class="fa-solid fa-person-falling"></i></div>
+                                        <div><strong class="text-ceutec-carmine font-black tracking-widest text-xs uppercase block mb-1">Struggles:</strong> <span class="text-sm font-light text-slate-600">¿Con qué me tropecé o qué me costó más?</span></div>
+                                    </li>
+                                    <li class="bg-white p-5 border-2 border-gray-200 flex gap-4 items-center">
+                                        <div class="w-10 h-10 bg-slate-100 text-ceutec-vermilion flex items-center justify-center shrink-0"><i class="fa-solid fa-puzzle-piece"></i></div>
+                                        <div><strong class="text-ceutec-vermilion font-black tracking-widest text-xs uppercase block mb-1">Puzzles:</strong> <span class="text-sm font-light text-slate-600">¿Qué parte del concepto sigue siendo un rompecabezas para mí?</span></div>
+                                    </li>
+                                    <li class="bg-white p-5 border-2 border-gray-200 flex gap-4 items-center">
+                                        <div class="w-10 h-10 bg-slate-100 text-ceutec-carmine flex items-center justify-center shrink-0"><i class="fa-solid fa-lightbulb"></i></div>
+                                        <div><strong class="text-ceutec-carmine font-black tracking-widest text-xs uppercase block mb-1">Insights:</strong> <span class="text-sm font-light text-slate-600">¿Qué revelación o "Aha! moment" tuve al resolverlo?</span></div>
+                                    </li>
+                                </ul>`
+                    },
+                    { id: 4, title: "Alineación", navTitle: "Alineación", time: 0,
+                      align1: { title: "Metacognición Pura", desc: "Integra reflexión profunda en tareas de ciencias exactas. Ayuda a pasar del 'hacer' al 'pensar sobre lo que se hace'." },
+                      align2: { title: "Evaluación Formativa", desc: "Ayuda al docente a evaluar para el aprendizaje (Assessment FOR Learning), ajustando su próxima clase de forma quirúrgica según los 'Puzzles' reportados." }
+                    }
+                ]
+            },
+            4: {
+                title: "Investigación Inversa: El Motor de Preguntas",
+                tool: "Question Formulation Technique (QFT)",
+                section: "Conceptual Learning -> Connecting",
+                icon: "fa-magnifying-glass-chart",
+                purpose: "Transformar el inicio de un tema nuevo o una tarea de 'investigue los siguientes conceptos'.",
+                transform: "En lugar de darle al alumno una lista de temas a investigar, se le presenta un 'estímulo provocador' (una foto de un puente colapsado, una línea de código con un bug crítico, una gráfica en picada). La tarea es generar, mejorar y priorizar sus propias preguntas.",
+                phases: [
+                    { id: 0, title: "Inicio", navTitle: "Inicio", time: 0 },
+                    { id: 1, title: "Tomar Tema", navTitle: "Tomar Tema", time: 5,
+                      content: `<ul class="space-y-6 mb-6">
+                                  <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Tomen</strong> un tema del sílabo que usualmente mandan a investigar de forma directa al inicio de un parcial.</span>
+                                  </li>
+                                </ul>` 
+                    },
+                    { id: 2, title: "Diseño del Estímulo", navTitle: "Diseño Estímulo", time: 15,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">El ancla de la técnica es el 'Foco de la Pregunta' (QFocus):</p>
+                                <div class="bg-slate-50 border-l-8 border-ceutec-carmine p-8">
+                                    <h4 class="font-black text-ceutec-carmine mb-4 flex items-center gap-2"><i class="fa-solid fa-bolt text-ceutec-vermilion"></i> Crear el Provocador</h4>
+                                    <p class="text-sm text-slate-600 font-light leading-relaxed">Busquen o describan un estímulo provocador visual, auditivo o situacional. <em class="font-bold text-ceutec-vermilion">Debe generar intriga, no dar la respuesta.</em> Ej. Un video de 10 segundos de resonancia estructural destructiva.</p>
+                                </div>`
+                    },
+                    { id: 3, title: "Redacción de la Tarea", navTitle: "Redacción", time: 10,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">Diseñen las instrucciones usando la rutina estricta de QFT:</p>
+                                <ul class="space-y-4">
+                                    <li class="bg-white p-5 border-2 border-gray-200 flex gap-4 items-center">
+                                        <div class="w-8 h-8 bg-slate-200 text-slate-600 font-black flex items-center justify-center shrink-0 text-xs border border-slate-300">1</div>
+                                        <div class="text-sm font-light text-slate-600"><strong class="font-black text-ceutec-carmine uppercase tracking-widest text-[10px] block mb-1">Generar</strong> Escribir tantas preguntas como sea posible sobre el estímulo sin juzgarlas.</div>
+                                    </li>
+                                    <li class="bg-white p-5 border-2 border-gray-200 flex gap-4 items-center">
+                                        <div class="w-8 h-8 bg-slate-200 text-slate-600 font-black flex items-center justify-center shrink-0 text-xs border border-slate-300">2</div>
+                                        <div class="text-sm font-light text-slate-600"><strong class="font-black text-ceutec-carmine uppercase tracking-widest text-[10px] block mb-1">Mejorar</strong> Categorizar preguntas en abiertas/cerradas y cambiar al menos una de cada tipo.</div>
+                                    </li>
+                                    <li class="bg-white p-5 border-2 border-gray-200 flex gap-4 items-center">
+                                        <div class="w-8 h-8 bg-slate-200 text-slate-600 font-black flex items-center justify-center shrink-0 text-xs border border-slate-300">3</div>
+                                        <div class="text-sm font-light text-slate-600"><strong class="font-black text-ceutec-carmine uppercase tracking-widest text-[10px] block mb-1">Priorizar</strong> Elegir las 3 mejores preguntas que guiarán su propia investigación técnica.</div>
+                                    </li>
+                                </ul>`
+                    },
+                    { id: 4, title: "Alineación", navTitle: "Alineación", time: 0,
+                      align1: { title: "Conexión CGS", desc: "Cambia radicalmente la dinámica de 'consumir información pasivamente' a 'conectar y cuestionar' activamente (Connecting)." },
+                      align2: { title: "Visión CEUTEC 2030", desc: "Fomenta un <strong class='font-bold text-ceutec-carmine'>Líder con Propósito</strong> impulsado por la curiosidad insaciable, vital para la innovación." }
+                    }
+                ]
+            },
+            5: {
+                title: "Autopsia de un Caso: La Historia Oculta",
+                tool: "The Story: Main, Side, Hidden",
+                section: "Conceptual Learning -> Constructing",
+                icon: "fa-user-secret",
+                purpose: "Transformar un control de lectura o el análisis de un caso de estudio tradicional.",
+                transform: "Tradicionalmente, tras leer un caso (ej. el fracaso de una startup o un error de software), se hacen 3 preguntas de comprensión. Aquí, el docente estructurará el análisis pidiendo al alumno que desglose el caso en tres capas narrativas, incluyendo la capa ética.",
+                phases: [
+                    { id: 0, title: "Inicio", navTitle: "Inicio", time: 0 },
+                    { id: 1, title: "Elegir Caso", navTitle: "Elegir Caso", time: 5,
+                      content: `<ul class="space-y-6 mb-6">
+                                  <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-check text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Elijan</strong> un caso de estudio real o una lectura técnica obligatoria de su clase.</span>
+                                  </li>
+                                </ul>` 
+                    },
+                    { id: 2, title: "Mapeo de las 3 Historias", navTitle: "Rediseño", time: 15,
+                      content: `<p class="text-slate-700 mb-6 font-light text-lg">Mapeen cómo esperan que los alumnos desglosen la lectura en sus 3 capas:</p>
+                                <div class="space-y-4 text-sm">
+                                    <div class="bg-white p-5 border-2 border-gray-200 flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-slate-100 text-slate-500 flex items-center justify-center shrink-0 border border-slate-300"><i class="fa-solid fa-book text-lg"></i></div>
+                                        <div class="font-light text-slate-600"><strong class="font-black text-ceutec-carmine uppercase tracking-widest text-[10px] block mb-1">Main Story</strong> La falla técnica, la métrica clave o el evento principal evidente.</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-5 border-l-8 border-ceutec-vermilion flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-white border-2 border-ceutec-vermilion text-ceutec-vermilion flex items-center justify-center shrink-0"><i class="fa-solid fa-code-branch text-lg"></i></div>
+                                        <div class="font-light text-slate-600"><strong class="font-black text-ceutec-vermilion uppercase tracking-widest text-[10px] block mb-1">Side Story</strong> Los efectos colaterales. El impacto en la comunidad, los stakeholders, el presupuesto.</div>
+                                    </div>
+                                    <div class="bg-ceutec-carmine p-5 text-white flex items-center gap-4 border-l-8 border-ceutec-vermilion">
+                                        <div class="w-10 h-10 bg-white/10 text-white border border-white/30 flex items-center justify-center shrink-0"><i class="fa-solid fa-eye-slash text-lg"></i></div>
+                                        <div class="font-light text-blue-100"><strong class="font-black text-white uppercase tracking-widest text-[10px] block mb-1">Hidden Story</strong> El dilema ético, el sesgo cognitivo, o el "Carácter" detrás de las decisiones tomadas que nadie menciona directamente.</div>
+                                    </div>
+                                </div>`
+                    },
+                    { id: 3, title: "Instrucciones de Análisis", navTitle: "Instrucciones", time: 10,
+                      content: `<ul class="space-y-6 mb-8">
+                                    <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-1 text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light"><strong class="font-bold text-ceutec-carmine">Redacten la guía de análisis</strong>.</span>
+                                    </li>
+                                    <li class="flex items-start gap-4 bg-white p-6 border-2 border-gray-200">
+                                      <div class="w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-2 text-sm"></i></div>
+                                      <span class="text-slate-700 text-sm leading-relaxed font-light">En lugar de un cuestionario literal, el alumno debe entregar su matriz gráfica/textual de las 3 historias debidamente justificadas.</span>
+                                    </li>
+                                </ul>`
+                    },
+                    { id: 4, title: "Alineación", navTitle: "Alineación", time: 0,
+                      align1: { title: "CGS: Aprendizaje de Carácter", desc: "Entrelaza poderosamente el Aprendizaje Conceptual con el Aprendizaje de Carácter." },
+                      align2: { title: "Visión CEUTEC 2030", desc: "Desarrolla <strong class='font-bold text-ceutec-carmine'>Ciudadanos Responsables</strong> que ven más allá de los números y entienden el impacto humano de la ingeniería y los negocios." }
+                    }
+                ]
+            }
+        };
+
+        // State variables
+        let currentActivityId = null;
+        let currentPhaseIndex = 0;
+        let timerInterval;
+        let totalSeconds = 0;
+        let remainingSeconds = 0;
+        let isRunning = false;
+
+        // Estilos base para navegación en JS - Estricto CEUTEC Opción A
+        const baseNavClasses = ['w-full', 'text-left', 'px-5', 'py-4', 'transition-all', 'duration-300', 'border-l-8', 'flex', 'items-center', 'gap-3', 'group'];
+        const activeNavClasses = ['bg-white', 'text-ceutec-carmine', 'border-ceutec-vermilion', 'font-black'];
+        const inactiveNavClasses = ['text-slate-500', 'border-transparent', 'font-semibold', 'hover:bg-slate-50'];
+        const activeIconBgClasses = ['bg-ceutec-vermilion', 'text-white'];
+        const inactiveIconBgClasses = ['bg-slate-200', 'text-slate-500', 'group-hover:bg-ceutec-carmine', 'group-hover:text-white'];
+
+        // ================= NAVIGATION LOGIC =================
+
+        function goHome() {
+            stopTimer();
+            currentActivityId = null;
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('activity-view').classList.add('hidden');
+            document.getElementById('timer-container').classList.add('translate-y-full');
+            document.getElementById('btn-home').classList.add('hidden');
+        }
+
+        function openActivity(id) {
+            currentActivityId = id;
+            const act = activitiesDB[id];
+            
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('activity-view').classList.remove('hidden');
+            document.getElementById('btn-home').classList.remove('hidden');
+
+            document.getElementById('lbl-nav-1').innerText = act.phases[1].navTitle;
+            document.getElementById('lbl-nav-2').innerText = act.phases[2].navTitle;
+            document.getElementById('lbl-nav-3').innerText = act.phases[3].navTitle;
+
+            goToPhase(0);
+        }
+
+        function goToPhase(index) {
+            if (!currentActivityId) return;
+            currentPhaseIndex = index;
+            const act = activitiesDB[currentActivityId];
+            const phase = act.phases[index];
+
+            document.querySelectorAll('button[id^="nav-"]').forEach((el, i) => {
+                el.classList.remove(...activeNavClasses);
+                el.classList.add(...inactiveNavClasses);
+                
+                const iconBg = document.getElementById(`icon-bg-${i}`);
+                if(iconBg) {
+                    iconBg.classList.remove(...activeIconBgClasses);
+                    iconBg.classList.add(...inactiveIconBgClasses);
+                }
+            });
+
+            const navItem = document.getElementById(`nav-${index}`);
+            if(navItem) {
+                navItem.classList.remove(...inactiveNavClasses);
+                navItem.classList.add(...activeNavClasses);
+            }
+            
+            const iconBgActive = document.getElementById(`icon-bg-${index}`);
+            if(iconBgActive) {
+                iconBgActive.classList.remove(...inactiveIconBgClasses);
+                iconBgActive.classList.add(...activeIconBgClasses);
+            }
+
+            renderPhaseContent(act, phase, index);
+
+            const timerContainer = document.getElementById('timer-container');
+            if (phase.time > 0) {
+                timerContainer.classList.remove('translate-y-full');
+                document.getElementById('timer-phase-title').innerText = phase.title;
+                setupTimer(phase.time);
+            } else {
+                timerContainer.classList.add('translate-y-full');
+                stopTimer();
+            }
+        }
+
+        function renderPhaseContent(act, phase, index) {
+            const container = document.getElementById('dynamic-content');
+            let html = '';
+
+            if (index === 0) {
+                html = `
+                <section class="fade-in max-w-4xl mx-auto">
+                    <div class="bg-white border-4 border-gray-200 diamond-border-top">
+                        <div class="bg-ceutec-carmine p-10 text-white relative overflow-hidden border-b-8 border-ceutec-vermilion">
+                            <i class="fa-solid ${act.icon} absolute -right-10 -bottom-10 text-9xl opacity-10"></i>
+                            <div class="relative z-10">
+                                <span class="bg-white text-ceutec-carmine text-[10px] font-black tracking-widest mb-6 uppercase px-4 py-2 inline-block border-2 border-ceutec-carmine">Herramienta CGS: ${act.tool}</span>
+                                <h2 class="text-3xl md:text-4xl font-black mb-4 leading-tight">${act.title}</h2>
+                                <p class="text-sm text-red-200 font-medium uppercase tracking-widest">${act.section}</p>
+                            </div>
+                        </div>
+                        <div class="p-8 md:p-10">
+                            <div class="mb-10">
+                                <h3 class="font-black text-ceutec-carmine text-lg uppercase tracking-wider mb-4 flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-ceutec-carmine text-white flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-bullseye"></i>
+                                    </div>
+                                    Propósito de la Herramienta
+                                </h3>
+                                <p class="text-slate-600 bg-slate-50 p-6 border-l-8 border-ceutec-carmine text-sm leading-relaxed font-light">${act.purpose}</p>
+                            </div>
+                            <div class="bg-white p-8 border-2 border-gray-200 relative overflow-hidden">
+                                <h3 class="font-black text-ceutec-carmine mb-4 flex items-center gap-2 text-sm uppercase tracking-widest relative z-10">
+                                    <i class="fa-solid fa-bolt text-ceutec-vermilion text-lg"></i> La Transformación Pedagógica
+                                </h3>
+                                <p class="text-slate-600 text-sm leading-relaxed font-light relative z-10">${act.transform}</p>
+                            </div>
+                            <div class="mt-10 flex justify-end">
+                                <button onclick="goToPhase(1)" class="bg-ceutec-carmine hover:bg-ceutec-vermilion border-2 border-ceutec-carmine text-white font-bold py-3.5 px-8 transition-colors flex items-center gap-3 uppercase tracking-widest text-sm">
+                                    Iniciar Rediseño <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>`;
+            } 
+            else if (index > 0 && index < 4) {
+                html = `
+                <section class="fade-in max-w-4xl mx-auto">
+                    <div class="mb-8">
+                        <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine flex items-center gap-4">
+                            <span class="w-12 h-12 bg-ceutec-vermilion text-white flex items-center justify-center text-xl shrink-0">${index}</span>
+                            ${phase.title}
+                        </h2>
+                    </div>
+                    <div class="bg-white p-8 md:p-10 border-4 border-gray-200 mb-8 min-h-[250px] diamond-border-top relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 opacity-5"><i class="fa-solid ${act.icon} text-8xl text-ceutec-carmine"></i></div>
+                        <div class="relative z-10">
+                            ${phase.content}
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mt-8">
+                        <button onclick="goToPhase(${index - 1})" class="text-slate-400 hover:text-ceutec-vermilion font-bold px-6 py-3 transition-colors text-sm uppercase tracking-widest flex items-center gap-2 border-2 border-transparent hover:border-ceutec-vermilion"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+                        <button onclick="goToPhase(${index + 1})" class="bg-ceutec-carmine hover:bg-ceutec-vermilion border-2 border-ceutec-carmine text-white font-bold py-3.5 px-8 transition-colors flex items-center gap-3 uppercase tracking-widest text-sm">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </section>`;
+            } 
+            else if (index === 4) {
+                html = `
+                <section class="fade-in max-w-5xl mx-auto">
+                    <div class="mb-12 text-center max-w-2xl mx-auto">
+                        <div class="inline-flex w-20 h-20 bg-ceutec-carmine text-white items-center justify-center mb-6">
+                            <i class="fa-solid fa-award text-3xl"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine mb-4 uppercase">Justificación y Alineación Institucional</h2>
+                        <p class="text-slate-500 text-lg font-light border-l-4 border-ceutec-vermilion pl-3 max-w-max mx-auto">Impacto en el Ecosistema CEUTEC</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                        <div class="bg-white p-8 border-4 border-gray-200 diamond-border-top relative overflow-hidden group hover:border-ceutec-vermilion transition-colors">
+                            <i class="fa-solid fa-layer-group absolute -right-4 -bottom-4 text-8xl text-ceutec-carmine opacity-5 group-hover:opacity-10 transition-opacity"></i>
+                            <div class="text-ceutec-vermilion text-3xl mb-5 relative z-10"><i class="fa-solid fa-layer-group"></i></div>
+                            <h3 class="font-black text-ceutec-carmine text-xl mb-3 relative z-10">${phase.align1.title}</h3>
+                            <p class="text-slate-600 text-sm font-light leading-relaxed relative z-10">${phase.align1.desc}</p>
+                        </div>
+                        
+                        <div class="bg-white p-8 border-4 border-gray-200 diamond-border-top relative overflow-hidden group hover:border-ceutec-vermilion transition-colors">
+                            <i class="fa-solid fa-eye absolute -right-4 -bottom-4 text-8xl text-ceutec-carmine opacity-5 group-hover:opacity-10 transition-opacity"></i>
+                            <div class="text-ceutec-vermilion text-3xl mb-5 relative z-10"><i class="fa-solid fa-eye"></i></div>
+                            <h3 class="font-black text-ceutec-carmine text-xl mb-3 relative z-10">${phase.align2.title}</h3>
+                            <p class="text-slate-600 text-sm font-light leading-relaxed relative z-10">${phase.align2.desc}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 text-center">
+                        <button onclick="goHome()" class="bg-ceutec-light border-2 border-ceutec-carmine text-ceutec-carmine font-bold hover:bg-ceutec-carmine hover:text-white transition-colors uppercase tracking-widest text-sm flex items-center justify-center mx-auto gap-2 px-8 py-4">
+                            <i class="fa-solid fa-house"></i> Volver al Menú de Herramientas
+                        </button>
+                    </div>
+                </section>`;
+            }
+
+            container.innerHTML = html;
+            const newSection = container.querySelector('section');
+            newSection.classList.remove('fade-in');
+            void newSection.offsetWidth;
+            newSection.classList.add('fade-in');
+        }
+
+        // ================= TIMER LOGIC =================
+        
+        function setupTimer(minutes) {
+            stopTimer();
+            totalSeconds = minutes * 60;
+            remainingSeconds = totalSeconds;
+            updateTimerUI();
+            document.getElementById('icon-play-pause').classList.replace('fa-pause', 'fa-play');
+            isRunning = false;
+        }
+
+        function toggleTimer() {
+            if (isRunning) {
+                stopTimer();
+                document.getElementById('icon-play-pause').classList.replace('fa-pause', 'fa-play');
+            } else {
+                startTimer();
+                document.getElementById('icon-play-pause').classList.replace('fa-play', 'fa-pause');
+            }
+        }
+
+        function startTimer() {
+            if (remainingSeconds <= 0) return;
+            isRunning = true;
+            timerInterval = setInterval(() => {
+                remainingSeconds--;
+                updateTimerUI();
+                
+                if (remainingSeconds <= 0) {
+                    stopTimer();
+                    document.getElementById('icon-play-pause').classList.replace('fa-pause', 'fa-play');
+                    showTimeUpModal();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer() {
+            stopTimer();
+            remainingSeconds = totalSeconds;
+            updateTimerUI();
+            document.getElementById('icon-play-pause').classList.replace('fa-pause', 'fa-play');
+        }
+
+        function updateTimerUI() {
+            const display = document.getElementById('time-display');
+            const progress = document.getElementById('time-progress');
+            
+            const m = Math.floor(remainingSeconds / 60).toString().padStart(2, '0');
+            const s = (remainingSeconds % 60).toString().padStart(2, '0');
+            display.innerText = `${m}:${s}`;
+
+            if (remainingSeconds <= 60 && remainingSeconds > 0) {
+                display.classList.remove('text-ceutec-carmine');
+                display.classList.add('text-ceutec-vermilion', 'animate-pulse');
+            } else {
+                display.classList.remove('text-ceutec-vermilion', 'animate-pulse');
+                display.classList.add('text-ceutec-carmine');
+            }
+
+            const percentage = (remainingSeconds / totalSeconds) * 100;
+            progress.style.width = `${percentage}%`;
+            
+            progress.className = 'h-full transition-all duration-1000 ease-linear';
+            if(percentage < 20) {
+                progress.classList.add('bg-ceutec-carmine');
+            } else if (percentage < 50) {
+                progress.classList.add('bg-ceutec-crimson');
+            } else {
+                progress.classList.add('bg-ceutec-vermilion');
+            }
+        }
+
+        function showTimeUpModal() {
+            const modal = document.getElementById('msg-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('msg-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

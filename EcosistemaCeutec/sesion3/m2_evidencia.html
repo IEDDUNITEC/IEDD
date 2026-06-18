@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño de Tareas GRASPS | Programa de Formación Docente CEUTEC</title>
+    <!-- Tipografía Institucional CEUTEC: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',    /* Base y Autoridad */
+                            vermilion: '#E04332',  /* Acentos vibrantes y CTA */
+                            crimson: '#D91A2A',    /* Elementos interactivos */
+                            light: '#F8FAFC',      /* Fondo limpio */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* APLICACIÓN DE MANUAL DE MARCA: CERO SOMBRAS, CERO BORDES REDONDOS */
+        * {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        
+        body { font-family: 'Poppins', sans-serif; }
+        
+        /* Cortes de Diamante (Estética Segura y Clásica) */
+        .diamond-tag {
+            /* Geometría estricta basada en el isotipo */
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+        .diamond-icon-bg {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        .diamond-btn {
+            clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+            border: 2px solid transparent;
+        }
+        .diamond-border-top {
+            border-top: 6px solid #E04332; /* Vermilion */
+        }
+        
+        /* Modificadores de hover que respetan la marca sin usar sombras */
+        .solid-card {
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .solid-card:hover {
+            border-color: #E04332; /* Vermilion hover */
+            transform: translateY(-4px);
+        }
+
+        /* Transiciones suaves */
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Ocultar barra de scroll en botones laterales */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="min-h-screen bg-ceutec-light text-slate-800 antialiased selection:bg-ceutec-vermilion selection:text-white">
+
+    <!-- Header Corporativo CEUTEC (Franja Blanca Institucional) -->
+    <header class="relative bg-white text-slate-800 border-b-8 border-ceutec-carmine sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto py-4 px-4 md:px-8 relative z-10 flex flex-col gap-4">
+            
+            <!-- Fila Superior: Franja Blanca Institucional (Logo + Títulos) y Controles -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                
+                <!-- Branding: Logo CEUTEC + Línea + Textos -->
+                <div class="flex items-center gap-3 md:gap-4 w-full md:w-auto justify-center md:justify-start">
+                    <!-- Isotipo -->
+                    <!-- Logotipo -->
+                    <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-8 md:h-10 object-contain shrink-0">
+                    <!-- Separador -->
+                    <div class="h-10 w-0.5 bg-gray-300 hidden sm:block ml-1 mr-1"></div>
+                    <!-- Textos -->
+                    <div class="flex flex-col justify-center text-left">
+                        <span class="text-ceutec-carmine font-black text-sm md:text-base leading-none tracking-wide">PROGRAMA DE FORMACIÓN DOCENTE</span>
+                        <span class="text-slate-500 font-medium text-[10px] md:text-xs leading-none mt-1 md:mt-1.5 tracking-wide">ECOSISTEMA DE APRENDIZAJE</span>
+                    </div>
+                </div>
+
+                <!-- Controles de Vista (Intactos para preservar JS y funcionalidad) -->
+                <div class="bg-ceutec-carmine border-2 border-ceutec-vermilion p-1.5 flex gap-1 w-full md:w-auto shrink-0 mt-3 md:mt-0">
+                    <button id="btn-mode-video" onclick="setViewMode('video')" class="diamond-btn flex-1 md:flex-none px-5 py-2.5 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-ceutec-vermilion text-white">
+                        <i class="fa-solid fa-circle-play"></i> <span class="hidden sm:inline">Parte 1:</span> Intro
+                    </button>
+                    <button id="btn-mode-interactive" onclick="setViewMode('interactive')" class="diamond-btn flex-1 md:flex-none px-5 py-2.5 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-ceutec-carmine text-white hover:border-ceutec-vermilion">
+                        <i class="fa-solid fa-lightbulb"></i> <span class="hidden sm:inline">Parte 2:</span> Módulo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fila Inferior: Título de la Página -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left mt-1 md:mt-2 pt-4 border-t border-gray-100">
+                <h1 class="text-xl md:text-2xl font-black text-ceutec-carmine flex items-center justify-center md:justify-start gap-3 leading-tight">
+                    <div class="diamond-icon-bg w-8 h-8 bg-ceutec-carmine text-white flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-book-open text-xs"></i>
+                    </div>
+                    Diseño de Tareas G.R.A.S.P.S.
+                </h1>
+                <p class="text-slate-600 mt-1 md:mt-2 text-xs md:text-sm font-light">Evaluación Auténtica para el Ecosistema de Aprendizaje</p>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+        
+        <!-- ========================================== -->
+        <!-- VIEW MODE: VIDEO EXPLAINER 1 (Introducción) -->
+        <!-- ========================================== -->
+        <div id="view-video" class="animate-fade-in block">
+            <div class="bg-white border-2 border-gray-200 overflow-hidden mb-8 diamond-border-top">
+                <div class="p-8 md:p-12 flex flex-col lg:flex-row gap-10 items-center">
+                    
+                    <div class="flex-1 space-y-5 text-center lg:text-left order-2 lg:order-1">
+                        <span class="diamond-tag inline-block px-4 py-1.5 bg-ceutec-light text-ceutec-carmine font-bold text-xs uppercase tracking-widest border border-ceutec-carmine">
+                            Contexto Pedagógico
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine leading-tight">De lo Transaccional a lo Transformacional</h2>
+                        <p class="text-base md:text-lg text-slate-600 leading-relaxed font-light">
+                            El modelo tradicional suele enfocarse en calificar la memorización mediante "exámenes forenses" donde se evalúa lo que el alumno recuerda al final del periodo. 
+                            <br><br>
+                            En nuestro sistema, guiados por los docentes, buscamos diseñar evaluaciones <strong class="font-bold text-ceutec-carmine">"para y como aprendizaje"</strong>. Las tareas G.R.A.S.P.S. son nuestro instrumento central para lograrlo, permitiendo que el estudiante enfrente desafíos simulados del mundo real y evidencie un dominio tridimensional: <strong class="font-bold text-ceutec-carmine">Concepto, Competencia y Carácter</strong>.
+                        </p>
+                        <button onclick="setViewMode('interactive')" class="mt-6 inline-flex items-center justify-center w-full lg:w-auto gap-3 text-white bg-ceutec-carmine hover:bg-ceutec-vermilion border-2 border-ceutec-carmine px-8 py-4 font-bold transition-colors group">
+                            Ver Parte 2: Módulo Interactivo <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- VIDEO 1 IMPLEMENTATION -->
+                    <div class="w-full lg:w-1/2 aspect-video bg-ceutec-carmine flex flex-col items-center justify-center relative overflow-hidden order-1 lg:order-2 border-4 border-ceutec-vermilion">
+                        <video controls class="w-full h-full object-cover" preload="metadata">
+                            <source src="VID/Tareas_GRASPS__Evaluaciones_Auténticas_1.mp4" type="video/mp4">
+                            <div class="p-6 text-center text-white absolute inset-0 flex flex-col items-center justify-center bg-ceutec-carmine">
+                                <i class="fa-solid fa-video text-5xl text-ceutec-vermilion mb-4"></i>
+                                <p class="text-sm font-light">Tu navegador no soporta el elemento de video o el archivo no se encuentra en la carpeta 'VID'.</p>
+                            </div>
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW MODE: INTERACTIVE GRASPS EXPLORER     -->
+        <!-- ========================================== -->
+        <div id="view-interactive" class="animate-fade-in hidden space-y-10">
+            
+            <!-- VIDEO EXPLAINER 2 (Profundización) -->
+            <div class="bg-white border-2 border-gray-200 p-8 flex flex-col lg:flex-row gap-10 items-center diamond-border-top">
+                <div class="w-full lg:w-1/2 order-1 lg:order-2">
+                    <span class="diamond-tag inline-flex items-center gap-2 px-4 py-1.5 bg-ceutec-carmine text-white font-bold text-xs uppercase tracking-widest mb-4">
+                        <i class="fa-solid fa-circle-play text-ceutec-vermilion"></i> Parte 2: Profundización
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-black text-ceutec-carmine mb-4 leading-tight">Desglose Técnico: ¿Cómo estructurar el acrónimo?</h3>
+                    <p class="text-base text-slate-600 leading-relaxed mb-5 font-light">
+                        Antes de explorar interactivamente cada elemento, invitamos a todos los docentes a revisar este segundo video. Este material explica cada parte del acrónimo, y además cómo incorporar el Feedback S.T.A.R.
+                    </p>
+                    <p class="text-xs text-ceutec-carmine font-bold uppercase tracking-wider bg-ceutec-light p-3 border-l-4 border-ceutec-vermilion">
+                        <i class="fa-solid fa-info-circle mr-1"></i> Una vez visto, selecciona cada letra en el menú para ver ejemplos transversales.
+                    </p>
+                </div>
+                
+                <!-- VIDEO 2 IMPLEMENTATION -->
+                <div class="w-full lg:w-1/2 aspect-video bg-ceutec-carmine overflow-hidden order-2 lg:order-1 relative border-4 border-ceutec-vermilion">
+                    <video controls class="w-full h-full object-cover" preload="metadata">
+                        <source src="VID/Tareas_GRASPS__Evaluaciones_Auténticas_2.mp4" type="video/mp4">
+                        <div class="p-6 text-center text-white absolute inset-0 flex flex-col items-center justify-center bg-ceutec-carmine">
+                            <i class="fa-solid fa-video text-5xl text-ceutec-vermilion mb-4"></i>
+                            <p class="text-sm font-light">Tu navegador no soporta el elemento de video o el archivo no se encuentra.</p>
+                        </div>
+                    </video>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE GRASPS GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Left Sidebar: Acronym Selector -->
+                <div class="lg:col-span-4 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x hide-scrollbar">
+                    <h3 class="hidden lg:flex text-xl font-black text-ceutec-carmine mb-3 items-center gap-3">
+                        <i class="fa-solid fa-bullseye text-ceutec-vermilion"></i> El Marco G.R.A.S.P.S.
+                    </h3>
+                    
+                    <!-- Botones generados dinámicamente en JS -->
+                    <div id="acronym-buttons" class="flex flex-row lg:flex-col gap-3 w-full"></div>
+                </div>
+
+                <!-- Right Content Panel: Dynamic Details -->
+                <div class="lg:col-span-8 flex flex-col gap-8">
+                    
+                    <!-- Main Dynamic Card -->
+                    <div class="bg-white p-8 border-2 border-gray-200 relative overflow-hidden group">
+                        
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
+                            <div class="diamond-icon-bg w-16 h-16 bg-ceutec-carmine text-white flex items-center justify-center shrink-0">
+                                <i id="detail-icon" class="fa-solid fa-bullseye text-2xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine mb-2 flex items-baseline gap-2">
+                                    <span id="detail-letter" class="text-ceutec-vermilion">G.</span>
+                                    <span id="detail-title">Goal (Meta)</span>
+                                </h2>
+                                <p id="detail-desc" class="text-lg text-slate-500 font-medium">
+                                    Define el objetivo principal o el desafío que el estudiante debe resolver.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-6 border-l-8 border-ceutec-carmine mb-8">
+                            <p id="detail-details" class="text-slate-700 text-base leading-relaxed font-light">
+                                La meta debe ir más allá de la simple memorización. Debe presentar un problema a resolver, un obstáculo a superar o un diseño a crear. Es el 'por qué' del aprendizaje.
+                            </p>
+                        </div>
+
+                        <!-- Multiple Examples Section -->
+                        <div class="mb-8">
+                            <h4 class="font-black text-ceutec-carmine text-xs uppercase tracking-widest mb-4 flex items-center gap-2 border-b-2 border-gray-200 pb-3">
+                                <i class="fa-solid fa-lightbulb text-ceutec-vermilion"></i> Ejemplos Transversales
+                            </h4>
+                            <div id="detail-examples" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Ejemplos inyectados por JS -->
+                            </div>
+                        </div>
+
+                        <!-- CGS Alignment -->
+                        <div class="bg-ceutec-carmine text-white p-6 flex items-start gap-4 border-l-8 border-ceutec-vermilion relative overflow-hidden">
+                            <i class="fa-solid fa-shield-halved text-2xl text-white shrink-0 mt-1 relative z-10"></i>
+                            <div class="relative z-10">
+                                <h4 class="font-black text-white text-sm uppercase tracking-widest mb-2">Alineación Ecosistema de Aprendizaje</h4>
+                                <p id="detail-cgs" class="text-sm text-red-100 leading-relaxed font-light">
+                                    Se conecta directamente con la Meta Conceptual Central (Concepto) del CEUTEC Planner.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pedagogical Tips Panel (Fijo) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="solid-card bg-white p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-ceutec-light text-ceutec-vermilion flex items-center justify-center shrink-0 border border-ceutec-vermilion">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <h3 class="font-black text-ceutec-carmine text-base">El Poder de la Elección</h3>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed font-light">
+                                Al definir el <strong class="font-bold text-ceutec-carmine">Producto (P)</strong>, es altamente recomendable ofrecer 2 o 3 opciones. Permitir a los estudiantes elegir o co-crear sus demostraciones de desempeño aumenta su sentido de pertenencia y se alinea con la filosofía <em>Learning to Learn</em>.
+                            </p>
+                        </div>
+
+                        <div class="solid-card bg-white p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-ceutec-light text-ceutec-vermilion flex items-center justify-center shrink-0 border border-ceutec-vermilion">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <h3 class="font-black text-ceutec-carmine text-base">Feedback S.T.A.R.</h3>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed font-light">
+                                Las tareas complejas no deben evaluarse solo al final. Los docentes deben integrar actividades de revisión cruzada usando retroalimentación S.T.A.R. (<strong class="font-bold text-ceutec-carmine">Específico, Oportuno, Accionable y Respetuoso</strong>) para guiar la mejora continua.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white text-slate-500 py-10 text-center border-t-2 border-gray-200 mt-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1L23 12L12 23L1 12L12 1Z" fill="#E04332"/>
+                </svg>
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-6 opacity-70 grayscale">
+            </div>
+            <p class="text-sm">Diseñado como recurso metodológico para el <strong class="font-bold text-ceutec-carmine">Ecosistema de Aprendizaje de CEUTEC</strong> y el <strong class="font-bold text-ceutec-carmine">Programa de Formación Docente</strong>.</p>
+            <p class="text-xs mt-3 opacity-80 max-w-2xl mx-auto leading-relaxed font-light">
+                Reingeniería del Tiempo Curricular: Recuerda que las tareas auténticas exigen mayor inmersión. 
+                No satures al alumno implementando múltiples proyectos aislados sin coordinación ecosistémica.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Lógica de Interactividad y Datos -->
+    <script>
+        // Datos Estructurados
+        const graspsData = {
+            G: {
+                title: "Goal (Meta)",
+                icon: "fa-bullseye",
+                description: "Define el objetivo principal o el desafío que el estudiante debe resolver.",
+                details: "La meta debe ir más allá de la simple memorización. Debe presentar un problema a resolver, un obstáculo a superar o un diseño a crear. Es el 'por qué' del aprendizaje.",
+                examples: [
+                    { field: "Ingeniería", icon: "fa-desktop", text: "Diseñar un sistema de captación de agua lluvia para una comunidad rural con recursos limitados." },
+                    { field: "Arte y Diseño", icon: "fa-pen-nib", text: "Crear una campaña de identidad visual que concientice sobre el rescate del patrimonio cultural en el centro histórico de la ciudad." },
+                    { field: "C. Administrativas", icon: "fa-arrow-trend-up", text: "Desarrollar un plan de rescate financiero y operativo para una PYME local afectada por la inflación, asegurando su sostenibilidad." },
+                    { field: "Postgrado", icon: "fa-graduation-cap", text: "Diseñar un modelo de evaluación de políticas públicas basado en evidencia para reducir el impacto del cambio climático en infraestructuras costeras." }
+                ],
+                cgsLink: "Se conecta directamente con la Meta Conceptual Central (Concepto) del CEUTEC Planner."
+            },
+            R: {
+                title: "Role (Rol)",
+                icon: "fa-user",
+                description: "Establece el rol profesional o social que asume el estudiante.",
+                details: "Saca al estudiante del rol pasivo de 'alumno' y lo coloca en una posición de agencia. Esto fomenta el Carácter (Empatía, Responsabilidad) al tener que pensar como un profesional.",
+                examples: [
+                    { field: "Ingeniería", icon: "fa-desktop", text: "Auditor Estructural, Ingeniero Biomédico Jefe, Consultor de Redes, Analista de Datos." },
+                    { field: "Arte y Diseño", icon: "fa-pen-nib", text: "Director de Arte, Diseñador UX/UI Principal, Curador de Exposiciones, Ilustrador Freelance." },
+                    { field: "C. Administrativas", icon: "fa-arrow-trend-up", text: "Gerente de Transformación Estratégica, Asesor Financiero, Director de Recursos Humanos." },
+                    { field: "Postgrado", icon: "fa-graduation-cap", text: "Investigador Principal, Director de Innovación Corporativa, Asesor Ministerial, Líder de Proyecto Ágil." }
+                ],
+                cgsLink: "Fomenta el Retrato del Aprendiz (ej. Solucionador de Problemas Empático)."
+            },
+            A: {
+                title: "Audience (Audiencia)",
+                icon: "fa-users",
+                description: "Identifica a quién va dirigido el producto o la presentación.",
+                details: "La audiencia realza la autenticidad. Los estudiantes no trabajan solo para el profesor, sino para un cliente, una junta directiva, una comunidad o un panel de expertos.",
+                examples: [
+                    { field: "Ingeniería", icon: "fa-desktop", text: "El comité de presupuesto de la alcaldía, la junta directiva de un hospital, usuarios finales de una app." },
+                    { field: "Arte y Diseño", icon: "fa-pen-nib", text: "El comité organizador de una bienal de arte, una ONG aliada, la junta directiva de una marca de moda." },
+                    { field: "C. Administrativas", icon: "fa-arrow-trend-up", text: "Inversionistas ángeles buscando rentabilidad (Pitch Deck), el sindicato de trabajadores de la empresa." },
+                    { field: "Postgrado", icon: "fa-graduation-cap", text: "Un panel internacional de expertos en la industria, comités éticos de revisión, autoridades gubernamentales de alto nivel." }
+                ],
+                cgsLink: "Desarrolla la capacidad de ser un Comunicador Efectivo adaptando el mensaje al receptor."
+            },
+            S1: {
+                title: "Situation (Situación)",
+                icon: "fa-map-location-dot",
+                description: "Describe el contexto, escenario o las condiciones del desafío.",
+                details: "Proporciona las variables del mundo real que complican el problema. Incluye restricciones de tiempo, presupuesto, materiales o normativas éticas.",
+                examples: [
+                    { field: "Ingeniería", icon: "fa-desktop", text: "El presupuesto ha sido recortado en un 20% y el terreno presenta alta sismicidad. Deben adaptar el diseño estructural a estas nuevas condiciones." },
+                    { field: "Arte y Diseño", icon: "fa-pen-nib", text: "La marca actual ha perdido el 40% de su mercado joven. Se requiere un rebranding completo utilizando únicamente activos de licencia libre para minimizar costos." },
+                    { field: "C. Administrativas", icon: "fa-arrow-trend-up", text: "Una nueva ley tributaria acaba de entrar en vigencia y la principal línea de suministro de la empresa se ha visto interrumpida por una crisis logística global." },
+                    { field: "Postgrado", icon: "fa-graduation-cap", text: "Existen múltiples grupos de interés con objetivos en conflicto respecto al uso del suelo urbano, y se requiere mediar entre el desarrollo económico y la conservación ambiental." }
+                ],
+                cgsLink: "Permite gestionar la complejidad y la incertidumbre (Pensamiento Crítico y Sistémico)."
+            },
+            P: {
+                title: "Product (Desempeño)",
+                icon: "fa-briefcase",
+                description: "Especifica qué crearán o harán los estudiantes para demostrar su aprendizaje.",
+                details: "Debe haber opciones. Ofrecer 2 o 3 alternativas de producto aumenta la motivación y el sentido de pertenencia (autonomía) del estudiante sobre su trabajo.",
+                examples: [
+                    { field: "Ingeniería", icon: "fa-desktop", text: "Un informe técnico, una maqueta funcional, un dashboard interactivo, o una presentación de defensa de proyecto." },
+                    { field: "Arte y Diseño", icon: "fa-pen-nib", text: "Un manual de marca (Brandbook), un prototipo navegable en Figma, una exposición fotográfica comentada o un pitch creativo." },
+                    { field: "C. Administrativas", icon: "fa-arrow-trend-up", text: "Un plan de negocios viable a 3 años, un simulador de proyecciones de flujo de caja, o un plan estratégico de gestión del cambio." },
+                    { field: "Postgrado", icon: "fa-graduation-cap", text: "Un artículo publicable en una revista indexada, una propuesta de intervención estratégica (consultoría real), o un modelo predictivo validado." }
+                ],
+                cgsLink: "Es la evidencia de la Competencia. Importante: Diferenciar siempre entre el 'producto' (qué hacen) y el 'propósito' (por qué lo hacen)."
+            },
+            S2: {
+                title: "Standards (Criterios)",
+                icon: "fa-circle-check",
+                description: "Establece cómo se evaluará el éxito del producto y el desempeño.",
+                details: "Diferencia los criterios de calidad de pensamiento de los simples requisitos técnicos de finalización. Fomenta la evaluación 'como' aprendizaje.",
+                examples: [
+                    { field: "Ingeniería", icon: "fa-desktop", text: "Validación del modelo matemático, justificación en la gestión de la incertidumbre (riesgos) y viabilidad técnica." },
+                    { field: "Arte y Diseño", icon: "fa-pen-nib", text: "Documentación del proceso iterativo, originalidad conceptual, cohesión estética y validación de empatía con el usuario final (UX)." },
+                    { field: "C. Administrativas", icon: "fa-arrow-trend-up", text: "Sostenibilidad financiera proyectada, solidez de los argumentos estratégicos ante objeciones en el Pitch, y factibilidad operativa." },
+                    { field: "Postgrado", icon: "fa-graduation-cap", text: "Rigor metodológico en la investigación, nivel de impacto de la contribución al sector y consideraciones éticas demostrables." }
+                ],
+                cgsLink: "Integra la retroalimentación continua usando el modelo S.T.A.R. (Específico, Oportuno, Accionable y Respetuoso)."
+            }
+        };
+
+        // Estado Global
+        let activeLetter = 'G';
+        let currentMode = 'interactive';
+
+        // Función para cambiar el modo de vista (Video vs Interactivo)
+        function setViewMode(mode) {
+            currentMode = mode;
+            const btnVideo = document.getElementById('btn-mode-video');
+            const btnInteractive = document.getElementById('btn-mode-interactive');
+            const viewVideo = document.getElementById('view-video');
+            const viewInteractive = document.getElementById('view-interactive');
+
+            // Actualizar botones (Estética CEUTEC Carmine/Vermilion)
+            if (mode === 'video') {
+                btnVideo.className = "diamond-btn flex-1 md:flex-none px-5 py-2.5 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-ceutec-vermilion text-white";
+                btnInteractive.className = "diamond-btn flex-1 md:flex-none px-5 py-2.5 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-ceutec-carmine text-white hover:border-ceutec-vermilion";
+                
+                viewVideo.classList.remove('hidden');
+                viewInteractive.classList.add('hidden');
+            } else {
+                btnInteractive.className = "diamond-btn flex-1 md:flex-none px-5 py-2.5 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-ceutec-vermilion text-white";
+                btnVideo.className = "diamond-btn flex-1 md:flex-none px-5 py-2.5 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-ceutec-carmine text-white hover:border-ceutec-vermilion";
+                
+                viewInteractive.classList.remove('hidden');
+                viewVideo.classList.add('hidden');
+            }
+        }
+
+        // Función para renderizar el contenido del detalle
+        function updateDetailPanel() {
+            const data = graspsData[activeLetter];
+            
+            // Actualizar textos principales
+            document.getElementById('detail-letter').innerText = activeLetter.replace(/[0-9]/g, '') + '.';
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-desc').innerText = data.description;
+            document.getElementById('detail-details').innerText = data.details;
+            document.getElementById('detail-cgs').innerText = data.cgsLink;
+            document.getElementById('detail-icon').className = `fa-solid ${data.icon} text-2xl`;
+
+            // Renderizar ejemplos (Estética de bordes sólidos y afilados)
+            const examplesHtml = data.examples.map(ex => `
+                <div class="solid-card bg-white p-5 flex flex-col gap-3 group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-ceutec-light border-2 border-ceutec-carmine flex items-center justify-center group-hover:bg-ceutec-vermilion group-hover:text-white group-hover:border-ceutec-vermilion transition-colors text-ceutec-carmine">
+                            <i class="fa-solid ${ex.icon} text-sm"></i>
+                        </div>
+                        <span class="font-black text-ceutec-carmine text-sm tracking-wide">${ex.field}</span>
+                    </div>
+                    <p class="text-slate-600 text-sm italic font-light leading-relaxed">"${ex.text}"</p>
+                </div>
+            `).join('');
+            document.getElementById('detail-examples').innerHTML = examplesHtml;
+
+            // Actualizar estado visual de los botones laterales
+            renderSidebarButtons();
+        }
+
+        // Función para manejar el clic en una letra
+        function handleLetterClick(letter) {
+            activeLetter = letter;
+            updateDetailPanel();
+        }
+
+        // Renderizar botones laterales
+        function renderSidebarButtons() {
+            const container = document.getElementById('acronym-buttons');
+            const buttonsHtml = Object.entries(graspsData).map(([key, data]) => {
+                const isActive = activeLetter === key;
+                const letterDisplay = key.replace(/[0-9]/g, '');
+                const titleMain = data.title.split(' ')[0];
+                const titleSub = data.title.split(' ')[1] ? data.title.split(' ')[1].replace(/[()]/g, '') : '';
+
+                const baseClasses = "flex items-center gap-4 p-4 transition-all duration-300 border-2 text-left min-w-[220px] lg:min-w-0 snap-start shrink-0 group relative overflow-hidden";
+                const activeClasses = isActive ? "bg-ceutec-carmine border-ceutec-carmine text-white" : "bg-white border-gray-200 hover:border-ceutec-vermilion hover:bg-slate-50";
+                
+                const iconBaseClasses = "diamond-icon-bg flex items-center justify-center w-12 h-12 font-black text-xl shrink-0 transition-colors";
+                const iconActiveClasses = isActive ? "bg-ceutec-vermilion text-white" : "bg-slate-100 text-ceutec-carmine group-hover:bg-ceutec-vermilion group-hover:text-white";
+                
+                const textMainClasses = `font-black text-lg leading-tight transition-colors ${isActive ? 'text-white' : 'text-ceutec-carmine'}`;
+                const textSubClasses = `text-xs font-medium block mt-1 transition-colors ${isActive ? 'text-red-200' : 'text-slate-500'}`;
+                
+                const chevronClasses = `w-5 h-5 shrink-0 transition-colors ${isActive ? 'text-white block' : 'text-slate-300 hidden lg:block group-hover:text-ceutec-vermilion'}`;
+
+                return `
+                    <button onclick="handleLetterClick('${key}')" class="${baseClasses} ${activeClasses}">
+                        <div class="${iconBaseClasses} ${iconActiveClasses}">
+                            ${letterDisplay}
+                        </div>
+                        <div class="flex-1 z-10">
+                            <h4 class="${textMainClasses}">${titleMain}</h4>
+                            <span class="${textSubClasses}">${titleSub}</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right ${chevronClasses} z-10"></i>
+                        ${isActive ? '<div class="absolute right-0 top-0 bottom-0 w-2 bg-ceutec-vermilion"></div>' : ''}
+                    </button>
+                `;
+            }).join('');
+            
+            container.innerHTML = buttonsHtml;
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSidebarButtons();
+            updateDetailPanel();
+        });
+    </script>
+</body>
+</html>
