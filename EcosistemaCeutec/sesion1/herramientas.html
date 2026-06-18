@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEUTEC | Recursos para Docentes Ecosistema de Aprendizaje</title>
+    
+    <!-- Fuentes: Poppins Estricto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',   /* Carmine - Principal */
+                            vermilion: '#E04332', /* Vermilion - Acento */
+                            gray: '#F3F4F6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
+        
+        /* Cortes geométricos del diamante - CERO BORDES REDONDEADOS */
+        * { border-radius: 0 !important; box-shadow: none !important; }
+        
+        .diamond-cut { clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%); }
+        .diamond-cut-reverse { clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 85%); }
+        .diamond-shape { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        
+        /* Cero sombras, cero degradados. Desplazamientos sólidos. */
+        .hover-solid-shift { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .hover-solid-shift:hover { transform: translate(-8px, -8px); }
+
+        /* Animaciones limpias */
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .slide-up { animation: slideUp 0.6s ease-out forwards; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #9B0616; }
+        ::-webkit-scrollbar-thumb:hover { background: #E04332; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50 min-h-screen flex flex-col selection:bg-ceutec-vermilion selection:text-white">
+
+    <!-- Encabezado Corporativo Estricto -->
+    <nav class="w-full bg-white border-b-4 border-ceutec-vermilion py-6 px-6 md:px-8 flex justify-between items-center z-50 sticky top-0">
+        <div class="flex items-center">
+            <!-- Imagotipo Oficial CEUTEC -->
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo" class="h-10">
+        </div>
+        <div class="hidden md:block text-ceutec-carmine font-bold tracking-widest uppercase text-xs mt-2 border-l-2 border-ceutec-vermilion pl-4">
+            Recursos para Docentes
+        </div>
+    </nav>
+
+    <!-- Título Principal (Sin sombras, cortes geométricos) -->
+    <div class="bg-ceutec-carmine border-b-8 border-ceutec-vermilion py-16 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 border-4 border-ceutec-vermilion opacity-20 diamond-shape translate-x-1/4 -translate-y-1/4"></div>
+        <div class="max-w-6xl mx-auto fade-in relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-4 uppercase tracking-tight">
+                Ecosistema de <br><span class="text-ceutec-vermilion">Aprendizaje </span>
+            </h2>
+            <p class="text-white/90 text-lg md:text-xl max-w-3xl font-medium border-l-4 border-ceutec-vermilion pl-4">
+                Herramientas, discusiones y asistencia impulsada por Inteligencia Artificial para facilitar la transición hacia un modelo formativo basado en capacidades humanas.
+            </p>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-16 w-full space-y-16 slide-up">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            
+            <!-- RECURSO 1: HUB DE CONOCIMIENTO -->
+            <div class="relative group">
+                <div class="absolute inset-0 bg-ceutec-vermilion diamond-cut mt-3 ml-3"></div>
+                <div class="relative bg-white p-8 md:p-10 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-ceutec-vermilion diamond-shape flex items-center justify-center text-white shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-black text-ceutec-carmine uppercase leading-tight">Hub de Conocimiento</h3>
+                            <p class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest mt-1">Base Documental</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 text-sm font-medium mb-8 flex-grow">
+                        Este portal centralizado sirve como biblioteca directa para docentes y jefes académicos, y es la principal fuente de verdad que alimenta a nuestro Agente de IA.
+                    </p>
+                    
+                    <div className="bg-gray-50 border-l-4 border-ceutec-carmine p-5 mb-8 diamond-cut">
+                        <h4 class="text-xs font-black text-ceutec-carmine uppercase tracking-wider mb-3">Contenido Disponible</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-ceutec-vermilion flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span class="text-sm font-medium text-gray-700">Filosofía fundacional <em>(The Book of CGS)</em> y Retrato del Egresado.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-ceutec-vermilion flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span class="text-sm font-medium text-gray-700">Herramientas prácticas <em>(CGS Toolkit)</em> y estrategias <em>Learning to Learn</em>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-ceutec-vermilion flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span class="text-sm font-medium text-gray-700">Guías oficiales de estructuración del <em>CEUTEC Planner</em>.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a 
+                        href="https://capexfi25-30.netlify.app/cgsknowledge/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="flex items-center justify-center gap-2 w-full bg-ceutec-carmine text-white hover:bg-ceutec-vermilion transition-colors py-4 diamond-cut font-bold text-sm uppercase tracking-widest"
+                    >
+                        Explorar el Hub
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- RECURSO 2: PODCAST -->
+            <div class="relative group">
+                <div class="absolute inset-0 bg-ceutec-carmine diamond-cut mt-3 ml-3"></div>
+                <div class="relative bg-white p-8 md:p-10 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-black text-ceutec-carmine uppercase leading-tight">Podcast de Discusión</h3>
+                            <p class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest mt-1">Ingeniería sin Exámenes</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 text-sm font-medium mb-8 flex-grow">
+                        Escucha esta discusión profunda sobre cómo transformar la evaluación tradicional hacia un modelo basado en proyectos, asunción de roles profesionales y metacognición.
+                    </p>
+                    
+                    <div class="space-y-4 mb-4">
+                        <div class="bg-gray-50 border-2 border-gray-100 p-4 diamond-cut hover:border-ceutec-vermilion transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="bg-ceutec-vermilion text-white text-xs font-black px-2 py-1 uppercase tracking-widest diamond-cut">Episodio</span>
+                                <h4 class="font-bold text-ceutec-carmine text-sm uppercase">Diseño estructural sin exámenes</h4>
+                            </div>
+                            <audio controls class="w-full h-10 outline-none">
+                                <source src="AUD/De_calculadoras_humanas_a_ingenieros_éticos.mp3" type="audio/mpeg" />
+                                Tu navegador no soporta el elemento de audio.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECURSO 3: AGENTE DE IA ROSALILA -->
+            <div class="relative group lg:col-span-2">
+                <div class="absolute inset-0 bg-gray-800 diamond-cut mt-3 ml-3"></div>
+                <div class="relative bg-white p-8 md:p-12 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full">
+                    
+                    <!-- Etiqueta de Licencia -->
+                    <div class="absolute top-6 right-6 bg-gray-100 text-ceutec-carmine border border-gray-200 text-xs font-bold px-4 py-2 diamond-cut flex items-center gap-2 uppercase tracking-widest">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-ceutec-vermilion"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                        Licencia Institucional
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-12 items-start mt-8 md:mt-0">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-16 h-16 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-3xl font-black text-ceutec-carmine leading-tight uppercase">IA "Rosalila"</h3>
+                                    <p class="text-sm font-bold text-ceutec-vermilion uppercase tracking-widest mt-1">Consultor Pedagógico Copilot</p>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-700 font-medium text-lg mb-8">
+                                Asistente inteligente diseñado específicamente para guiar a los docentes en la adopción del Ecosistema de Aprendizaje, co-diseñar actividades y transformar la planificación educativa.
+                            </p>
+
+                            <!-- Advertencia -->
+                            <div class="bg-amber-50 border-l-8 border-amber-500 p-6 mb-10 diamond-cut">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-amber-500 w-10 h-10 diamond-shape flex items-center justify-center text-white shrink-0 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-black text-amber-900 mb-2 text-lg uppercase">Regla Crítica de Operación</h4>
+                                        <p class="text-amber-800 text-sm font-medium leading-relaxed">
+                                            Rosalila <strong class="font-black">NO es completamente autónoma</strong>. Está diseñada para el trabajo colaborativo (co-diseño) junto a ti. Para que sus propuestas sean válidas, <strong class="underline decoration-2">es indispensable proporcionarle el contexto académico (Sílabo o Planner previo)</strong> al iniciar la conversación.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a 
+                                href="https://m365.cloud.microsoft:443/chat/?titleId=T_a1694e40-3c6c-c50a-0108-8f62706c0e3e&source=embedded-builder" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-3 bg-ceutec-vermilion hover:bg-ceutec-carmine text-white transition-colors px-8 py-5 diamond-cut font-black text-sm uppercase tracking-widest"
+                            >
+                                Abrir Rosalila en Copilot
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- Funciones del Agente -->
+                        <div class="flex-1 w-full bg-gray-50 p-8 diamond-cut border border-gray-200">
+                            <h4 class="font-black text-ceutec-carmine mb-8 text-xl uppercase border-b-2 border-ceutec-vermilion inline-block pb-2">¿En qué te ayuda Rosalila?</h4>
+                            
+                            <div class="space-y-8">
+                                <div class="flex gap-4">
+                                    <div class="bg-white border-2 border-ceutec-vermilion diamond-shape w-12 h-12 flex items-center justify-center flex-shrink-0 text-ceutec-carmine">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="9" y2="21"/></svg>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-black text-ceutec-carmine text-base uppercase">A. Diseño del Planner</h5>
+                                        <p class="text-sm font-medium text-gray-700 mt-2 leading-relaxed">
+                                            Te guía paso a paso en la creación del <em>CEUTEC Planner</em>. Asegura que los propósitos, narrativas y rúbricas se alineen con las capacidades humanas.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-4">
+                                    <div class="bg-white border-2 border-gray-400 diamond-shape w-12 h-12 flex items-center justify-center flex-shrink-0 text-ceutec-carmine">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="9" x2="15" y1="18" y2="18"/><line x1="10" x2="14" y1="22" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 12 2a4.65 4.65 0 0 0-4.5 9.65c.76.76 1.23 1.52 1.4 2.5a2 2 0 0 0 4.19 0Z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-black text-ceutec-carmine text-base uppercase">B. Co-Diseño de Actividades</h5>
+                                        <p class="text-sm font-medium text-gray-700 mt-2 leading-relaxed">
+                                            Ayuda a estructurar actividades recomendando herramientas exactas del <em>CGS Toolkit</em> y estrategias de <em>Learning to Learn (L2L)</em> contextualizadas a tu clase.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <div class="bg-white border-2 border-ceutec-carmine diamond-shape w-12 h-12 flex items-center justify-center flex-shrink-0 text-ceutec-vermilion">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-black text-ceutec-carmine text-base uppercase">C. Consultoría Metodológica</h5>
+                                        <p class="text-sm font-medium text-gray-700 mt-2 leading-relaxed">
+                                            Modo experto (Q&A) para resolver dudas conceptuales. Pregúntale <em>"¿Qué es el Learning Pit?"</em> o <em>"¿Cómo evalúo formativamente?"</em> y te citará fuentes oficiales.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECURSO 4: TAXONOMÍA DE BLOOM -->
+            <div class="relative group lg:col-span-2">
+                <div class="absolute inset-0 bg-ceutec-vermilion diamond-cut mt-3 ml-3"></div>
+                <div class="relative bg-white p-8 md:p-10 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col md:flex-row gap-8 items-center h-full">
+                    
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black text-ceutec-carmine uppercase leading-tight">Taxonomía de Bloom</h3>
+                                <p class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest mt-1">Constructor de Metas de Aprendizaje</p>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 text-sm font-medium mb-6">
+                            Herramienta interactiva diseñada para facilitar la construcción de metas de aprendizaje, perfectamente contextualizada a las tres dimensiones de la definición de aprendizaje CEUTEC.
+                        </p>
+
+                        <!-- Etiquetas de Dimensiones -->
+                        <div class="flex gap-3 flex-wrap">
+                            <span class="bg-gray-100 text-ceutec-carmine text-xs font-bold px-3 py-1 uppercase tracking-widest diamond-cut border border-gray-200 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-ceutec-carmine rounded-none diamond-shape inline-block"></span>
+                                Concepto
+                            </span>
+                            <span class="bg-gray-100 text-ceutec-carmine text-xs font-bold px-3 py-1 uppercase tracking-widest diamond-cut border border-gray-200 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-ceutec-vermilion rounded-none diamond-shape inline-block"></span>
+                                Competencia
+                            </span>
+                            <span class="bg-gray-100 text-ceutec-carmine text-xs font-bold px-3 py-1 uppercase tracking-widest diamond-cut border border-gray-200 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-gray-800 rounded-none diamond-shape inline-block"></span>
+                                Carácter
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-auto flex-shrink-0 mt-6 md:mt-0">
+                        <a 
+                            href="taxonomia.html" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="flex items-center justify-center gap-3 w-full md:w-72 bg-ceutec-carmine text-white hover:bg-ceutec-vermilion transition-colors py-5 px-6 diamond-cut font-black text-sm uppercase tracking-widest text-center"
+                        >
+                            Consultar Taxonomía
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- BANNER SESIÓN 2 -->
+        <div class="bg-ceutec-carmine p-10 md:p-12 text-white diamond-cut border-l-8 border-ceutec-vermilion flex flex-col md:flex-row items-center justify-between gap-10 mt-16 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 diamond-shape translate-x-1/3 -translate-y-1/3"></div>
+            
+            <div class="flex items-start md:items-center gap-6 relative z-10 flex-1">
+                <div class="bg-ceutec-vermilion p-4 diamond-shape flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div>
+                    <span class="text-ceutec-vermilion font-bold uppercase tracking-widest text-xs mb-2 block bg-white inline-block px-2 py-1">Próximos Pasos</span>
+                    <h3 class="text-3xl font-black mb-4 uppercase">Preparación para la Sesión 2</h3>
+                    <p class="text-gray-200 text-base font-medium max-w-2xl leading-relaxed">
+                        En la Sesión 2 estaremos abarcando el diseño del <strong class="text-white font-black">Planner de CEUTEC</strong>, el cual es una herramienta clave para la implementación del Ecosistema de Aprendizaje.
+                    </p>
+                    
+                    <div class="mt-5 bg-white/10 border-l-4 border-ceutec-vermilion p-5">
+                        <p class="text-white font-bold text-sm uppercase tracking-wide mb-3">
+                            Requisitos para este Taller de Co-diseño:
+                        </p>
+                        <ul class="text-sm text-gray-200 space-y-2 list-none">
+                            <li class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-ceutec-vermilion flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 
+                                <span>Seleccionar una <strong>asignatura</strong> que desees impactar.</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-ceutec-vermilion flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 
+                                <span>Traer el <strong>sílabo</strong> actualizado de la clase.</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-ceutec-vermilion flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 
+                                <span>Traer el <strong>cuadro de planificación</strong> (si lo tienes disponible).</span>
+                            </li>
+                        </ul>
+                        <p class="text-xs text-white/60 mt-4 italic">
+                            * Es importante tener claro el contenido y las competencias para trabajar efectivamente durante la sesión.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 p-6 diamond-cut border border-white/20 text-center md:text-left flex-shrink-0 max-w-sm relative z-10">
+                <p class="text-sm text-white font-medium leading-relaxed italic">
+                    El Agente de IA "Rosalila" es una forma muy práctica de poderse familiarizar con los materiales, así como de poder rediseñar actividades y generar nuevas herramientas antes de nuestra próxima sesión.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Institucional Estricto -->
+    <footer class="bg-ceutec-carmine text-gray-400 py-12 px-6 border-t-8 border-ceutec-vermilion relative overflow-hidden mt-auto">
+        <div class="absolute bottom-0 right-0 w-64 h-64 border-4 border-ceutec-vermilion opacity-10 diamond-shape translate-x-1/4 translate-y-1/4"></div>
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+            <div class="flex items-center">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo Footer" class="h-8 opacity-90">
+            </div>
+            <div class="text-center md:text-right border-l-0 md:border-l-2 border-ceutec-vermilion pl-0 md:pl-4">
+                <p class="text-sm font-bold text-white uppercase tracking-widest mb-1">
+                    Recursos para Docentes
+                </p>
+                <p class="text-xs font-medium text-white/80 uppercase tracking-widest">
+                    Visión CEUTEC 2030 | Ecosistema de Aprendizaje
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

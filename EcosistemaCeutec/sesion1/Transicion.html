@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Transición de Modelos y Aprender a Aprender | CEUTEC</title>
+    
+    <!-- Tipografía Institucional: Poppins Estricto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Colores de Marca y Tipografía -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            carmine: '#9B0616',   /* Carmine - Dominante y corporativo */
+                            vermilion: '#E04332', /* Vermilion - Acentos y energía */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'], /* Única fuente permitida */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Cortes geométricos del diamante - CERO BORDES REDONDEADOS */
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+        }
+        .diamond-cut-reverse {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 85%);
+        }
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        /* Cero sombras, cero degradados. Desplazamientos sólidos. */
+        .hover-solid-shift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .hover-solid-shift:hover {
+            transform: translate(-8px, -8px);
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #9B0616;
+            overflow-x: hidden;
+        }
+        
+        /* Ocultar barra de desplazamiento para un look de presentación limpio */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9B0616; /* Carmine scrollbar */
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-vermilion selection:text-white leading-relaxed">
+
+    <!-- Navegación Corporativa - Estilo de franja blanca institucional solicitado -->
+    <nav class="w-full bg-white border-b-8 border-brand-carmine py-4 px-6 md:px-12 flex justify-between items-center select-none z-50 sticky top-0">
+        <!-- Logotipo Oficial CEUTEC -->
+        <div class="flex items-center">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-10 md:h-14 object-contain">
+        </div>
+        
+        <!-- Bloque Informativo Derecho con Enlaces (Adaptado al nuevo diseño) -->
+        <div class="flex items-center gap-6 text-right">
+            <!-- Enlaces originales adaptados -->
+            <div class="hidden md:flex space-x-6 text-brand-carmine font-bold tracking-widest uppercase text-[10px] md:text-xs">
+                <a href="#transicion" class="hover:text-brand-vermilion transition duration-300">La Transición</a>
+                <a href="#metacognicion" class="hover:text-brand-vermilion transition duration-300">Aprender a Aprender</a>
+            </div>
+            
+            <div class="hidden md:block h-10 border-l-2 border-brand-carmine/30"></div>
+            
+            <div class="flex flex-col justify-center font-sans">
+                <span class="text-brand-carmine font-black tracking-wider text-xs md:text-sm uppercase leading-tight">
+                    Programa de Formación Docente
+                </span>
+                <span class="text-brand-vermilion font-medium tracking-wide text-[10px] md:text-xs uppercase leading-tight mt-0.5">
+                    Ecosistema de Aprendizaje
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Encabezado Audaz (Sin Gradientes) -->
+    <header class="bg-brand-carmine text-white pt-24 pb-20 px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-brand-vermilion opacity-20 diamond-shape -translate-y-1/2 -translate-x-1/4"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 diamond-shape translate-y-1/3 translate-x-1/3"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 tracking-tight uppercase">Hacia el Ecosistema <br><span class="text-brand-vermilion">de Aprendizaje</span></h1>
+            <p class="text-lg md:text-xl text-white font-medium max-w-2xl mx-auto border-t-2 border-brand-vermilion pt-6">
+                Comprendiendo el paso definitivo hacia el desarrollo de capacidades humanas y la metacognición profesional.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-6 py-20 space-y-32">
+
+        <!-- SECTION 1: La Transición -->
+        <section id="transicion" class="scroll-mt-32">
+            
+            <!-- Título de Sección -->
+            <div class="flex flex-col md:flex-row md:items-center gap-6 mb-12 border-b-4 border-gray-200 pb-8">
+                <div class="bg-brand-carmine text-white p-5 diamond-shape shrink-0">
+                    <i data-lucide="arrow-right-left" class="w-10 h-10"></i>
+                </div>
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black text-brand-carmine uppercase tracking-tight">Del Silo al Ecosistema</h2>
+                    <p class="text-xl text-gray-600 font-medium mt-2">La evolución del modelo educativo en CEUTEC</p>
+                </div>
+            </div>
+            
+            <!-- BLOQUE 1: El Gran Contraste (Silos vs Ecosistema) -->
+            <div class="mb-20">
+                <div class="bg-white border-2 border-gray-100 p-8 diamond-cut relative z-10">
+                    <p class="text-xl text-brand-carmine font-medium mb-10 text-center max-w-4xl mx-auto leading-relaxed">
+                        El sistema tradicional está fragmentado en <strong class="font-black bg-gray-100 px-2">"silos"</strong> (departamentos aislados y estándares inconexos) que generan una brecha con la vida real. La transición al Ecosistema de Aprendizaje UNITEC/CEUTEC cierra esa brecha.
+                    </p>
+
+                    <!-- Tabla Visual de Contraste -->
+                    <div class="grid md:grid-cols-2 gap-0 border-4 border-brand-carmine">
+                        <!-- Columna Tradicional -->
+                        <div class="bg-gray-50 p-8 md:p-12 border-b-4 md:border-b-0 md:border-r-4 border-brand-carmine">
+                            <h3 class="text-2xl font-black text-gray-400 uppercase tracking-widest mb-8 flex items-center gap-3">
+                                <i data-lucide="archive-x" class="w-8 h-8"></i> Modelo Tradicional
+                            </h3>
+                            <ul class="space-y-6">
+                                <li class="flex items-start gap-4">
+                                    <div class="w-2 h-2 bg-gray-400 mt-2 shrink-0"></div>
+                                    <p class="text-lg font-medium text-gray-600">Enfoque puro en <strong class="text-gray-800">estándares y competencias</strong> aisladas.</p>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="w-2 h-2 bg-gray-400 mt-2 shrink-0"></div>
+                                    <p class="text-lg font-medium text-gray-600">Centrado en los <strong class="text-gray-800">"Inputs"</strong> (comportamientos e insumos del docente).</p>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="w-2 h-2 bg-gray-400 mt-2 shrink-0"></div>
+                                    <p class="text-lg font-medium text-gray-600">Mentalidad de <strong class="text-gray-800">Supervisión</strong>.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Columna Ecosistema CGS -->
+                        <div class="bg-brand-carmine p-8 md:p-12 text-white relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-vermilion opacity-20 diamond-shape translate-x-1/2 -translate-y-1/2"></div>
+                            <h3 class="text-2xl font-black text-brand-vermilion uppercase tracking-widest mb-8 flex items-center gap-3 relative z-10">
+                                <i data-lucide="globe" class="w-8 h-8"></i> Ecosistema CEUTEC
+                            </h3>
+                            <ul class="space-y-6 relative z-10">
+                                <li class="flex items-start gap-4">
+                                    <div class="w-2 h-2 bg-brand-vermilion mt-2 shrink-0"></div>
+                                    <p class="text-lg font-medium text-gray-200">Centrado en el <strong class="text-white">"Becoming Human"</strong> y la cultura compartida.</p>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="w-2 h-2 bg-brand-vermilion mt-2 shrink-0"></div>
+                                    <p class="text-lg font-medium text-gray-200">Enfocado en <strong class="text-brand-vermilion">"Impactos"</strong> (cambios observables en el alumno).</p>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="w-2 h-2 bg-brand-vermilion mt-2 shrink-0"></div>
+                                    <p class="text-lg font-medium text-gray-200">Mentalidad de <strong class="text-brand-vermilion">Visión Compartida</strong>.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOQUE 2: Transaccional a Transformacional & Modelo 3C -->
+            <div class="mb-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="text-5xl font-black text-brand-vermilion">1</span>
+                    <h3 class="text-3xl font-black text-brand-carmine uppercase">De lo Transaccional a lo Transformacional</h3>
+                </div>
+                
+                <div class="grid lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-2 bg-brand-vermilion p-8 flex flex-col justify-center border-l-8 border-brand-carmine">
+                        <p class="text-white text-xl font-bold leading-snug mb-4">
+                            Dejar de ver la educación como entrega de información (alumno pasivo) para convertirlo en el sujeto activo.
+                        </p>
+                        <p class="text-white text-lg font-medium opacity-90">
+                            Colocamos la humanidad en el centro para desarrollar las capacidades del <strong class="font-black text-brand-carmine">Retrato del Egresado (Visión 2030)</strong>.
+                        </p>
+                    </div>
+                    
+                    <div class="lg:col-span-3 bg-white border-2 border-gray-100 p-8">
+                        <h4 class="text-sm font-bold text-brand-carmine uppercase tracking-widest mb-6 border-b-2 border-brand-vermilion pb-2 inline-block">El Modelo de las 3C</h4>
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <!-- C 1 -->
+                            <div class="bg-gray-50 border border-gray-200 p-6 text-center hover-solid-shift group cursor-default">
+                                <div class="w-12 h-12 mx-auto bg-brand-carmine text-white diamond-shape flex items-center justify-center mb-4 font-bold text-xl transition-colors group-hover:bg-brand-vermilion">C</div>
+                                <h5 class="font-black text-brand-carmine uppercase mb-2">Conceptual</h5>
+                                <p class="text-sm text-gray-600 font-medium">"Buenos con las ideas"</p>
+                            </div>
+                            <!-- C 2 -->
+                            <div class="bg-gray-50 border border-gray-200 p-6 text-center hover-solid-shift group cursor-default">
+                                <div class="w-12 h-12 mx-auto bg-brand-carmine text-white diamond-shape flex items-center justify-center mb-4 font-bold text-xl transition-colors group-hover:bg-brand-vermilion">C</div>
+                                <h5 class="font-black text-brand-carmine uppercase mb-2">Competencia</h5>
+                                <p class="text-sm text-gray-600 font-medium">"Buenos con las habilidades"</p>
+                            </div>
+                            <!-- C 3 -->
+                            <div class="bg-gray-50 border border-gray-200 p-6 text-center hover-solid-shift group cursor-default">
+                                <div class="w-12 h-12 mx-auto bg-brand-carmine text-white diamond-shape flex items-center justify-center mb-4 font-bold text-xl transition-colors group-hover:bg-brand-vermilion">C</div>
+                                <h5 class="font-black text-brand-carmine uppercase mb-2">Carácter</h5>
+                                <p class="text-sm text-gray-600 font-medium">"Buenas personas"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOQUE 3: Evaluación y S.T.A.R. -->
+            <div class="mb-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="text-5xl font-black text-brand-vermilion">2</span>
+                    <h3 class="text-3xl font-black text-brand-carmine uppercase">Cambiar la Evaluación</h3>
+                </div>
+
+                <div class="bg-white border-2 border-gray-100 p-8 lg:p-12 diamond-cut-reverse relative">
+                    <!-- Flecha visual -->
+                    <div class="absolute top-0 right-10 w-20 h-32 bg-brand-vermilion opacity-10"></div>
+                    
+                    <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-400 line-through mb-2">Calificar para castigar o premiar</h4>
+                            <p class="text-gray-500 text-sm font-medium mb-6">Cultura transaccional y de memorización.</p>
+                            
+                            <h4 class="text-2xl font-black text-brand-carmine uppercase mb-2">Evaluación para y como aprendizaje</h4>
+                            <p class="text-gray-800 text-lg font-medium">Cultura colaborativa. Tareas de desempeño (modelo GRASPS) donde el estudiante actúa como un <strong class="bg-brand-vermilion text-white px-2">Colaborador Constructivo</strong>.</p>
+                        </div>
+                        
+                        <div class="bg-brand-carmine p-6 text-white border-l-8 border-brand-vermilion">
+                            <h4 class="font-bold uppercase tracking-widest text-brand-vermilion mb-4 text-sm">El Motor Central</h4>
+                            <p class="text-2xl font-black leading-tight">
+                                "Destacar qué funcionó bien y qué sería aún mejor si..."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Herramienta S.T.A.R. Feedback -->
+                    <div class="border-t-2 border-gray-100 pt-10">
+                        <div class="text-center mb-8">
+                            <h4 class="inline-block bg-brand-vermilion text-white px-6 py-2 font-black uppercase tracking-widest text-xl">Metodología S.T.A.R. Feedback</h4>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="bg-gray-50 p-6 text-center border border-gray-200">
+                                <span class="block text-4xl font-black text-brand-carmine mb-2">S</span>
+                                <span class="block text-sm font-bold uppercase text-brand-vermilion">Specific</span>
+                                <span class="block text-xs text-gray-500 mt-1">(Específico)</span>
+                            </div>
+                            <div class="bg-gray-50 p-6 text-center border border-gray-200">
+                                <span class="block text-4xl font-black text-brand-carmine mb-2">T</span>
+                                <span class="block text-sm font-bold uppercase text-brand-vermilion">Timely</span>
+                                <span class="block text-xs text-gray-500 mt-1">(Oportuno)</span>
+                            </div>
+                            <div class="bg-gray-50 p-6 text-center border border-gray-200">
+                                <span class="block text-4xl font-black text-brand-carmine mb-2">A</span>
+                                <span class="block text-sm font-bold uppercase text-brand-vermilion">Actionable</span>
+                                <span class="block text-xs text-gray-500 mt-1">(Accionable)</span>
+                            </div>
+                            <div class="bg-gray-50 p-6 text-center border border-gray-200">
+                                <span class="block text-4xl font-black text-brand-carmine mb-2">R</span>
+                                <span class="block text-sm font-bold uppercase text-brand-vermilion">Respectful</span>
+                                <span class="block text-xs text-gray-500 mt-1">(Respetuoso)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Section 1 -->
+            <div class="mt-16 text-center">
+                <div class="inline-flex items-center gap-4 mb-6">
+                    <span class="h-px w-12 bg-brand-vermilion block"></span>
+                    <h3 class="text-sm font-bold text-brand-carmine uppercase tracking-widest">Material Audiovisual</h3>
+                    <span class="h-px w-12 bg-brand-vermilion block"></span>
+                </div>
+                
+                <div class="relative p-2 bg-brand-vermilion diamond-cut-reverse inline-block w-full max-w-4xl">
+                    <div class="w-full bg-brand-carmine diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                        <div id="videoOverlayPt1" class="absolute inset-0 bg-brand-carmine flex flex-col items-center justify-center z-20 group-hover:bg-brand-vermilion transition duration-300">
+                             <div class="w-20 h-20 bg-white diamond-shape flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                                <i data-lucide="play" class="w-8 h-8 text-brand-carmine ml-1"></i>
+                             </div>
+                             <p class="text-white font-bold tracking-widest uppercase text-sm">Ver: Del Silo al Ecosistema</p>
+                        </div>
+                        <video id="brandVideoPt1" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                            <source src="VID/Transicion_modelos_pt1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: Aprender a Aprender -->
+        <section id="metacognicion" class="scroll-mt-32">
+            <div class="flex items-center space-x-4 mb-10">
+                <div class="bg-brand-vermilion text-white p-4 diamond-shape">
+                    <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-brand-carmine uppercase">La Metacognición (Aprender a Aprender) <span class="block text-xl font-bold text-brand-vermilion tracking-widest mt-2">(Learning to Learn)</span></h2>
+            </div>
+
+            <div class="bg-brand-carmine text-white p-10 diamond-cut border-l-8 border-brand-vermilion mb-16">
+                <p class="text-xl leading-relaxed font-medium">
+                    Para verdaderamente preparar a los estudiantes como aprendices de por vida, el ecosistema exige que el aprendizaje sea visible y reflexivo. <strong class="text-brand-vermilion font-black uppercase">"Aprender a aprender"</strong> es la capacidad central que permite al estudiante monitorear, evaluar y ajustar sus propios procesos cognitivos.
+                </p>
+            </div>
+
+            <!-- Grid de los 4 Enfoques -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-8">
+                
+                <!-- Card 1 -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-carmine diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut hover-solid-shift z-10 h-full flex flex-col border border-gray-100">
+                        <div class="w-14 h-14 bg-brand-carmine diamond-shape flex items-center justify-center mb-6 text-white">
+                            <i data-lucide="calculator" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-vermilion mb-2 border-b-2 border-brand-vermilion pb-1 inline-block w-max">1. Ingeniería</span>
+                        <h3 class="text-xl font-black text-brand-carmine mb-4 uppercase">Iteración Consciente y Validación</h3>
+                        <p class="text-gray-800 font-medium text-sm md:text-base leading-relaxed flex-grow">
+                            En las disciplinas de ingeniería, "aprender a aprender" significa ir más allá de la ejecución mecánica de algoritmos. La metacognición ocurre cuando el estudiante analiza su propio proceso de modelación y utiliza el <strong class="text-brand-carmine font-black">S.T.A.R. Feedback</strong> no como una crítica a su capacidad matemática, sino como datos vitales para la mejora continua.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-vermilion diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut hover-solid-shift z-10 h-full flex flex-col border border-gray-100">
+                        <div class="w-14 h-14 bg-brand-vermilion diamond-shape flex items-center justify-center mb-6 text-white">
+                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-carmine mb-2 border-b-2 border-brand-carmine pb-1 inline-block w-max">2. Ciencias Admon. y Sociales</span>
+                        <h3 class="text-xl font-black text-brand-carmine mb-4 uppercase">Del Rendimiento al Valor Sostenible</h3>
+                        <p class="text-gray-800 font-medium text-sm md:text-base leading-relaxed flex-grow">
+                            En las ciencias administrativas, aprender a aprender implica evaluar el impacto sistémico de las decisiones financieras. La metacognición permite al estudiante trascender el corto plazo, cuestionando sus propias asunciones de mercado para diseñar modelos de negocio de valor real y ético.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-carmine diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut hover-solid-shift z-10 h-full flex flex-col border border-gray-100">
+                        <div class="w-14 h-14 bg-brand-carmine diamond-shape flex items-center justify-center mb-6 text-white">
+                            <i data-lucide="palette" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-vermilion mb-2 border-b-2 border-brand-vermilion pb-1 inline-block w-max">3. Arte y Diseño</span>
+                        <h3 class="text-xl font-black text-brand-carmine mb-4 uppercase">Iteración Consciente y Empatía Creativa</h3>
+                        <p class="text-gray-800 font-medium text-sm md:text-base leading-relaxed flex-grow">
+                            En las disciplinas creativas, "aprender a aprender" significa separar el ego del producto final. Al reflexionar sobre <em class="text-brand-carmine font-bold">"¿Para quién estoy diseñando realmente?"</em>, se convierte en un Comunicador Efectivo y un Innovador Creativo que mejora la experiencia humana.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-vermilion diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut hover-solid-shift z-10 h-full flex flex-col border border-gray-100">
+                        <div class="w-14 h-14 bg-brand-vermilion diamond-shape flex items-center justify-center mb-6 text-white">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-carmine mb-2 border-b-2 border-brand-carmine pb-1 inline-block w-max">4. Postgrado</span>
+                        <h3 class="text-xl font-black text-brand-carmine mb-4 uppercase">Desaprendizaje y Liderazgo Sistémico</h3>
+                        <p class="text-gray-800 font-medium text-sm md:text-base leading-relaxed flex-grow">
+                            Para profesionales en maestría, la metacognición requiere la capacidad de desaprender prácticas obsoletas. Utiliza la metacognición para evaluar cómo su liderazgo afecta la resiliencia de su organización, consolidándose como un <strong class="text-brand-carmine font-black">Líder con Propósito</strong>.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Video Section 2 -->
+            <div class="mt-20 text-center">
+                <div class="inline-flex items-center gap-4 mb-6">
+                    <span class="h-px w-12 bg-brand-vermilion block"></span>
+                    <h3 class="text-sm font-bold text-brand-carmine uppercase tracking-widest">Material Audiovisual 2</h3>
+                    <span class="h-px w-12 bg-brand-vermilion block"></span>
+                </div>
+                
+                <div class="relative p-2 bg-brand-vermilion diamond-cut-reverse inline-block w-full max-w-4xl">
+                    <div class="w-full bg-brand-carmine diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                        <div id="videoOverlayPt2" class="absolute inset-0 bg-brand-carmine flex flex-col items-center justify-center z-20 group-hover:bg-brand-vermilion transition duration-300">
+                             <div class="w-20 h-20 bg-white diamond-shape flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                                <i data-lucide="play" class="w-8 h-8 text-brand-carmine ml-1"></i>
+                             </div>
+                             <p class="text-white font-bold tracking-widest uppercase text-sm">Ver: Metacognición y Learning</p>
+                        </div>
+                        <video id="brandVideoPt2" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" poster="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                            <source src="VID/Transicion_modelos_pt2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Pie de página Institucional -->
+    <footer class="bg-brand-carmine border-t-8 border-brand-vermilion py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-8 object-contain">
+            </div>
+            <p class="text-sm font-medium text-brand-vermilion uppercase tracking-widest text-center md:text-right">
+                Diseñado en alineación con el <span class="text-white font-bold">Ecosistema de Aprendizaje UNITEC/CEUTEC</span><br>
+                y la Visión CEUTEC 2030.<br>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Inicialización de íconos y Lógica de Videos -->
+    <script>
+        // Asegurarse de que el DOM esté completamente cargado antes de inicializar Lucide
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.error("Lucide no se pudo cargar correctamente, revisa tu conexión a unpkg.");
+            }
+        });
+
+        // Función reutilizable para activar los videos de la marca
+        function setupBrandVideo(overlayId, videoId) {
+            const overlay = document.getElementById(overlayId);
+            const video = document.getElementById(videoId);
+
+            if (overlay && video) {
+                overlay.addEventListener('click', () => {
+                    // Cero transiciones suaves para revelar, manteniendo la claridad de marca
+                    overlay.classList.add('hidden');
+                    video.classList.remove('opacity-50', 'mix-blend-luminosity');
+                    video.setAttribute('controls', 'true');
+                    video.play();
+                });
+            }
+        }
+
+        // Activamos los videos
+        setupBrandVideo('videoOverlayPt1', 'brandVideoPt1');
+        setupBrandVideo('videoOverlayPt2', 'brandVideoPt2');
+    </script>
+</body>
+</html>

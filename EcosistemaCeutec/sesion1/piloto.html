@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Impacto de la Evaluación en Ingeniería | Programa de Formación Docente CEUTEC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',   /* Carmine - Principal */
+                            vermilion: '#E04332', /* Vermilion - Acento */
+                            gray: '#F3F4F6',
+                            dark: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #F8FAFC; overflow-x: hidden; }
+        
+        /* Cortes geométricos del diamante - CERO BORDES REDONDEADOS */
+        * { border-radius: 0 !important; box-shadow: none !important; }
+        
+        .diamond-cut { clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%); }
+        .diamond-shape { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        
+        /* Cero sombras, desplazamientos sólidos */
+        .hover-solid-shift { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .hover-solid-shift:hover { transform: translate(-4px, -4px); }
+
+        /* Scrollbar vertical limpio */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #9B0616; }
+        ::-webkit-scrollbar-thumb:hover { background: #E04332; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-ceutec-vermilion selection:text-white">
+
+    <nav class="w-full bg-white border-b-4 border-ceutec-vermilion py-6 px-6 md:px-8 flex justify-between items-center z-50 sticky top-0">
+        <div class="flex items-center">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo" class="h-8 md:h-10">
+        </div>
+        <div class="hidden md:block text-ceutec-carmine font-bold tracking-widest uppercase text-xs mt-2 border-l-2 border-ceutec-vermilion pl-4">
+            Programa de Formación Docente
+        </div>
+    </nav>
+
+    <header class="bg-ceutec-carmine border-b-8 border-ceutec-vermilion py-16 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 border-4 border-ceutec-vermilion opacity-20 diamond-shape translate-x-1/4 -translate-y-1/4"></div>
+        <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="flex-1">
+                <span class="inline-block py-1 px-3 bg-white text-ceutec-carmine font-black text-xs uppercase tracking-widest mb-4 diamond-cut border border-ceutec-vermilion">
+                    Sesión 5
+                </span>
+                <h1 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tight leading-tight">
+                    Piloto de Implementación <br>
+                    <span class="text-ceutec-vermilion">CGS en Ingeniería</span>
+                </h1>
+                <p class="text-white/90 text-lg font-medium border-l-4 border-ceutec-vermilion pl-4 max-w-2xl">
+                    Análisis de resultados de la clase de Análisis Estructural. Transición del modelo de competencias duras a la formación de capacidades humanas en CEUTEC.
+                </p>
+            </div>
+            <div class="bg-white/10 p-6 diamond-cut border border-ceutec-vermilion/50 flex flex-col shrink-0">
+                <span class="text-white font-bold uppercase tracking-widest text-xs border-b border-white/20 pb-2 mb-2">Datos del Piloto</span>
+                <span class="text-white text-sm">Clase: <strong class="text-ceutec-vermilion">CIV324</strong></span>
+                <span class="text-white text-sm mt-1">Periodo: <strong class="text-ceutec-vermilion">2025</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12 items-start relative">
+        
+        <aside class="w-full lg:w-1/4 sticky top-32 hidden lg:block">
+            <div class="bg-white border-2 border-ceutec-carmine p-6 diamond-cut">
+                <h3 class="font-black text-ceutec-carmine uppercase tracking-wider text-sm mb-6 border-b-2 border-ceutec-vermilion inline-block pb-2">Índice del Informe</h3>
+                <nav class="flex flex-col gap-4">
+                    <a href="#resumen" class="text-sm font-bold text-slate-500 hover:text-ceutec-vermilion uppercase tracking-wide flex items-center gap-2 transition-colors">
+                        <span class="w-2 h-2 bg-ceutec-vermilion diamond-shape inline-block"></span> Resumen Ejecutivo
+                    </a>
+                    <a href="#metodologia" class="text-sm font-bold text-slate-500 hover:text-ceutec-vermilion uppercase tracking-wide flex items-center gap-2 transition-colors">
+                        <span class="w-2 h-2 bg-ceutec-vermilion diamond-shape inline-block"></span> Metodología
+                    </a>
+                    <a href="#resultados" class="text-sm font-bold text-slate-500 hover:text-ceutec-vermilion uppercase tracking-wide flex items-center gap-2 transition-colors">
+                        <span class="w-2 h-2 bg-ceutec-vermilion diamond-shape inline-block"></span> Resultados (Datos)
+                    </a>
+                    <a href="#conclusiones" class="text-sm font-bold text-slate-500 hover:text-ceutec-vermilion uppercase tracking-wide flex items-center gap-2 transition-colors">
+                        <span class="w-2 h-2 bg-ceutec-vermilion diamond-shape inline-block"></span> Conclusiones
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="w-full lg:w-3/4 space-y-20">
+            
+            <section id="resumen" class="scroll-mt-32">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">Resumen Ejecutivo</h2>
+                </div>
+                <div class="bg-white p-8 border border-gray-200 diamond-cut">
+                    <p class="text-slate-700 font-medium leading-relaxed mb-6">
+                        Históricamente, la enseñanza de la ingeniería ha estado dominada por un enfoque de competencias duras (resolución matemática, uso de normativas y software). Sin embargo, organismos como ABET y las tendencias pedagógicas actuales señalan que este enfoque puede degenerar en un aprendizaje transaccional: el alumno busca la "respuesta correcta" exclusivamente para obtener una calificación.
+                    </p>
+                    <p class="text-slate-700 font-medium leading-relaxed mb-6">
+                        En respuesta a esto, <strong class="text-ceutec-carmine font-black">CEUTEC</strong> ha adoptado el <strong class="text-ceutec-carmine font-black">Collective Growth System (CGS)</strong>, diseñado para trascender la enseñanza procedimental y enfocarse en la formación de Capacidades Humanas (Becoming Human).
+                    </p>
+                    <div class="bg-gray-50 border-l-4 border-ceutec-vermilion p-6 diamond-cut mt-8">
+                        <h3 class="font-black text-ceutec-carmine uppercase tracking-widest text-sm mb-2">El Reto del Análisis Estructural</h3>
+                        <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                            En la clase de Análisis Estructural, la principal barrera cognitiva no es la matemática, sino la falta de conexión entre el modelo teórico y la realidad física. Este piloto fue diseñado para medir el impacto de la evaluación por desempeño (GRASPS) frente al examen tradicional.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="metodologia" class="scroll-mt-32">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">Diseño del Piloto</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-700 p-6 diamond-cut text-white flex flex-col hover-solid-shift">
+                        <span class="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">Trayectoria A</span>
+                        <h4 class="text-lg font-black uppercase mb-4 text-white">Evaluación Tradicional</h4>
+                        <p class="text-sm text-slate-300 font-medium leading-relaxed flex-1 border-t border-slate-600 pt-4">
+                            Estudiantes que optaron exclusivamente por exámenes escritos enfocados en competencia matemática transaccional.
+                        </p>
+                    </div>
+                    <div class="bg-ceutec-carmine p-6 diamond-cut text-white flex flex-col hover-solid-shift relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 opacity-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
+                        </div>
+                        <span class="text-xs font-black uppercase tracking-widest text-white/70 mb-1">Trayectoria B</span>
+                        <h4 class="text-lg font-black uppercase mb-4 text-white">Evaluación CGS</h4>
+                        <p class="text-sm text-white/90 font-medium leading-relaxed flex-1 border-t border-ceutec-vermilion pt-4 relative z-10">
+                            Estudiantes que se sometieron a una Tarea GRASPS (Proyecto de Diseño Real) abarcando todo el parcial.
+                        </p>
+                    </div>
+                    <div class="bg-gray-200 p-6 diamond-cut text-ceutec-carmine flex flex-col hover-solid-shift border border-gray-300">
+                        <span class="text-xs font-black uppercase tracking-widest text-slate-500 mb-1">Trayectoria C</span>
+                        <h4 class="text-lg font-black uppercase mb-4">Metodología Mixta</h4>
+                        <p class="text-sm text-slate-700 font-medium leading-relaxed flex-1 border-t border-gray-300 pt-4">
+                            Estudiantes que transicionaron entre metodologías debido a externalidades temporales o técnicas.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resultados" class="scroll-mt-32">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </div>
+                    <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">Análisis Comparativo</h2>
+                </div>
+                
+                <div class="space-y-10">
+                    
+                    <div class="bg-white border-l-8 border-ceutec-carmine p-8 diamond-cut border-y border-r border-gray-200">
+                        <h3 class="font-black text-lg text-ceutec-carmine uppercase mb-2">1. Entendimiento Profundo</h3>
+                        <p class="text-sm text-slate-600 font-medium italic mb-6">"Siento que entiendo por qué las estructuras se comportan como lo hacen, más allá de simplemente saber usar las fórmulas."</p>
+                        
+                        <div class="space-y-5 border-l-2 border-gray-100 pl-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1 uppercase tracking-widest text-slate-600">
+                                    <span>Trayectoria A (Examen) - Totalmente de acuerdo</span>
+                                    <span>0%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-6 diamond-cut-reverse relative">
+                                    <div class="bg-slate-400 h-6 absolute left-0 top-0" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-black mb-1 uppercase tracking-widest text-ceutec-carmine">
+                                    <span>Trayectoria B (CGS) - Totalmente de acuerdo</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-6 diamond-cut-reverse relative">
+                                    <div class="bg-ceutec-vermilion h-6 absolute left-0 top-0" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-gray-50 p-4 border border-gray-200">
+                            <p class="text-xs text-ceutec-carmine font-black uppercase mb-1">Observación CGS:</p>
+                            <p class="text-sm text-slate-700 font-medium">La metodología CGS fomenta una comprensión conceptual superior, erradicando la memorización mecánica de la Trayectoria A.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-l-8 border-ceutec-carmine p-8 diamond-cut border-y border-r border-gray-200">
+                        <h3 class="font-black text-lg text-ceutec-carmine uppercase mb-2">2. Empatía y Seguridad (Uso Real)</h3>
+                        <p class="text-sm text-slate-600 font-medium italic mb-6">"Siento que la evaluación me hizo considerar el uso real, la seguridad y las necesidades de las personas que habitarán la estructura."</p>
+                        
+                        <div class="space-y-5 border-l-2 border-gray-100 pl-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1 uppercase tracking-widest text-slate-600">
+                                    <span>Trayectoria A - De acuerdo</span>
+                                    <span>66%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-6 diamond-cut-reverse relative">
+                                    <div class="bg-slate-400 h-6 absolute left-0 top-0" style="width: 66%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-black mb-1 uppercase tracking-widest text-ceutec-carmine">
+                                    <span>Trayectoria B (CGS) - Totalmente de acuerdo</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-6 diamond-cut-reverse relative">
+                                    <div class="bg-ceutec-vermilion h-6 absolute left-0 top-0" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-gray-50 p-4 border border-gray-200">
+                            <p class="text-xs text-ceutec-carmine font-black uppercase mb-1">Observación CGS:</p>
+                            <p class="text-sm text-slate-700 font-medium">El 100% de los estudiantes bajo CGS conectaron el cálculo estructural con la empatía hacia el usuario final (Solucionador de Problemas Empático).</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-l-8 border-ceutec-carmine p-8 diamond-cut border-y border-r border-gray-200">
+                        <h3 class="font-black text-lg text-ceutec-carmine uppercase mb-2">3. Retención y Elección Futura</h3>
+                        <p class="text-sm text-slate-600 font-medium italic mb-6">"Si pudieras volver a cursar la asignatura, ¿volverías a elegir el mismo método de evaluación?"</p>
+                        
+                        <div class="space-y-5 border-l-2 border-gray-100 pl-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-black mb-1 uppercase tracking-widest text-ceutec-carmine">
+                                    <span>Trayectoria B (CGS) reafirma su elección</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 h-6 diamond-cut-reverse relative">
+                                    <div class="bg-ceutec-vermilion h-6 absolute left-0 top-0" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-gray-50 p-4 border border-gray-200">
+                            <p class="text-xs text-ceutec-carmine font-black uppercase mb-1">Observación CGS:</p>
+                            <p class="text-sm text-slate-700 font-medium">A pesar de requerir mayor esfuerzo, el 100% de la Trayectoria B reafirma su elección, evidenciando una alta satisfacción intrínseca por el aprendizaje logrado.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="conclusiones" class="scroll-mt-32">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                    </div>
+                    <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">Conclusiones de Implementación</h2>
+                </div>
+                <div class="bg-white p-8 border-t-8 border-t-ceutec-vermilion border-x border-b border-gray-200 diamond-cut">
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="bg-ceutec-vermilion w-6 h-6 diamond-shape flex-shrink-0 mt-1"></div>
+                            <div>
+                                <h4 class="font-black text-ceutec-carmine uppercase text-sm mb-1">Agencia y Resiliencia</h4>
+                                <p class="text-slate-600 font-medium text-sm">Los estudiantes de la Trayectoria B (CGS) demostraron mayor resiliencia al enfrentarse a problemas abiertos con información incompleta. Pasaron de depender de una "fórmula dada por el maestro" a defender su propio "criterio ingenieril".</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-ceutec-vermilion w-6 h-6 diamond-shape flex-shrink-0 mt-1"></div>
+                            <div>
+                                <h4 class="font-black text-ceutec-carmine uppercase text-sm mb-1">Colaboradores Constructivos</h4>
+                                <p class="text-slate-600 font-medium text-sm">Se evidenció un cambio de rol radical durante las sesiones de retroalimentación de pares, donde los estudiantes asumieron responsabilidad sobre el aprendizaje colectivo.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-ceutec-vermilion w-6 h-6 diamond-shape flex-shrink-0 mt-1"></div>
+                            <div>
+                                <h4 class="font-black text-ceutec-carmine uppercase text-sm mb-1">Brecha de Implementación</h4>
+                                <p class="text-slate-600 font-medium text-sm">El abandono del proyecto CGS en la Trayectoria C estuvo fuertemente ligado a brechas de acceso a tecnología y sobrecarga, áreas críticas que la institución debe monitorear.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-ceutec-carmine text-gray-400 py-12 px-6 border-t-8 border-ceutec-vermilion relative overflow-hidden mt-20">
+        <div class="absolute bottom-0 right-0 w-64 h-64 border-4 border-ceutec-vermilion opacity-10 diamond-shape translate-x-1/4 translate-y-1/4"></div>
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+            <div class="flex items-center">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo Footer" class="h-8 opacity-90">
+            </div>
+            <div class="text-center md:text-right border-l-0 md:border-l-2 border-ceutec-vermilion pl-0 md:pl-4">
+                <p class="text-sm font-bold text-white uppercase tracking-widest mb-1">
+                    Programa de Formación Docente
+                </p>
+                <p class="text-xs font-medium text-white/80 uppercase tracking-widest">
+                    Visión CEUTEC 2030 | Ecosistema de Aprendizaje
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

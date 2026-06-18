@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformación Pedagógica Ecosistema de Aprendizaje | Caso CEUTEC</title>
+    
+    <!-- Tipografía Institucional: Poppins Estricto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Configuración de Colores de Marca y Tipografía -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',   /* Carmine Main */
+                            vermilion: '#E04332', /* Vermilion Accent */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Reglas Estrictas de Marca CEUTEC: 0 Sombras, 0 Bordes Redondeados */
+        * {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        /* Cortes geométricos del diamante */
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+        .diamond-cut-reverse {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 85%);
+        }
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        /* Cero sombras, cero degradados. Desplazamientos sólidos. */
+        .hover-solid-shift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .hover-solid-shift:hover {
+            transform: translate(-8px, -8px);
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-ceutec-vermilion selection:text-white leading-relaxed">
+
+    <!-- Navegación Corporativa Estricta -->
+    <nav class="w-full bg-white border-b-4 border-ceutec-vermilion py-6 px-8 flex justify-between items-center z-50 sticky top-0">
+        <div class="flex items-center gap-3">
+            <!-- Imagotipo Oficial CEUTEC -->
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo" class="h-10">
+        </div>
+        <div class="hidden md:flex flex-col items-end">
+            <div class="text-ceutec-carmine font-bold tracking-widest uppercase text-xs mt-2 border-l-2 border-ceutec-vermilion pl-4">
+                Programa de Formación Docente
+            </div>
+            <div class="text-ceutec-vermilion text-[10px] tracking-widest uppercase opacity-90 pr-4 mt-1">
+                Ecosistema de Aprendizaje
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="bg-ceutec-carmine text-white py-20 px-6 relative overflow-hidden border-b-8 border-ceutec-vermilion">
+        <div class="absolute top-0 right-0 w-80 h-80 border-4 border-ceutec-vermilion opacity-20 diamond-shape translate-x-1/4 -translate-y-1/4 animate-pulse"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="flex flex-wrap items-center gap-4 mb-8">
+                <span class="bg-ceutec-vermilion text-white font-black px-4 py-1.5 text-xs tracking-widest uppercase diamond-cut">Metodología del Ecosistema de Aprendizaje</span>
+                <span class="border-2 border-white text-white font-black px-4 py-1 text-xs tracking-widest uppercase diamond-cut bg-white/10">Visión 2030</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight uppercase tracking-tight">De la Evaluación Transaccional <br><span class="text-ceutec-vermilion">al Desempeño Auténtico</span></h1>
+            <p class="text-xl md:text-2xl font-medium text-white/90 max-w-3xl mb-10 border-l-4 border-ceutec-vermilion pl-4">Caso de estudio: CIV414 - Diseño Estructural en Concreto. Una guía de transferencia pedagógica para orientar el rediseño curricular en todas las facultades.</p>
+            
+            <!-- Tags de Facultades -->
+            <div class="flex flex-wrap gap-3 text-xs font-bold uppercase tracking-widest">
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-ceutec-carmine transition-colors"><i data-lucide="hard-hat" class="w-4 h-4 text-ceutec-vermilion"></i> Ingeniería</span>
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-ceutec-carmine transition-colors"><i data-lucide="briefcase" class="w-4 h-4 text-ceutec-vermilion"></i> Ciencias Administrativas</span>
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-ceutec-carmine transition-colors"><i data-lucide="palette" class="w-4 h-4 text-ceutec-vermilion"></i> Arte y Diseño</span>
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-ceutec-carmine transition-colors"><i data-lucide="microscope" class="w-4 h-4 text-ceutec-vermilion"></i> Ciencias de la Salud</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-20 space-y-24">
+
+        <!-- PARTE 1 -->
+        <div class="text-center mb-16">
+            <h2 class="text-sm font-black tracking-[0.2em] text-gray-500 uppercase mb-4">Primera Parte: La Arquitectura del Curso</h2>
+            <div class="w-24 h-2 bg-ceutec-vermilion mx-auto diamond-cut"></div>
+        </div>
+
+        <!-- 1. El Porqué -->
+        <section id="el-porque" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-ceutec-vermilion diamond-shape flex items-center justify-center text-white font-black text-2xl shrink-0">1</div>
+                        <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">El Porqué</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-300 pl-4">El Propósito de la asignatura, <strong class="text-ceutec-carmine font-black">La Gran Idea</strong> y su alineación directa con el Retrato del Egresado. Abandonamos el enfoque mecánico para centrarnos en la gestión ética de la incertidumbre.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 space-y-8">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-ceutec-carmine diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-10 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full">
+                        <h3 class="text-2xl font-black text-ceutec-carmine mb-4 flex items-center gap-3 uppercase"><i data-lucide="target" class="text-ceutec-vermilion w-8 h-8"></i> El Paradigma a Romper en CIV414</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6 font-medium">El rediseño de Diseño Estructural abandonó la premisa de enseñar a los alumnos a resolver cálculos matemáticos impecables sobre modelos incorrectos. Se detectó que el verdadero problema profesional no es calcular bien, sino saber <strong class="text-ceutec-carmine font-black">modelar la realidad con criterio</strong> para evitar desastres (el costo de "no saber").</p>
+                        
+                        <div class="mb-8 text-center p-6 bg-ceutec-carmine text-white diamond-cut border-b-4 border-ceutec-vermilion">
+                            <p class="text-xs font-black text-white/70 uppercase tracking-[0.2em] mb-3">La Gran Idea (Comunalidad Humana: Sistemas)</p>
+                            <p class="text-lg md:text-xl font-bold italic leading-relaxed">"Entender que una estructura de concreto no es una colección de elementos aislados, sino un <strong class="text-ceutec-vermilion font-black">sistema interdependiente</strong> donde la seguridad global depende de la continuidad en el flujo de cargas y la correcta jerarquía entre sus partes."</p>
+                        </div>
+
+                        <div class="bg-gray-50 p-8 border-l-8 border-ceutec-vermilion diamond-cut border-y border-r border-gray-200">
+                            <h4 class="font-black text-ceutec-carmine mb-6 flex items-center gap-2 uppercase tracking-tight"><i data-lucide="user-check" class="text-ceutec-vermilion"></i> Capacidades Humanas: El Retrato en Acción</h4>
+                            <ul class="space-y-6">
+                                <li class="flex items-start gap-4">
+                                    <div class="bg-ceutec-carmine p-3 diamond-shape shrink-0"><i data-lucide="heart-handshake" class="w-5 h-5 text-white"></i></div>
+                                    <div>
+                                        <strong class="text-ceutec-carmine font-black block uppercase mb-1">Solucionador de Problemas Empático</strong>
+                                        <span class="text-gray-700 text-sm font-medium">El estudiante asimila que la ingeniería no es abstracta: sus decisiones estructurales protegen directamente vidas humanas reales en entornos de alta vulnerabilidad sísmica.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="bg-ceutec-vermilion p-3 diamond-shape shrink-0"><i data-lucide="users" class="w-5 h-5 text-white"></i></div>
+                                    <div>
+                                        <strong class="text-ceutec-carmine font-black block uppercase mb-1">Colaborador Constructivo</strong>
+                                        <span class="text-gray-700 text-sm font-medium">Aprenden que la revisión de pares y la auditoría de cálculos no es "criticar", sino asegurar la calidad del producto final mediante el crecimiento colectivo.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transfer Lens Box -->
+                <div class="bg-ceutec-carmine text-white p-8 diamond-cut border-l-8 border-ceutec-vermilion">
+                    <h4 class="font-black text-white mb-4 flex items-center gap-3 uppercase"><i data-lucide="eye" class="w-6 h-6 text-ceutec-vermilion"></i> Lente de Transferencia para Docentes</h4>
+                    <p class="text-gray-100 text-sm leading-relaxed font-medium">
+                        Como líder académico, debes retar a tus estudiantes a cambiar la pregunta inicial al diseñar tu *Planner*. En lugar de <em>"¿Qué temas debo cubrir para el examen?"</em>, la pregunta es <strong class="text-white font-bold">"¿Qué problema real del entorno requiere que los alumnos desarrollen estas competencias?"</strong>. En Negocios, el propósito puede ser diseñar modelos sostenibles (Pensador Innovador); en Salud, la gestión ética del diagnóstico bajo presión (Líder con Propósito).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. El Qué -->
+        <section id="el-que" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-gray-800 diamond-shape flex items-center justify-center text-white font-black text-2xl shrink-0">2</div>
+                        <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">El Qué</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-300 pl-4">Las <strong class="text-ceutec-carmine font-black">Metas de Aprendizaje</strong> y las Preguntas Orientadoras. Establecen los resultados conceptuales, de competencia y de carácter que guiarán la investigación y el diseño.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-ceutec-vermilion diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-10 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full">
+                        
+                        <!-- Metas de Aprendizaje -->
+                        <h4 class="font-black text-ceutec-carmine mb-6 flex items-center gap-3 uppercase"><i data-lucide="check-square" class="text-ceutec-vermilion w-6 h-6"></i> Metas de Aprendizaje</h4>
+                        <div class="space-y-4 mb-10">
+                            <div class="p-4 border-l-4 border-ceutec-carmine bg-gray-50">
+                                <span class="text-xs font-black text-ceutec-carmine uppercase tracking-widest block mb-1">Meta Conceptual</span>
+                                <p class="text-gray-700 text-sm font-medium">Comprender que la validez del análisis estructural reside en la idealización apropiada de sus componentes (geometría, materiales, apoyos y cargas).</p>
+                            </div>
+                            <div class="p-4 border-l-4 border-ceutec-vermilion bg-gray-50">
+                                <span class="text-xs font-black text-ceutec-vermilion uppercase tracking-widest block mb-1">Meta de Competencia</span>
+                                <p class="text-gray-700 text-sm font-medium">Modelar rigurosamente los esquemas de carga (Muerta, Viva, Viento y Sismo) para un marco de la estructura.</p>
+                            </div>
+                            <div class="p-4 border-l-4 border-gray-800 bg-gray-50">
+                                <span class="text-xs font-black text-gray-800 uppercase tracking-widest block mb-1">Meta de Carácter</span>
+                                <p class="text-gray-700 text-sm font-medium">Desarrollar un criterio ético y empático para transformar la incertidumbre en un riesgo calculado que priorice la seguridad humana.</p>
+                            </div>
+                        </div>
+
+                        <!-- Preguntas de Encuadre -->
+                        <h4 class="font-black text-ceutec-carmine mb-6 flex items-center gap-3 uppercase"><i data-lucide="lightbulb" class="text-ceutec-vermilion w-6 h-6"></i> Preguntas Orientadoras (Framing Questions)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-8 border-2 border-gray-200 diamond-cut hover:border-ceutec-carmine transition-colors bg-ceutec-carmine text-white flex flex-col justify-center items-center text-center">
+                                <i data-lucide="help-circle" class="w-8 h-8 text-ceutec-vermilion mb-4 opacity-70"></i>
+                                <p class="text-xl font-bold leading-relaxed">¿Cuánto cuesta <br><span class="text-ceutec-vermilion font-black">"no saber"</span>?</p>
+                            </div>
+                            <div class="p-8 border-2 border-gray-200 diamond-cut hover:border-ceutec-vermilion transition-colors bg-ceutec-vermilion text-white flex flex-col justify-center items-center text-center">
+                                <i data-lucide="compass" class="w-8 h-8 text-white mb-4 opacity-70"></i>
+                                <p class="text-sm font-bold leading-relaxed">¿Cómo utiliza el ingeniero su criterio para transformar la incertidumbre de las cargas en un riesgo calculado que sea <strong class="text-white font-black">financieramente aceptable</strong> y <strong class="text-white font-black">humanamente seguro</strong>?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION 1 -->
+        <section class="py-12 relative border-y-4 border-ceutec-vermilion bg-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine uppercase tracking-tight mb-4">La Arquitectura en Acción</h2>
+                <span class="text-sm font-bold text-ceutec-vermilion uppercase tracking-widest">(Video Referencial - Parte 1)</span>
+                <p class="text-gray-600 font-medium mt-6 max-w-2xl mx-auto">Observen cómo los principios de la planeación del Ecosistema de Aprendizaje establecen las bases para un aprendizaje profundo y contextualizado desde el primer día de clases.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="relative p-2 bg-ceutec-vermilion diamond-cut-reverse inline-block w-full">
+                    <div class="w-full bg-ceutec-carmine diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                        <div id="videoOverlayCIV1" class="absolute inset-0 bg-ceutec-carmine flex flex-col items-center justify-center z-20 group-hover:bg-opacity-90 transition duration-300">
+                             <div class="w-24 h-24 border-4 border-ceutec-vermilion diamond-shape flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                                <i data-lucide="play" class="w-10 h-10 text-white ml-2"></i>
+                             </div>
+                             <span class="bg-ceutec-vermilion text-white text-xs font-black px-3 py-1 uppercase tracking-widest mb-2 diamond-cut">Parte 1</span>
+                             <p class="text-white font-bold tracking-widest uppercase text-sm">El Porqué y El Qué</p>
+                        </div>
+                        <video id="brandVideoCIV1" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" poster="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                            <source src="VID/Guia_de_Transformacion_pt1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTE 2 -->
+        <div class="text-center mb-16 mt-24">
+            <h2 class="text-sm font-black tracking-[0.2em] text-gray-500 uppercase mb-4">Segunda Parte: La Experiencia de Aprendizaje</h2>
+            <div class="w-24 h-2 bg-ceutec-carmine mx-auto diamond-cut"></div>
+        </div>
+
+        <!-- 3. La Evidencia -->
+        <section id="la-evidencia" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white font-black text-2xl shrink-0">3</div>
+                        <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">La Evidencia</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-300 pl-4">¿Cómo demuestran competencia los estudiantes? Reemplazando el examen transaccional escrito por <strong class="text-ceutec-carmine font-black">Tareas de Desempeño Auténtico</strong>. A continuación, la comparativa real de la asignatura.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 space-y-10">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gray-800 diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-10 diamond-cut border border-gray-200 z-10 hover-solid-shift">
+                        <h3 class="text-2xl font-black text-ceutec-carmine mb-4 flex items-center gap-3 uppercase"><i data-lucide="arrow-right-left" class="text-ceutec-vermilion w-8 h-8"></i> De lo Tradicional a lo Auténtico</h3>
+                        <p class="text-gray-700 mb-8 font-medium">El rediseño eliminó las tareas mecánicas y pasivas para integrar un proyecto de vida real que evalúa de forma auténtica el criterio profesional bajo incertidumbre, dividiendo la transformación en dos actividades clave.</p>
+                        
+                        <!-- Tabla 1: Actividad 1 -->
+                        <h4 class="font-black text-ceutec-carmine mb-4 uppercase tracking-tight text-sm bg-gray-100 p-3 border-l-4 border-ceutec-vermilion">Actividad 1: Actividades de Aprendizaje</h4>
+                        <div class="overflow-x-auto mb-10">
+                            <table class="w-full text-left border-collapse border-t-4 border-ceutec-carmine">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="py-4 px-4 font-black text-ceutec-carmine uppercase tracking-widest text-xs border-b border-gray-200 w-1/4">Dimensión</th>
+                                        <th class="py-4 px-4 font-black text-gray-500 uppercase tracking-widest text-xs border-b border-gray-200 w-2/5">Actividad Original</th>
+                                        <th class="py-4 px-4 font-black text-ceutec-vermilion uppercase tracking-widest text-xs border-b border-gray-200 w-2/5">Actividad Rediseñada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-ceutec-carmine text-sm">Descripción general</td>
+                                        <td class="py-4 px-4 text-gray-600 font-medium text-sm">El examen brindaba una serie de características cerradas: un bosquejo de la estructura, ubicación geográfica, materiales de construcción, condiciones de carga y tipos de sistema.</td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">El estudiante asume el rol de Auditor para evaluar el proyecto "Plaza Outset". Se enfrenta a una memoria técnica con deficiencias críticas (ej. falta de estudios geotécnicos y optimización insegura de costos).</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-ceutec-carmine text-sm">Qué se evalúa</td>
+                                        <td class="py-4 px-4 text-gray-600 font-medium text-sm">Medición puramente sumativa de competencias técnicas: capacidad para crear el modelo con la información dada.</td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">
+                                            <p class="mb-2">Proceso formativo de 4 semanas:</p>
+                                            <ul class="list-disc pl-4 space-y-1">
+                                                <li>50%: Calidad de la evaluación técnica realizada al compañero (Feedback).</li>
+                                                <li>50%: Entrega final del modelo propio, incorporando de forma obligatoria las mejoras.</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback STAR -->
+                <div class="bg-ceutec-carmine text-white p-10 diamond-cut relative overflow-hidden">
+                    <div class="absolute right-0 bottom-0 opacity-10 transform translate-x-1/4 translate-y-1/4">
+                        <i data-lucide="star" class="w-64 h-64 text-ceutec-vermilion"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 relative z-10 uppercase tracking-tight text-white border-b-2 border-ceutec-vermilion pb-2 inline-block">Learning to Learn: Feedback S.T.A.R.</h3>
+                    <p class="text-gray-100 mb-8 relative z-10 text-sm font-medium leading-relaxed max-w-2xl">La evidencia del aprendizaje se da en el <em>proceso</em>. Para cultivar el carácter (Colaborador Constructivo) y la Metacognición, implementamos rúbricas de retroalimentación de pares utilizando S.T.A.R.</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
+                        <div class="bg-white/10 p-6 diamond-cut border border-ceutec-vermilion text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">S</strong>
+                            <span class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest block">Specific</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Crítica el cálculo, no a la persona.</p>
+                        </div>
+                        <div class="bg-white/10 p-6 diamond-cut border border-ceutec-vermilion text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">T</strong>
+                            <span class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest block">Timely</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Oportuno. A medio proyecto, cuando hay tiempo.</p>
+                        </div>
+                        <div class="bg-white/10 p-6 diamond-cut border border-ceutec-vermilion text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">A</strong>
+                            <span class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest block">Actionable</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Propone un camino claro de mejora.</p>
+                        </div>
+                        <div class="bg-white/10 p-6 diamond-cut border border-ceutec-vermilion text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">R</strong>
+                            <span class="text-xs font-bold text-ceutec-vermilion uppercase tracking-widest block">Respectful</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Se da con empatía profesional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. El Cómo -->
+        <section id="el-como" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-ceutec-vermilion diamond-shape flex items-center justify-center text-white font-black text-2xl shrink-0">4</div>
+                        <h2 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">El Cómo</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-300 pl-4">Orquestando las experiencias en el aula bajo la secuencia constructivista de las <strong class="text-ceutec-carmine font-black">3Cs del Ecosistema de Aprendizaje</strong>. Dejamos atrás las clases magistrales pasivas.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2">
+                <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-ceutec-vermilion before:opacity-30">
+                    
+                    <!-- Item 1: Connect -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-12 h-12 diamond-shape bg-ceutec-carmine text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-4 border-white">
+                            <i data-lucide="link" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 diamond-cut border border-gray-200 hover:border-ceutec-carmine transition-colors">
+                            <h3 class="font-black text-xl text-ceutec-carmine mb-2 uppercase tracking-tight">Conectar <span class="text-ceutec-vermilion font-bold lowercase tracking-normal text-sm md:text-base ml-1">(Connect)</span></h3>
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-4 border-b border-gray-100 pb-2">Enganchar conocimiento previo</span>
+                            <p class="text-gray-700 text-sm font-medium leading-relaxed">
+                                <strong class="text-ceutec-carmine font-black block mb-1">Bitácora de Criterio Estructural:</strong> Los estudiantes publican comentarios de manera continua, conectando el trabajo que realizan con conceptos previos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Construct -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-12 h-12 diamond-shape bg-ceutec-vermilion text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-4 border-white">
+                            <i data-lucide="hammer" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 diamond-cut border border-gray-200 hover:border-ceutec-vermilion transition-colors">
+                            <h3 class="font-black text-xl text-ceutec-carmine mb-2 uppercase tracking-tight">Construir <span class="text-ceutec-vermilion font-bold lowercase tracking-normal text-sm md:text-base ml-1">(Construct)</span></h3>
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-4 border-b border-gray-100 pb-2">Andamiaje de habilidades duras</span>
+                            <p class="text-gray-700 text-sm font-medium leading-relaxed">
+                                <strong class="text-ceutec-carmine font-black block mb-1">Aplicaciones a Menor Escala:</strong> Los estudiantes resuelven en el aula aplicaciones para "traer a la superficie" dudas conceptuales tempranas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Contribute -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-12 h-12 diamond-shape bg-gray-800 text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-4 border-white">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 diamond-cut border border-gray-200 hover:border-gray-800 transition-colors">
+                            <h3 class="font-black text-xl text-ceutec-carmine mb-2 uppercase tracking-tight">Contribuir <span class="text-ceutec-vermilion font-bold lowercase tracking-normal text-sm md:text-base ml-1">(Contribute)</span></h3>
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-4 border-b border-gray-100 pb-2">Pasar del aislamiento a la comunidad</span>
+                            <p class="text-gray-700 text-sm font-medium leading-relaxed">
+                                <strong class="text-ceutec-carmine font-black block mb-1">Auditoría Cruzada:</strong> Los alumnos aplican formalmente la herramienta <strong class="text-ceutec-carmine font-black">Feedback S.T.A.R.</strong> para auditar cálculos de sus compañeros.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Transfer Lens Box -->
+                <div class="bg-ceutec-vermilion text-white p-8 diamond-cut border-l-8 border-ceutec-carmine mt-16">
+                    <h4 class="font-black text-ceutec-carmine mb-4 flex items-center gap-3 uppercase"><i data-lucide="repeat" class="w-6 h-6 text-ceutec-carmine"></i> Herramientas para Docentes</h4>
+                    <p class="text-white font-medium text-sm leading-relaxed mb-4">
+                        Puedes usar esta secuencia 3C en cualquier disciplina. Guíate utilizando estos ejemplos durante tus horas de planificación:
+                    </p>
+                    <ul class="text-white text-sm font-medium space-y-2 ml-2">
+                        <li><strong class="font-black text-ceutec-carmine">Conectar:</strong> Análisis de caso sobre una campaña publicitaria ofensiva (Comunicaciones) o el fracaso financiero de una Startup (Finanzas).</li>
+                        <li><strong class="font-black text-ceutec-carmine">Construir:</strong> Talleres, uso guiado y crítico de IA, modelado de prototipos en Figma.</li>
+                        <li><strong class="font-black text-ceutec-carmine">Contribuir:</strong> Revisiones de portafolios de diseño o defensas simuladas de tesis de maestría con pares, previo a la defensa real.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION 2 -->
+        <section class="py-12 relative border-y-4 border-ceutec-carmine bg-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine uppercase tracking-tight mb-4">Evidencia del Crecimiento Colectivo</h2>
+                <span class="text-sm font-bold text-ceutec-vermilion uppercase tracking-widest">(Video Referencial - Parte 2)</span>
+                <p class="text-gray-600 font-medium mt-6 max-w-2xl mx-auto">Observen la culminación de la experiencia: estudiantes demostrando dominio metacognitivo al evaluar su propio crecimiento y el de sus pares.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="relative p-2 bg-gray-800 diamond-cut-reverse inline-block w-full">
+                    <div class="w-full bg-ceutec-carmine diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                        <div id="videoOverlayCIV2" class="absolute inset-0 bg-ceutec-carmine flex flex-col items-center justify-center z-20 group-hover:bg-opacity-90 transition duration-300">
+                             <div class="w-24 h-24 border-4 border-ceutec-vermilion diamond-shape flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                                <i data-lucide="play" class="w-10 h-10 text-white ml-2"></i>
+                             </div>
+                             <span class="bg-gray-800 text-white text-xs font-black px-3 py-1 uppercase tracking-widest mb-2 diamond-cut">Parte 2</span>
+                             <p class="text-white font-bold tracking-widest uppercase text-sm">La Evidencia y El Cómo</p>
+                        </div>
+                        <video id="brandVideoCIV2" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" poster="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                            <source src="VID/Guia_de_Transformacion_pt2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: REFERENCIAS -->
+        <section id="referencias" class="pt-24 pb-12">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-black tracking-[0.2em] text-gray-500 uppercase mb-4">Material de Apoyo</h2>
+                <div class="w-24 h-2 bg-ceutec-vermilion mx-auto diamond-cut mb-8"></div>
+                <h3 class="text-3xl font-black text-ceutec-carmine uppercase tracking-tight">Referencias y Descargas</h3>
+                
+                <div class="bg-white p-8 diamond-cut border border-gray-200 mt-8 max-w-4xl mx-auto relative group">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-ceutec-vermilion"></div>
+                    <i data-lucide="info" class="w-12 h-12 text-gray-300 absolute top-8 right-8 opacity-20"></i>
+                    <p class="text-gray-700 font-medium leading-relaxed text-left md:text-center relative z-10 text-lg">
+                        Estos tres archivos contienen la misma guía que se utilizó para construir este sitio web, y las actividades evaluativas rediseñadas como se les compartieron a los estudiantes.
+                    </p>
+                    <div class="mt-6 pt-6 border-t border-gray-100 flex flex-col md:flex-row items-center justify-center gap-4">
+                        <span class="text-xs text-ceutec-carmine font-black tracking-widest uppercase bg-gray-50 px-3 py-1 diamond-cut">El Material Incluye:</span>
+                        <p class="text-sm text-gray-500 font-medium text-center">
+                            Conexión con el Porqué, Definición GRASPS, Descripción de Entregables, Checklists, Rúbricas y Cronograma de Trabajo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
+                <a href="PDF/Guía de Transformación Pedagógica CGSv2.pdf" target="_blank" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-carmine diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full items-center text-center transition-colors hover:border-ceutec-carmine">
+                        <div class="w-16 h-16 bg-ceutec-carmine text-white diamond-shape flex items-center justify-center mb-6 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-text" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="font-black text-ceutec-carmine uppercase tracking-tight mb-4 text-lg">Guía de Transformación</h4>
+                        <span class="mt-auto inline-flex items-center gap-2 bg-gray-50 text-ceutec-carmine text-xs font-bold px-4 py-2 uppercase tracking-widest diamond-cut border border-gray-200 group-hover:bg-ceutec-carmine group-hover:text-white group-hover:border-ceutec-carmine transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+                        </span>
+                    </div>
+                </a>
+
+                <a href="PDF/El_Analista_Estrutural_Fase_1.pdf" target="_blank" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-vermilion diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full items-center text-center transition-colors hover:border-ceutec-vermilion">
+                        <div class="w-16 h-16 bg-ceutec-vermilion text-white diamond-shape flex items-center justify-center mb-6 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-check" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="font-black text-ceutec-carmine uppercase tracking-tight mb-4 text-lg">Analista Estructural<br><span class="text-ceutec-vermilion">Fase 1</span></h4>
+                        <span class="mt-auto inline-flex items-center gap-2 bg-gray-50 text-ceutec-carmine text-xs font-bold px-4 py-2 uppercase tracking-widest diamond-cut border border-gray-200 group-hover:bg-ceutec-vermilion group-hover:text-white group-hover:border-ceutec-vermilion transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+                        </span>
+                    </div>
+                </a>
+
+                <a href="PDF/El_Analista_Estrutural_Fase_2.pdf" target="_blank" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-gray-800 diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full items-center text-center transition-colors hover:border-gray-800">
+                        <div class="w-16 h-16 bg-gray-800 text-white diamond-shape flex items-center justify-center mb-6 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-check-2" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="font-black text-ceutec-carmine uppercase tracking-tight mb-4 text-lg">Analista Estructural<br><span class="text-gray-800">Fase 2</span></h4>
+                        <span class="mt-auto inline-flex items-center gap-2 bg-gray-50 text-ceutec-carmine text-xs font-bold px-4 py-2 uppercase tracking-widest diamond-cut border border-gray-200 group-hover:bg-gray-800 group-hover:text-white group-hover:border-gray-800 transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Institucional -->
+    <footer class="bg-ceutec-carmine text-gray-300 py-16 text-center border-t-8 border-ceutec-vermilion relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-64 h-64 border-4 border-ceutec-vermilion opacity-10 diamond-shape -translate-x-1/2 translate-y-1/2"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <i data-lucide="quote" class="w-10 h-10 mx-auto mb-6 text-ceutec-vermilion opacity-70"></i>
+            <p class="text-xl md:text-2xl font-bold italic mb-8 text-white leading-relaxed">"Cuando capacitamos a nuestros docentes con este marco, transformamos a los estudiantes de 'receptores pasivos de información' a 'protagonistas empoderados'. El aprendizaje en CEUTEC deja de ser un trámite para convertirse en un ensayo de la vida real."</p>
+            <div class="w-32 h-1 bg-ceutec-vermilion mx-auto mb-8 diamond-cut"></div>
+            <p class="font-black text-white uppercase tracking-widest text-sm mb-2">Diseñado para el fortalecimiento del Liderazgo Académico.</p>
+            <p class="text-xs font-medium text-white/70 uppercase tracking-widest">Consultoría Pedagógica CGS | CEUTEC Visión 2030</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar Iconos
+        lucide.createIcons();
+
+        // Lógica consistente para activar los videos de la marca
+        function setupBrandVideo(overlayId, videoId) {
+            const overlay = document.getElementById(overlayId);
+            const video = document.getElementById(videoId);
+
+            if (overlay && video) {
+                overlay.addEventListener('click', () => {
+                    overlay.classList.add('hidden');
+                    video.classList.remove('opacity-50', 'mix-blend-luminosity');
+                    video.setAttribute('controls', 'true');
+                    video.play();
+                });
+            }
+        }
+
+        // Activar ambos videos
+        setupBrandVideo('videoOverlayCIV1', 'brandVideoCIV1');
+        setupBrandVideo('videoOverlayCIV2', 'brandVideoCIV2');
+    </script>
+</body>
+</html>

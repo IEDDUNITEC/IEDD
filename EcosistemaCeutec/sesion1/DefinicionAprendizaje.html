@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Definición del Aprendizaje - CEUTEC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            carmine: '#9B0616',    /* Dominante, corporativo y estable */
+                            vermilion: '#E04332',  /* Acentos, luz y energía */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'], /* Única fuente permitida */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Cortes geométricos inspirados en el isotipo del diamante (Claridad y Precisión) */
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+        .diamond-cut-reverse {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 85%);
+        }
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        /* Regla de Oro del Manual: Cero sombras, cero degradados. Solo color sólido y transiciones agudas. */
+        .hover-solid-shift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .hover-solid-shift:hover {
+            transform: translate(-8px, -8px);
+        }
+        .solid-border-bg {
+            background-color: #E04332; /* Vermilion base para el efecto de desplazamiento sólido */
+        }
+        
+        body {
+            background-color: #9B0616; /* Carmine Dominante en el lienzo */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-vermilion selection:text-white">
+
+    <nav class="w-full bg-white border-b-8 border-brand-carmine py-4 px-6 md:px-12 flex justify-between items-center select-none">
+        <div class="flex items-center">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-10 md:h-14 object-contain">
+        </div>
+        
+        <div class="flex items-center gap-4 text-right">
+            <div class="hidden sm:block h-10 border-l-2 border-brand-carmine/30"></div>
+            <div class="flex flex-col justify-center font-sans">
+                <span class="text-brand-carmine font-black tracking-wider text-xs md:text-sm uppercase leading-tight">
+                    Programa de Formación Docente
+                </span>
+                <span class="text-brand-vermilion font-medium tracking-wide text-[10px] md:text-xs uppercase leading-tight mt-0.5">
+                    Ecosistema de Aprendizaje
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-24 pb-20 px-6 max-w-6xl mx-auto">
+        <div class="absolute top-10 right-10 w-32 h-32 bg-brand-vermilion opacity-20 diamond-shape"></div>
+        
+        <div class="relative z-10">
+            <h2 class="text-brand-vermilion font-bold tracking-[0.2em] uppercase mb-4 text-sm md:text-base border-l-4 border-brand-vermilion pl-4">El Modelo de las 3 Cs</h2>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tight text-white uppercase">
+                La Definición <br>
+                <span class="text-brand-vermilion">Del Aprendizaje</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-medium text-gray-200 max-w-2xl mt-8 border-l-4 border-brand-vermilion pl-6">
+                Para iniciar el cambio de paradigma, debemos redefinir qué significa "aprender". El aprendizaje profundo ocurre en la intersección de <span class="text-brand-vermilion font-bold">tres dimensiones inseparables</span>.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 mt-12">
+            
+            <div class="relative">
+                <div class="absolute inset-0 solid-border-bg diamond-cut mt-4 ml-4"></div>
+                <div class="relative bg-white text-brand-carmine p-10 diamond-cut hover-solid-shift z-10 h-full flex flex-col">
+                    <div class="w-20 h-20 bg-brand-carmine diamond-shape flex items-center justify-center mb-8">
+                        <i data-lucide="lightbulb" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-1 uppercase">Conceptual</h2>
+                    <h3 class="text-sm font-bold text-brand-vermilion mb-6 uppercase tracking-widest">Entender que...</h3>
+                    <p class="font-medium text-gray-800 mb-8 flex-grow">
+                        Se enfoca en la comprensión profunda de <span class="font-black text-brand-carmine">"La Gran Idea"</span> y los principios que rigen el mundo, más allá de la memorización de datos.
+                    </p>
+                    <div class="mt-auto p-5 bg-gray-100 border-l-8 border-brand-carmine flex flex-col gap-3">
+                        <p class="text-sm">
+                            <span class="font-black block mb-1">En Ingeniería:</span> 
+                            Comprender la causalidad y el comportamiento físico de los materiales, no solo aplicar fórmulas.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Arte y Diseño:</span> 
+                            Entender que el diseño trasciende la estética; es un sistema de comunicación y resolución de problemas que interactúa con la psicología y cultura humana.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Ciencias Admon. y Sociales:</span> 
+                            Entender que una organización es un ecosistema vivo donde las decisiones legales, financieras o de mercado impactan directamente en la sociedad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-0 bg-brand-vermilion diamond-cut mt-4 ml-4"></div>
+                <div class="relative bg-white text-brand-carmine p-10 diamond-cut hover-solid-shift z-10 h-full flex flex-col">
+                    <div class="w-20 h-20 bg-brand-vermilion diamond-shape flex items-center justify-center mb-8">
+                        <i data-lucide="cog" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-1 uppercase">Competencias</h2>
+                    <h3 class="text-sm font-bold text-brand-vermilion mb-6 uppercase tracking-widest">Ser capaz de...</h3>
+                    <p class="font-medium text-gray-800 mb-8 flex-grow">
+                        Es el desarrollo de habilidades y destrezas observables, utilizando la taxonomía de Bloom adaptada con estricta precisión por CEUTEC.
+                    </p>
+                    <div class="mt-auto p-5 bg-gray-100 border-l-8 border-brand-vermilion flex flex-col gap-3">
+                        <p class="text-sm">
+                            <span class="font-black block mb-1">En Ingeniería:</span> 
+                            Analizar, diseñar, evaluar y crear en contextos auténticos y exigentes del mundo real.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Arte y Diseño:</span> 
+                            Conceptualizar ideas complejas, bocetar, prototipar y materializar experiencias (espacios, platillos, identidades visuales) centradas en el usuario.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Ciencias Admon. y Sociales:</span> 
+                            Investar tendencias, interpretar datos complejos, argumentar jurídicamente y estructurar planes estratégicos viables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-0 bg-white diamond-cut mt-4 ml-4 opacity-20"></div>
+                <div class="relative bg-brand-vermilion text-white p-10 diamond-cut hover-solid-shift z-10 h-full flex flex-col">
+                    <div class="w-20 h-20 bg-white diamond-shape flex items-center justify-center mb-8">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-brand-carmine"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-1 uppercase text-white">Carácter</h2>
+                    <h3 class="text-sm font-bold text-brand-carmine mb-6 uppercase tracking-widest">Convertirse en...</h3>
+                    <p class="font-medium text-white mb-8 flex-grow">
+                        El pilar de nuestra misión de <span class="font-black">Becoming Human</span>. Consiste en desarrollar valores inquebrantables, ética profesional y compromiso.
+                    </p>
+                    <div class="mt-auto p-5 bg-brand-carmine text-white border-l-8 border-white flex flex-col gap-3">
+                        <p class="text-sm">
+                            <span class="font-black block mb-1">En Ingeniería:</span> 
+                            Un ingeniero competente pero sin carácter ético es un riesgo inaceptable para la sociedad.
+                        </p>
+                        <p class="text-sm border-t border-white/20 pt-3">
+                            <span class="font-black block mb-1">En Arte y Diseño:</span> 
+                            Un artista y diseñador reconoce el impacto cultural e inclusivo de su obra, designing con responsabilidad humana.
+                        </p>
+                        <p class="text-sm border-t border-white/20 pt-3">
+                            <span class="font-black block mb-1">En Ciencias Admon. y Sociales:</span> 
+                            Un gerente o abogado no solo busca la rentabilidad o ganar casos, sino promover la justicia y equidad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="bg-white text-brand-carmine py-24 relative overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-64 h-64 bg-brand-carmine diamond-shape opacity-10"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-vermilion diamond-shape opacity-10"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-12 uppercase tracking-tight">Profundiza en el <span class="text-brand-vermilion">Paradigma</span></h2>
+            
+            <div class="relative p-2 bg-brand-vermilion diamond-cut-reverse inline-block w-full">
+                <div class="w-full bg-brand-carmine diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                    <div id="videoOverlay" class="absolute inset-0 bg-brand-carmine flex flex-col items-center justify-center z-20 hover:bg-brand-vermilion transition-colors duration-300">
+                         <div class="w-24 h-24 bg-white diamond-shape flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                            <i data-lucide="play" class="w-10 h-10 text-brand-carmine ml-2"></i>
+                         </div>
+                         <p class="text-white font-bold tracking-widest uppercase">Reproducir Video</p>
+                    </div>
+                    <video id="brandVideo" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                        <source src="VID/Redefiniendo_el_Aprendizaje.mp4" type="video/mp4">
+                        Tu navegador no soporta la etiqueta de video.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-carmine border-t-8 border-brand-vermilion py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-8 object-contain">
+            </div>
+            <p class="text-sm font-medium text-brand-vermilion uppercase tracking-widest text-center md:text-right">
+                Alineado con <span class="text-white font-bold">Collective Growth System</span><br>
+                y la Visión CEUTEC 2030.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Lógica de interacción audaz para el video del diamante
+        const videoOverlay = document.getElementById('videoOverlay');
+        const brandVideo = document.getElementById('brandVideo');
+
+        if (videoOverlay && brandVideo) {
+            videoOverlay.addEventListener('click', () => {
+                // Escondemos la cubierta de un tajo, sin desvanecimientos suaves (claridad)
+                videoOverlay.classList.add('hidden');
+                
+                // Le quitamos la opacidad y los filtros al video
+                brandVideo.classList.remove('opacity-50', 'mix-blend-luminosity');
+                
+                // Agregamos los controles nativos
+                brandVideo.setAttribute('controls', 'true');
+                
+                // ¡Acción!
+                brandVideo.play();
+            });
+        }
+    </script>
+</body>
+</html>

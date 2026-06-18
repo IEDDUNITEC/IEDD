@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Formación Docente | Sesión 1 - Ecosistema de Aprendizaje CEUTEC</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ceutec: {
+                            carmine: '#93061E',
+                            crimson: '#DF1B3B',
+                            vermillion: '#E04332',
+                            brightpink: '#FF5F72',
+                            light: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* REGLAS ESTRICTAS DE MARCA CEUTEC: CERO SOMBRAS, CERO BORDES REDONDOS */
+        * {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        body { font-family: 'Poppins', sans-serif; background-color: #FAFAFA; }
+        
+        /* Cortes geométricos del diamante - CERO BORDES REDONDEADOS */
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
+        }
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        /* Cero sombras. Desplazamientos sólidos para interacción. */
+        .hover-solid-shift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .hover-solid-shift:hover {
+            transform: translate(-6px, -6px);
+        }
+        
+        /* Animación sutil de los contenedores de íconos */
+        .icon-container { transition: all 0.3s ease; }
+        .group:hover .icon-container { transform: scale(1.1); }
+
+        /* Custom scrollbar corporativo */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #93061E; }
+        ::-webkit-scrollbar-thumb:hover { background: #DF1B3B; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <header class="bg-white z-50 relative flex flex-col sticky top-0 shadow-md shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center w-full">
+            
+            <a href="index.html" class="flex items-center cursor-pointer">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logo CEUTEC" class="h-10 object-contain">
+            </a>
+
+            <div class="flex items-center gap-6">
+                
+                <div class="hidden sm:flex items-center gap-6 text-xs font-bold tracking-wider uppercase">
+                    <a href="#objetivos" class="text-ceutec-carmine hover:text-ceutec-vermillion transition-colors">Objetivos</a>
+                    <a href="#modulos" class="text-ceutec-carmine hover:text-ceutec-vermillion transition-colors">Módulos de la Sesión</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="h-10 w-0.5 bg-ceutec-carmine"></div>
+                    <div class="flex flex-col justify-center text-right">
+                        <span class="text-ceutec-carmine font-bold text-sm tracking-widest leading-tight uppercase">Programa de Formación Docente</span>
+                        <span class="text-ceutec-vermillion text-xs font-medium tracking-wider leading-tight uppercase mt-1">Sesión 1</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="h-4 w-full bg-ceutec-carmine"></div>
+    </header>
+    <header class="bg-ceutec-carmine text-white py-20 relative overflow-hidden border-b-8 border-ceutec-crimson">
+        <div class="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-ceutec-crimson opacity-20 diamond-shape translate-x-1/4 -translate-y-1/4"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-ceutec-vermillion opacity-20 diamond-shape -translate-x-1/2 translate-y-1/2"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-4 bg-transparent text-ceutec-brightpink text-xs font-black tracking-widest uppercase mb-6 border-2 border-ceutec-brightpink diamond-cut">
+                Capacitación Docente - Sesión 1
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight uppercase">
+                Programa de Formación <br class="hidden md:block"> <span class="text-ceutec-brightpink">Docente</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl font-bold text-white tracking-widest uppercase mb-6 border-b-4 border-ceutec-crimson inline-block pb-2">
+                Ecosistema de Aprendizaje CEUTEC
+            </h2>
+        </div>
+    </header>
+
+    <section id="objetivos" class="py-16 bg-white border-b-2 border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-ceutec-carmine diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-ceutec-crimson p-8 md:p-10 diamond-cut border border-ceutec-carmine z-10 h-full flex flex-col">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-white text-ceutec-carmine diamond-shape flex items-center justify-center shrink-0">
+                                <i data-lucide="crosshair" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-black text-white uppercase tracking-tight">Objetivo General</h3>
+                        </div>
+                        <p class="text-white font-medium leading-relaxed border-l-4 border-ceutec-brightpink pl-4">
+                            Facilitar a los docentes de CEUTEC las herramientas necesarias para implementar el ecosistema de aprendizaje y el co-diseño en sus respectivas clases.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-ceutec-crimson diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 md:p-10 diamond-cut border-2 border-ceutec-carmine z-10 h-full flex flex-col">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-ceutec-carmine text-white diamond-shape flex items-center justify-center shrink-0">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-black text-ceutec-carmine uppercase tracking-tight">Objetivo de la Sesión</h3>
+                        </div>
+                        <p class="text-gray-700 font-medium leading-relaxed border-l-4 border-ceutec-crimson pl-4">
+                            Comprender la filosofía del Ecosistema de Aprendizaje, interiorizar el Retrato del Graduado y contrastar el modelo tradicional con el nuevo ecosistema, utilizando la metacognición <span class="text-ceutec-carmine font-black">(Learning to Learn)</span> y un caso de éxito.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modulos" class="py-20 bg-ceutec-light flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-6 mb-16 border-b-2 border-gray-200 pb-6">
+                <div class="w-16 h-16 bg-ceutec-carmine diamond-shape flex items-center justify-center text-white shrink-0">
+                    <i data-lucide="layers" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-black text-ceutec-carmine uppercase tracking-tight">Recursos de la Sesión 1</h2>
+                    <p class="text-ceutec-crimson font-bold tracking-widest uppercase text-sm mt-1">Módulos Interactivos y Documentación</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <a href="DefinicionAprendizaje.html" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-crimson diamond-cut mt-3 ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                    <div class="relative bg-white p-8 diamond-cut border-2 border-gray-200 group-hover:border-ceutec-carmine z-10 hover-solid-shift flex flex-col h-full transition-colors">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="icon-container w-16 h-16 bg-ceutec-carmine text-white flex items-center justify-center diamond-shape">
+                                <i data-lucide="book-open" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-ceutec-crimson font-black text-3xl opacity-20">01</span>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 uppercase leading-snug">Definición del Aprendizaje</h3>
+                        <p class="text-gray-600 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                            Exploración profunda de cómo el Ecosistema de Aprendizaje redefine el acto de aprender más allá de lo transaccional.
+                        </p>
+                        <div class="pt-4 border-t-2 border-gray-100 flex justify-between items-center text-ceutec-crimson font-bold text-xs uppercase tracking-widest mt-auto">
+                            <span>Ingresar al Módulo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="RetratoUnitec.html" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-carmine diamond-cut mt-3 ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                    <div class="relative bg-white p-8 diamond-cut border-2 border-gray-200 group-hover:border-ceutec-carmine z-10 hover-solid-shift flex flex-col h-full transition-colors">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="icon-container w-16 h-16 bg-ceutec-crimson text-white flex items-center justify-center diamond-shape">
+                                <i data-lucide="users" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-ceutec-carmine font-black text-3xl opacity-10">02</span>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 uppercase leading-snug">Retrato de CEUTEC y Principios</h3>
+                        <p class="text-gray-600 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                            Las 6 capacidades humanas que buscamos formar en nuestros estudiantes y la cultura del aula.
+                        </p>
+                        <div class="pt-4 border-t-2 border-gray-100 flex justify-between items-center text-ceutec-carmine font-bold text-xs uppercase tracking-widest mt-auto">
+                            <span>Ingresar al Módulo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="Transicion.html" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-vermillion diamond-cut mt-3 ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                    <div class="relative bg-white p-8 diamond-cut border-2 border-gray-200 group-hover:border-ceutec-carmine z-10 hover-solid-shift flex flex-col h-full transition-colors">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="icon-container w-16 h-16 bg-ceutec-vermillion text-white flex items-center justify-center diamond-shape">
+                                <i data-lucide="arrow-right-left" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-ceutec-vermillion font-black text-3xl opacity-30">03</span>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 uppercase leading-snug">Transición y Aprender a Aprender</h3>
+                        <p class="text-gray-600 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                            El paso del silo tradicional al ecosistema, centrado en la capacidad de "Learning to Learn".
+                        </p>
+                        <div class="pt-4 border-t-2 border-gray-100 flex justify-between items-center text-ceutec-vermillion font-bold text-xs uppercase tracking-widest mt-auto">
+                            <span>Ingresar al Módulo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="transfomacion.html" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-crimson diamond-cut mt-3 ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                    <div class="relative bg-white p-8 diamond-cut border-2 border-gray-200 group-hover:border-ceutec-carmine z-10 hover-solid-shift flex flex-col h-full transition-colors">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="icon-container w-16 h-16 bg-ceutec-carmine text-white flex items-center justify-center diamond-shape">
+                                <i data-lucide="hammer" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-ceutec-crimson font-black text-3xl opacity-20">04</span>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 uppercase leading-snug">Ejemplo de Transformación</h3>
+                        <p class="text-gray-600 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                            Caso de estudio: De la evaluación memorística al desempeño auténtico (GRASPS).
+                        </p>
+                        <div class="pt-4 border-t-2 border-gray-100 flex justify-between items-center text-ceutec-crimson font-bold text-xs uppercase tracking-widest mt-auto">
+                            <span>Ingresar al Módulo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="piloto.html" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-carmine diamond-cut mt-3 ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                    <div class="relative bg-white p-8 diamond-cut border-2 border-gray-200 group-hover:border-ceutec-carmine z-10 hover-solid-shift flex flex-col h-full transition-colors">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="icon-container w-16 h-16 bg-ceutec-crimson text-white flex items-center justify-center diamond-shape">
+                                <i data-lucide="rocket" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-ceutec-carmine font-black text-3xl opacity-10">05</span>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 uppercase leading-snug">Micropiloto de Implementación</h3>
+                        <p class="text-gray-600 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                            Guía estratégica para iniciar pruebas controladas de esta metodología en el aula.
+                        </p>
+                        <div class="pt-4 border-t-2 border-gray-100 flex justify-between items-center text-ceutec-carmine font-bold text-xs uppercase tracking-widest mt-auto">
+                            <span>Ingresar al Módulo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="herramientas.html" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-ceutec-vermillion diamond-cut mt-3 ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                    <div class="relative bg-white p-8 diamond-cut border-2 border-gray-200 group-hover:border-ceutec-carmine z-10 hover-solid-shift flex flex-col h-full transition-colors">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="icon-container w-16 h-16 bg-ceutec-vermillion text-white flex items-center justify-center diamond-shape">
+                                <i data-lucide="wrench" class="w-7 h-7"></i>
+                            </div>
+                            <span class="text-ceutec-vermillion font-black text-3xl opacity-30">06</span>
+                        </div>
+                        <h3 class="text-xl font-black text-ceutec-carmine mb-3 uppercase leading-snug">Herramientas Disponibles</h3>
+                        <p class="text-gray-600 text-sm font-medium leading-relaxed mb-6 flex-grow">
+                            Formatos, rúbricas y plantillas S.T.A.R. listas para descargar y usar en tu aula.
+                        </p>
+                        <div class="pt-4 border-t-2 border-gray-100 flex justify-between items-center text-ceutec-vermillion font-bold text-xs uppercase tracking-widest mt-auto">
+                            <span>Ingresar al Módulo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-200 py-3 px-6 shrink-0 relative z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.03)] mt-auto">
+        <div class="max-w-7xl mx-auto flex items-center justify-center">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logo CEUTEC" class="h-6 object-contain">
+        </div>
+    </footer>
+
+    <script>
+        // Inicialización obligatoria de íconos Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>
