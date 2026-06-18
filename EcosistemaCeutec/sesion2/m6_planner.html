@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Recursos y Preparación | Ecosistema de Aprendizaje de CEUTEC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',
+                            crimson: '#B30A1B',
+                            vermilion: '#E04332',
+                            pink: '#F04C5F',
+                            light: '#FFF7F7',
+                            slate: '#3F1B20',
+                            federal: '#9B0616',
+                            cyan: '#E04332',
+                            sky: '#F04C5F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --ceutec-carmine: #9B0616;
+            --ceutec-crimson: #B30A1B;
+            --ceutec-vermilion: #E04332;
+            --ceutec-pink: #F04C5F;
+            --ceutec-light: #FFF7F7;
+            --ceutec-slate: #3F1B20;
+            --ceutec-border: #F2D9DD;
+        }
+
+        body {
+            background-color: var(--ceutec-light);
+            color: var(--ceutec-slate);
+        }
+
+        /* REGLAS DE MARCA CEUTEC: SIN SOMBRAS, SIN GRADIENTES, BORDES SÓLIDOS */
+        .solid-card {
+            background-color: white;
+            border: 2px solid var(--ceutec-border);
+            transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+        }
+        .solid-card:hover {
+            border-color: var(--ceutec-vermilion);
+            transform: translateY(-4px);
+        }
+        .step-number {
+            font-family: 'Poppins', sans-serif;
+            -webkit-text-stroke: 1px var(--ceutec-carmine);
+            color: transparent;
+        }
+
+        .ceutec-hero,
+        .ceutec-footer {
+            background-color: var(--ceutec-carmine);
+        }
+
+        .ceutec-logo {
+            display: block;
+            height: 46px;
+            width: auto;
+            max-width: 220px;
+        }
+
+        .ceutec-diamond {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background-color: rgba(224, 67, 50, 0.28);
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        .ceutec-diamond::after {
+            content: "";
+            position: absolute;
+            inset: 58px;
+            border: 2px solid rgba(240, 76, 95, 0.28);
+        }
+
+        .ceutec-diamond-start {
+            top: 78px;
+            right: -110px;
+        }
+
+        .ceutec-diamond-end {
+            bottom: -150px;
+            left: -120px;
+            background-color: rgba(224, 67, 50, 0.24);
+        }
+
+        .ceutec-section-kicker {
+            color: var(--ceutec-vermilion);
+            letter-spacing: 0.22em;
+        }
+
+        .ceutec-red-soft {
+            color: #FFF1F2;
+        }
+
+        .ceutec-icon-box {
+            background-color: var(--ceutec-vermilion);
+        }
+
+        .ceutec-video-frame {
+            border: 4px solid var(--ceutec-carmine);
+            background: #FFFFFF;
+        }
+
+        .ceutec-modal-bg {
+            background-color: rgba(155, 6, 22, 0.96);
+        }
+
+        audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+            border-radius: 0;
+        }
+        audio::-webkit-media-controls-panel {
+            background-color: #FFF7F7;
+            border: 1px solid var(--ceutec-border);
+            border-radius: 0;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button {
+            background-color: var(--ceutec-vermilion);
+            border-radius: 50%;
+        }
+
+        .shadow,
+        .shadow-sm,
+        .shadow-md,
+        .shadow-lg,
+        .shadow-xl,
+        .shadow-2xl {
+            box-shadow: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .ceutec-logo {
+                height: 38px;
+            }
+
+            .ceutec-diamond {
+                width: 220px;
+                height: 220px;
+            }
+
+            .ceutec-diamond-start {
+                top: 110px;
+                right: -95px;
+            }
+
+            .ceutec-diamond-end {
+                bottom: -120px;
+                left: -110px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-ceutec-light text-ceutec-slate font-sans antialiased min-h-screen flex flex-col relative">
+
+    <!-- Navegación Corporativa - Estilo de franja blanca institucional -->
+    <nav class="w-full bg-white border-b-8 border-ceutec-carmine py-4 px-6 md:px-12 flex justify-between items-center select-none z-50 sticky top-0">
+        <!-- Logotipo Oficial CEUTEC -->
+        <div class="flex items-center">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="Logotipo CEUTEC" class="h-10 md:h-14 object-contain">
+        </div>
+        
+        <!-- Bloque Informativo Derecho con Línea Divisoria -->
+        <div class="flex items-center gap-4 text-right">
+            <div class="hidden sm:block h-10 border-l-2 border-ceutec-carmine/30"></div>
+            <div class="flex flex-col justify-center font-sans">
+                <span class="text-ceutec-carmine font-black tracking-wider text-xs md:text-sm uppercase leading-tight">
+                    Programa de Formación Docente
+                </span>
+                <span class="text-ceutec-vermilion font-medium tracking-wide text-[10px] md:text-xs uppercase leading-tight mt-0.5">
+                    Ecosistema de Aprendizaje
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="ceutec-hero text-white relative overflow-hidden">
+        <div class="ceutec-diamond ceutec-diamond-start" aria-hidden="true"></div>
+
+        <div class="max-w-5xl mx-auto relative z-10 px-6 py-16 md:py-24">
+            <div class="max-w-3xl text-center md:text-left">
+                <span class="ceutec-section-kicker font-bold uppercase text-xs md:text-sm mb-4 block">Sesión 2 • Módulo 6</span>
+                <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight text-white uppercase">Recursos y Preparación</h1>
+                <h2 class="text-xl md:text-3xl font-semibold mb-4 ceutec-red-soft">Transición hacia la Evaluación Auténtica</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 w-full">
+        
+        <!-- Mensaje de Bienvenida -->
+        <section class="bg-white p-6 md:p-8 mb-12 border-l-8 border-ceutec-federal border-y-2 border-r-2 border-slate-200">
+            <div class="flex flex-col md:flex-row items-start gap-4">
+                <div class="bg-ceutec-sky text-white p-3 mt-1 shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold text-ceutec-federal mb-2">Reflexión y Acción</h3>
+                    <p class="leading-relaxed text-ceutec-slate text-sm md:text-base">
+                        "Colegas, hemos llegado al cierre de la Sesión 2. Este módulo de recursos está diseñado para acompañarles en ese punto de inflexión entre el modelo tradicional basado en competencias y el <strong>Ecosistema de Aprendizaje de CEUTEC</strong>. Aquí encontrarán discusiones profundas que retan nuestros paradigmas y las instrucciones exactas para preparar el terreno hacia nuestra próxima sesión, donde diseñaremos 'La Evidencia' de aprendizaje."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: Podcasts de Discusión -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-ceutec-federal text-white text-xl font-bold w-10 h-10 md:w-12 md:h-12 shrink-0 flex items-center justify-center transform rotate-45">
+                    <span class="-rotate-45 block">1</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-ceutec-federal">Podcasts de Discusión</h2>
+            </div>
+            
+            <div class="bg-slate-50 border-l-4 border-ceutec-cyan p-5 md:p-6 mb-8">
+                <p class="text-base md:text-lg text-ceutec-slate">
+                    Estos episodios están diseñados exclusivamente para la comunidad docente de CEUTEC. Acompáñanos a explorar los debates pedagógicos más relevantes en nuestra transición hacia la Visión 2030. Escúchalos mientras te desplazas, diseñas o reflexionas sobre tu práctica.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Podcast 1 -->
+                <article class="solid-card p-6 bg-white border-t-4 border-t-ceutec-cyan flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-ceutec-sky uppercase tracking-wider">Episodio 1</span>
+                            <svg class="w-6 h-6 text-ceutec-federal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                        </div>
+                        <h4 class="text-md font-bold text-ceutec-federal mb-3">Alquimia Docente con el CEUTEC Planner</h4>
+                        <p class="text-sm text-ceutec-slate mb-6">
+                            Un <em>Deep Dive</em> (análisis profundo) sobre la importancia fundamental del CEUTEC Planner dentro del proceso de transformación de una asignatura para alinearse verdaderamente con la Visión 2030.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <audio controls preload="none">
+                            <source src="AUD/Alquimia_docente_con_el_CEUTEC_Planner.mp3" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                </article>
+
+                <!-- Podcast 2 -->
+                <article class="solid-card p-6 bg-white border-t-4 border-t-ceutec-federal flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-ceutec-cyan uppercase tracking-wider">Episodio 2</span>
+                            <svg class="w-6 h-6 text-ceutec-federal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                        </div>
+                        <h4 class="text-md font-bold text-ceutec-federal mb-3">¿Sílabo tradicional o el CEUTEC Planner?</h4>
+                        <p class="text-sm text-ceutec-slate mb-6">
+                            Un debate crítico entre el uso del sílabo tradicional (como evidencia frente a entes reguladores y de acreditación) versus el uso del CEUTEC Planner y su intención ideal centrada en el aprendizaje. ¿Vale la pena soñar?
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <audio controls preload="none">
+                            <source src="AUD/¿Sílabo_tradicional_o_el_CEUTEC_Planner_.mp3" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                </article>
+
+                <!-- Podcast 3 -->
+                <article class="solid-card p-6 bg-white border-t-4 border-t-ceutec-sky flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-ceutec-federal uppercase tracking-wider">Episodio 3</span>
+                            <svg class="w-6 h-6 text-ceutec-federal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                        </div>
+                        <h4 class="text-md font-bold text-ceutec-federal mb-3">La Paradoja de Humanizar con Inteligencia Artificial</h4>
+                        <p class="text-sm text-ceutec-slate mb-6">
+                            ¿Es irónico que, para rescatar nuestra esencia humana en el aula, estemos recurriendo a la inteligencia artificial? Totalmente. Exploramos esta fascinante paradoja y cómo la tecnología apoya nuestro modelo "Becoming Human".
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <audio controls preload="none">
+                            <source src="AUD/La_paradoja_de_humanizar_con_inteligencia_artificial.mp3" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Agentes de IA -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-ceutec-cyan text-white text-xl font-bold w-10 h-10 md:w-12 md:h-12 shrink-0 flex items-center justify-center transform rotate-45">
+                    <span class="-rotate-45 block">2</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-ceutec-federal">Herramientas: Agentes de Inteligencia Artificial</h2>
+            </div>
+
+            <div class="bg-white border-2 border-slate-200 p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start">
+                <div class="md:w-1/3 flex justify-center sticky top-8">
+                    <!-- Icono IA -->
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-ceutec-sky rounded-full blur-lg opacity-20"></div>
+                        <svg class="w-32 h-32 text-ceutec-federal relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 9l5 3-5 3V9z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-xl md:text-2xl font-bold text-ceutec-federal mb-4">Crea tu propio Agente basado en "Rosalila"</h3>
+                    <p class="text-ceutec-slate mb-4">
+                        Actualmente, ustedes ya tienen acceso al agente de IA institucional <strong>"Rosalila"</strong>. Este agente ha sido preparado de forma amplia y estandarizada para que pueda ser útil para la gran mayoría de los docentes de CEUTEC en su proceso de alineación al Ecosistema de Aprendizaje.
+                    </p>
+                    <p class="text-ceutec-slate mb-4">
+                        Sin embargo, les queremos proveer estas instrucciones base para que puedan tomarlas como referencia y <strong>crear sus propias versiones del agente</strong>. Construir un agente personalizado puede ser sumamente útil para atender necesidades formativas muy particulares, por ejemplo:
+                    </p>
+                    
+                    <ul class="list-disc pl-5 mb-6 text-ceutec-slate space-y-2">
+                        <li><strong>Modalidades de enseñanza:</strong> Adaptar actividades para teledocencia sincrónica, asincrónica, clases presenciales o modalidades híbridas.</li>
+                        <li><strong>Niveles académicos:</strong> Ajustar la complejidad cognitiva para pregrado, postgrado, programas técnicos o educación continua.</li>
+                        <li><strong>Disciplinas específicas:</strong> Integrar metodologías exactas de Ingeniería Civil, Ciencias de la Salud, Derecho o Diseño Gráfico.</li>
+                        <li><strong>Inclusión y accesibilidad:</strong> Dirigir la creación de materiales y evaluaciones amigables para estudiantes con discapacidades específicas.</li>
+                    </ul>
+
+                    <div class="bg-slate-50 border-l-4 border-ceutec-cyan p-5 mb-6 text-sm text-ceutec-slate">
+                        <strong class="text-ceutec-federal block mb-2 text-base">🌐 Adaptabilidad a otros Modelos (LLMs):</strong>
+                        Es importante recalcar que las instrucciones de Rosalila (disponibles para descarga) están redactadas pensando en las características específicas de <strong>Microsoft Copilot</strong> y nuestro esquema de licenciamiento institucional. 
+                        <br><br>
+                        No obstante, <strong>pueden ser fácilmente adaptadas a otros modelos</strong> como ChatGPT (GPTs), Gemini (Gems), Claude (Projects), entre otros. Simplemente debes pedir a tu modelo de preferencia que revise el documento base y adapte las instrucciones de programación a sus propias características y limitaciones.
+                    </div>
+
+                    <div class="bg-white border-2 border-slate-200 p-5 mb-6 text-sm text-ceutec-slate">
+                        <strong class="text-ceutec-federal block mb-2">Limitaciones Técnicas Actuales en Copilot Institucional:</strong>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Al momento de redacción, los agentes son declarativos. Esto quiere decir que son agentes basados en instrucciones que obtienen su base de conocimiento de sitios web públicos.</li>
+                            <li>Las fuentes de conocimiento permitidas deben ser sitios web de acceso publico sin restricciones para el acceso por web crawlers.</li>
+                            <li>Las instrucciones del agente tienen un límite estricto de 8,000 caracteres.</li>
+                            <li>Actualmente, no puede realizar integraciones externas mediante APIs, conectores premium o vinculaciones fuera del entorno M365.</li>
+                        </ul>
+                    </div>
+
+                    <a href="DOC/Instrucciones Rosalila.docx" download class="inline-flex items-center justify-center px-6 py-4 bg-ceutec-federal text-white font-bold text-sm hover:bg-ceutec-cyan transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-ceutec-federal w-full sm:w-auto shadow-md hover:shadow-lg">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Descargar Instrucciones Base (DOCX)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Preparación para la Sesión 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-ceutec-sky text-white text-xl font-bold w-10 h-10 md:w-12 md:h-12 shrink-0 flex items-center justify-center transform rotate-45">
+                    <span class="-rotate-45 block">3</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-ceutec-federal">Preparación para la Siguiente Sesión</h2>
+            </div>
+
+            <div class="bg-ceutec-federal text-white p-6 md:p-8 border-r-8 border-ceutec-cyan mb-8">
+                <h3 class="text-lg md:text-xl font-bold text-ceutec-cyan mb-2">Sesión 3: Construyendo "La Evidencia"</h3>
+                <p class="ceutec-red-soft text-sm md:text-base">
+                    Taller de Evaluación Auténtica y STAR Feedback. En nuestra próxima sesión discutiremos la creación de actividades de evaluación que verdaderamente midan la comprensión conceptual, la competencia práctica y el carácter, siguiendo los lineamientos de nuestro ecosistema.
+                </p>
+            </div>
+
+            <h3 class="text-lg md:text-xl font-bold text-ceutec-federal mb-6">Lista de Tareas Previas:</h3>
+
+            <div class="space-y-6">
+                <!-- Tarea 1 -->
+                <div class="solid-card p-6 flex gap-6 items-start">
+                    <div class="flex-shrink-0 bg-ceutec-light text-ceutec-federal font-extrabold text-2xl w-12 h-12 flex items-center justify-center border-2 border-slate-200">
+                        1
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-ceutec-federal mb-2">Construye y Refina tu Planner</h4>
+                        <p class="text-ceutec-slate text-sm md:text-base">
+                            Utiliza el sílabo actual de tu asignatura para diseñar el <strong>CEUTEC Planner</strong>. Puedes apoyarte en el agente de IA "Rosalila" (instrucciones arriba) o trabajarlo colaborativamente con tus compañeros de academia. Revisa y refina el Planner iterativamente hasta que sientas que es un fiel reflejo de tus verdaderas intenciones de aprendizaje.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tarea 2 -->
+                <div class="solid-card p-6 flex gap-6 items-start border-l-4 border-l-ceutec-cyan">
+                    <div class="flex-shrink-0 bg-ceutec-light text-ceutec-federal font-extrabold text-2xl w-12 h-12 flex items-center justify-center border-2 border-slate-200">
+                        2
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-ceutec-federal mb-2">Selecciona un Instrumento a Transformar</h4>
+                        <p class="text-ceutec-slate text-sm md:text-base">
+                            Escoge <strong>1 o 2 actividades evaluativas</strong> que utilizas actualmente en tu asignatura y que te gustaría evolucionar hacia una Evaluación Auténtica. Estas pueden ser: Tareas, Investigaciones, Proyectos Finales, Estudios de Caso o Foros de Discusión.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tarea 3 -->
+                <div class="solid-card p-6 flex gap-6 items-start">
+                    <div class="flex-shrink-0 bg-ceutec-light text-ceutec-federal font-extrabold text-2xl w-12 h-12 flex items-center justify-center border-2 border-slate-200">
+                        3
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-ceutec-federal mb-2">Trae tus Materiales Actuales</h4>
+                        <p class="text-ceutec-slate text-sm md:text-base">
+                            Para el trabajo práctico grupal, es indispensable que traigas la <strong>descripción exacta</strong> que normalmente le brindas a los estudiantes para realizar la actividad seleccionada, junto con su <strong>rúbrica de evaluación</strong> actual. Haremos un taller de co-diseño en vivo para rediseñar estos elementos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Justificación Evinkay -->
+            <div class="mt-8 bg-slate-50 border-2 border-slate-200 p-5 md:p-6 italic text-ceutec-slate text-sm md:text-base">
+                <strong>💡 Nota del Consultor:</strong> ¿Por qué hacemos esto? En el Ecosistema de Aprendizaje, la evaluación no es un autopsia al final del aprendizaje, sino el motor que lo impulsa (Evaluación COMO aprendizaje). Traer tus rúbricas y proyectos actuales nos permitirá aplicar la matriz S.T.A.R. y asegurar que medimos capacidades reales (competencia y carácter), no solo la memorización de información. ¡Nos vemos en el taller!
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="ceutec-footer text-white py-10 text-center mt-12 border-t-4 border-ceutec-cyan relative overflow-hidden">
+        <div class="ceutec-diamond ceutec-diamond-end" aria-hidden="true"></div>
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+            <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC" class="ceutec-logo">
+            <div class="text-center md:text-right">
+                <p class="mb-2 text-sm opacity-95">&copy; 2026 CEUTEC - programa de formación docente (Sesión 2).</p>
+                <p class="text-sm opacity-95">Diseñado con <span class="font-bold text-ceutec-cyan">CGS 3Cs Toolkit</span></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

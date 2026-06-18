@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Deconstruyendo el Sílabo | Programa de Formación Docente CEUTEC</title>
+    
+    <!-- Tipografía Institucional Exclusiva: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        ceutec: {
+                            carmine: '#9B0616',   /* Carmine Main */
+                            vermilion: '#E04332', /* Vermilion Accent */
+                            light: '#F8FAFC',
+                            gray: '#E2E8F0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Reglas Estrictas de Marca: 0 Sombras, 0 Gradientes, 0 Bordes Redondeados */
+        * {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #F8FAFC;
+        }
+        .diamond-bullet {
+            width: 8px;
+            height: 8px;
+            background-color: #E04332;
+            display: inline-block;
+            transform: rotate(45deg);
+            margin-right: 12px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased selection:bg-ceutec-vermilion selection:text-white">
+
+    <!-- Top Navigation with Brand Imagotipo -->
+    <nav class="bg-white border-b-4 border-ceutec-vermilion py-4 px-6 lg:px-12">
+        <div class="max-w-6xl mx-auto flex items-center">
+            <!-- Imagotipo Horizontal Oficial CEUTEC -->
+            <div class="flex items-center">
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo" class="h-10">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="bg-ceutec-carmine text-white py-16 px-6 lg:px-12 relative border-b-8 border-ceutec-vermilion">
+        <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-2/3">
+                <span class="uppercase tracking-widest text-sm font-semibold text-ceutec-vermilion mb-4 block">Programa de Formación Docente</span>
+                <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight uppercase">Sesión 2: <br>Deconstruyendo el Sílabo</h1>
+                <p class="text-lg md:text-xl text-white/90 font-regular max-w-2xl border-l-2 border-ceutec-vermilion pl-4">
+                    Desarrollando un ecosistema educativo donde salimos de los silos académicos para co-diseñar con autoría compartida.
+                </p>
+            </div>
+            <!-- Geometric Decorative Element -->
+            <div class="md:w-1/3 mt-10 md:mt-0 flex justify-center hidden md:flex">
+                <div class="w-24 h-24 border-4 border-white rotate-45 flex items-center justify-center p-2 opacity-20">
+                    <div class="w-full h-full border-4 border-ceutec-vermilion flex items-center justify-center p-2">
+                         <div class="w-full h-full bg-white"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content (Hub) -->
+    <main class="max-w-6xl mx-auto px-6 lg:px-12 py-16 relative z-20">
+        
+        <div class="mb-12">
+            <h2 class="text-2xl font-black text-ceutec-carmine mb-4 uppercase flex items-center">
+                <span class="diamond-bullet bg-ceutec-carmine"></span>
+                Módulos de la Sesión
+            </h2>
+            <p class="text-gray-700 font-medium">Selecciona un módulo para acceder al contenido, herramientas y reflexiones correspondientes al diseño del Planner.</p>
+        </div>
+
+        <!-- Grid of Modules -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Módulo 1 -->
+            <article class="bg-white border-2 border-ceutec-carmine flex flex-col h-full hover:border-ceutec-vermilion transition-colors duration-300 group">
+                <div class="bg-ceutec-carmine p-4 border-b-2 border-ceutec-carmine group-hover:bg-ceutec-vermilion transition-colors duration-300">
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Módulo 1</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-black text-ceutec-carmine mb-4 uppercase leading-tight">El CEUTEC Planner</h3>
+                    <p class="text-sm text-gray-700 font-medium"><strong class="text-ceutec-carmine">Objetivo:</strong> Familiarizar a los participantes con la estructura del CEUTEC Planner y su propósito principal.</p>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="m1_planner.html" class="block w-full text-center bg-white text-ceutec-carmine font-bold py-3 px-4 border-2 border-ceutec-carmine hover:bg-ceutec-carmine hover:text-white transition-colors duration-200 uppercase text-sm">
+                        Ingresar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Módulo 2 -->
+            <article class="bg-white border-2 border-ceutec-carmine flex flex-col h-full hover:border-ceutec-vermilion transition-colors duration-300 group">
+                <div class="bg-ceutec-carmine p-4 border-b-2 border-ceutec-carmine group-hover:bg-ceutec-vermilion transition-colors duration-300">
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Módulo 2</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-black text-ceutec-carmine mb-4 uppercase leading-tight">La Pregunta Convincente y La Gran Idea</h3>
+                    <p class="text-sm text-gray-700 font-medium"><strong class="text-ceutec-carmine">Objetivo:</strong> Transformar el listado de temas técnicos en un verdadero propósito de aprendizaje.</p>
+                    <div class="mt-4 bg-ceutec-light p-3 border-l-4 border-ceutec-vermilion">
+                        <span class="text-xs font-bold uppercase tracking-wider text-ceutec-carmine block mb-2">Diseñaremos:</span>
+                        <ul class="space-y-1">
+                            <li class="flex items-center text-sm text-gray-700 font-medium"><span class="w-1.5 h-1.5 bg-ceutec-vermilion rotate-45 mr-2"></span> La Gran Idea</li>
+                            <li class="flex items-center text-sm text-gray-700 font-medium"><span class="w-1.5 h-1.5 bg-ceutec-vermilion rotate-45 mr-2"></span> La Pregunta Convincente</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="m2_planner.html" class="block w-full text-center bg-white text-ceutec-carmine font-bold py-3 px-4 border-2 border-ceutec-carmine hover:bg-ceutec-carmine hover:text-white transition-colors duration-200 uppercase text-sm">
+                        Ingresar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Módulo 3 -->
+            <article class="bg-white border-2 border-ceutec-carmine flex flex-col h-full hover:border-ceutec-vermilion transition-colors duration-300 group">
+                <div class="bg-ceutec-carmine p-4 border-b-2 border-ceutec-carmine group-hover:bg-ceutec-vermilion transition-colors duration-300">
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Módulo 3</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-black text-ceutec-carmine mb-4 uppercase leading-tight">El Porqué</h3>
+                    <p class="text-sm text-gray-700 font-medium"><strong class="text-ceutec-carmine">Objetivo:</strong> Humanizar la ingeniería y conectar emocional y profesionalmente con el contenido ("La Historia").</p>
+                    <div class="mt-4 bg-ceutec-light p-3 border-l-4 border-ceutec-vermilion">
+                        <span class="text-xs font-bold uppercase tracking-wider text-ceutec-carmine block mb-2">Diseñaremos:</span>
+                        <ul class="space-y-1">
+                            <li class="flex items-center text-sm text-gray-700 font-medium"><span class="w-1.5 h-1.5 bg-ceutec-vermilion rotate-45 mr-2"></span> La Historia del Docente</li>
+                            <li class="flex items-center text-sm text-gray-700 font-medium"><span class="w-1.5 h-1.5 bg-ceutec-vermilion rotate-45 mr-2"></span> La Historia del Estudiante</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="m3_planner.html" class="block w-full text-center bg-white text-ceutec-carmine font-bold py-3 px-4 border-2 border-ceutec-carmine hover:bg-ceutec-carmine hover:text-white transition-colors duration-200 uppercase text-sm">
+                        Ingresar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Módulo 4 -->
+            <article class="bg-white border-2 border-ceutec-carmine flex flex-col h-full hover:border-ceutec-vermilion transition-colors duration-300 group">
+                <div class="bg-ceutec-carmine p-4 border-b-2 border-ceutec-carmine group-hover:bg-ceutec-vermilion transition-colors duration-300">
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Módulo 4</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-black text-ceutec-carmine mb-4 uppercase leading-tight">El Qué</h3>
+                    <p class="text-sm text-gray-700 font-medium"><strong class="text-ceutec-carmine">Objetivo:</strong> Redactar los objetivos de aprendizaje abandonando la memorización y enfocándose en la comprensión, la competencia y el carácter.</p>
+                    <div class="mt-4 bg-ceutec-light p-3 border-l-4 border-ceutec-vermilion">
+                        <span class="text-xs font-bold uppercase tracking-wider text-ceutec-carmine block mb-2">Diseñaremos:</span>
+                        <ul class="space-y-1">
+                            <li class="flex items-center text-sm text-gray-700 font-medium"><span class="w-1.5 h-1.5 bg-ceutec-vermilion rotate-45 mr-2"></span> Las Metas de Aprendizaje</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="m4_planner.html" class="block w-full text-center bg-white text-ceutec-carmine font-bold py-3 px-4 border-2 border-ceutec-carmine hover:bg-ceutec-carmine hover:text-white transition-colors duration-200 uppercase text-sm">
+                        Ingresar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Módulo 5 -->
+            <article class="bg-white border-2 border-ceutec-carmine flex flex-col h-full hover:border-ceutec-vermilion transition-colors duration-300 group">
+                <div class="bg-ceutec-carmine p-4 border-b-2 border-ceutec-carmine group-hover:bg-ceutec-vermilion transition-colors duration-300">
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Módulo 5</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-black text-ceutec-carmine mb-4 uppercase leading-tight">Preguntas que Enmarcan</h3>
+                    <p class="text-sm text-gray-700 font-medium"><strong class="text-ceutec-carmine">Objetivo:</strong> Diseñar un total de 3 a 6 preguntas de encuadre que sirvan como hilo conductor del módulo y sean atractivas.</p>
+                    <div class="mt-4 bg-ceutec-light p-3 border-l-4 border-ceutec-vermilion">
+                        <span class="text-xs font-bold uppercase tracking-wider text-ceutec-carmine block mb-2">Diseñaremos:</span>
+                        <ul class="space-y-1">
+                            <li class="flex items-center text-sm text-gray-700 font-medium"><span class="w-1.5 h-1.5 bg-ceutec-vermilion rotate-45 mr-2"></span> Las Preguntas Marco</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="m5_planner.html" class="block w-full text-center bg-white text-ceutec-carmine font-bold py-3 px-4 border-2 border-ceutec-carmine hover:bg-ceutec-carmine hover:text-white transition-colors duration-200 uppercase text-sm">
+                        Ingresar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Módulo 6 -->
+            <article class="bg-white border-2 border-ceutec-carmine flex flex-col h-full hover:border-ceutec-vermilion transition-colors duration-300 group">
+                <div class="bg-ceutec-carmine p-4 border-b-2 border-ceutec-carmine group-hover:bg-ceutec-vermilion transition-colors duration-300">
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Módulo 6</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-black text-ceutec-carmine mb-4 uppercase leading-tight">Recursos y Preparación para la Siguiente Sesión</h3>
+                    <p class="text-sm text-gray-700 font-medium"><strong class="text-ceutec-carmine">Objetivo:</strong> Compartir recursos, mostrar evidencias del piloto y sentar las bases para la sesión de evaluación culminante ("La Evidencia").</p>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="m6_planner.html" class="block w-full text-center bg-white text-ceutec-carmine font-bold py-3 px-4 border-2 border-ceutec-carmine hover:bg-ceutec-carmine hover:text-white transition-colors duration-200 uppercase text-sm">
+                        Ingresar
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Justificación Section -->
+        <section class="bg-white p-8 md:p-12 border-2 border-ceutec-carmine border-l-8 border-l-ceutec-vermilion mt-16 flex flex-col md:flex-row gap-10 items-center">
+            <div class="flex-1">
+                <h2 class="text-2xl font-black text-ceutec-carmine mb-4 uppercase">Justificación de Alineación</h2>
+                <p class="text-gray-700 font-medium leading-relaxed mb-4">
+                    Esta estructura asincrónica modela exactamente lo que pedimos a nuestros docentes. Al utilizar la <strong class="text-ceutec-carmine font-bold">Lista de Chequeo de Calidad</strong> como instrumento de autoevaluación durante el taller, garantizamos que las preguntas generadas sean motores genuinos de curiosidad técnica y humana.
+                </p>
+                <p class="text-gray-700 font-medium leading-relaxed">
+                    Esto asegura que la educación en CEUTEC no se enseñe como un recetario de fórmulas, sino como una disciplina de <strong class="text-ceutec-vermilion font-bold">solucionadores de problemas empáticos</strong>.
+                </p>
+            </div>
+            <!-- Diseño decorativo de diamantes anidados -->
+            <div class="hidden md:flex shrink-0">
+                <div class="w-24 h-24 border-4 border-ceutec-carmine rotate-45 flex items-center justify-center p-2">
+                    <div class="w-full h-full border-4 border-ceutec-vermilion flex items-center justify-center p-2">
+                         <div class="w-full h-full bg-ceutec-carmine"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ceutec-carmine text-white py-12 text-center text-sm border-t-4 border-ceutec-vermilion">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-center mb-6">
+                <!-- Imagotipo CEUTEC en Footer -->
+                <img src="https://ceutec.hn/wp-content/uploads/2025/01/logo-ceutec-web.png" alt="CEUTEC Logo Footer" class="h-8 opacity-90">
+            </div>
+            <p class="font-medium text-white/80">&copy; 2026 Centro Universitario Tecnológico (CEUTEC).</p>
+            <p class="text-white/60 mt-2">Desarrollado en alineación con el Ecosistema de Aprendizaje y el Common Ground Collaborative.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
