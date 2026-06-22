@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Deconstruyendo el Sílabo | Ecosistema de Aprendizaje UNITEC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        unitec: {
+                            federal: '#06065C',
+                            cyan: '#03AED2',
+                            sky: '#47C8FD',
+                            light: '#F8FAFC',
+                            slate: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* REGLAS DE MARCA: SIN SOMBRAS, BORDES SÓLIDOS */
+        .solid-card {
+            background-color: white;
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .solid-card:hover {
+            border-color: #03AED2;
+            transform: translateY(-4px);
+        }
+        .step-number {
+            font-family: 'Poppins', sans-serif;
+            -webkit-text-stroke: 1px #06065C;
+            color: transparent;
+        }
+        .active-capacity {
+            background-color: #03AED2 !important;
+            color: white !important;
+            border-color: #03AED2 !important;
+        }
+        
+        /* Modal Transition */
+        #questionModal, #synthesisModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+@media (max-width: 768px) {
+};
+            }
+        }
+
+        .logo-unitec-color {
+            display: block;
+            height: 92px;
+            width: auto;
+            max-width: 420px;
+        }
+
+        .logo-unitec-white {
+            display: block;
+            height: 92px;
+            width: auto;
+            max-width: 420px;
+        }
+
+        .logo-unitec-footer {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 270px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-unitec-color {
+                height: 64px;
+                max-width: 300px;
+            }
+
+            .logo-unitec-white {
+                height: 64px;
+                max-width: 300px;
+            }
+
+            .logo-unitec-footer {
+                height: 48px;
+                max-width: 220px;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-unitec-light text-unitec-slate font-sans antialiased min-h-screen flex flex-col relative">
+
+    <!-- Header Section -->
+    <header class="bg-unitec-federal text-white py-12 md:py-16 px-6 relative overflow-hidden border-b-8 border-unitec-cyan">
+        <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:grid md:grid-cols-[220px_minmax(0,1fr)_120px] items-center gap-6 md:gap-8">
+
+            <!-- Logo -->
+            <div class="w-full flex justify-center md:justify-start">
+                <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec-white">
+            </div>
+
+            <!-- Título -->
+            <div class="w-full text-center md:text-left">
+                <span class="text-unitec-sky font-bold tracking-widest uppercase text-xs md:text-sm mb-4 block">Entrenamiento docente • Sesión 2 • Módulo 2</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight text-white">El Despertar</h1>
+                <h2 class="text-xl md:text-3xl font-semibold mb-4 text-blue-100">Deconstruyendo el sílabo tradicional</h2>
+            </div>
+
+            <!-- Icono Decorativo -->
+            <div class="w-full flex justify-center md:justify-end opacity-80">
+                <svg width="100" height="100" class="md:w-[120px] md:h-[120px]" viewBox="0 0 24 24" fill="none" stroke="#03AED2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path>
+                    <path d="M8 7h8"></path>
+                    <path d="M8 11h6"></path>
+                </svg>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
+        
+        <!-- Mensaje de Bienvenida -->
+        <section class="bg-white p-8 mb-12 border-l-8 border-unitec-federal border-y-2 border-r-2 border-slate-200">
+            <div class="flex items-start gap-4">
+                <div class="bg-unitec-sky text-white p-3 mt-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-unitec-federal mb-2">Mensaje de Bienvenida</h3>
+                    <p class="leading-relaxed text-unitec-slate">
+                        Bienvenidos a la fase de deconstrucción. En algunos casos, nuestros sílabos se han convertido en listas exhaustivas de temas (ej. 'Unidad 1: Vigas', 'Unidad 2: Columnas'), o en otros casos, listados genéricos de competencias. En el Ecosistema de Aprendizaje, evolucionamos las ideas de la <em>'cobertura de contenido'</em> o <em>'mapeo de competencias'</em> para enfocarnos en el <strong>'descubrimiento del propósito'</strong>, tomando en cuenta el valor real de la asignatura en un contexto profesional. Hoy tomaremos su sílabo técnico y extraeremos su esencia: <strong>La Pregunta Convincente y La Gran Idea</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividad 1: La Pregunta Convincente -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-unitec-federal text-white text-xl font-bold w-12 h-12 flex items-center justify-center transform rotate-45">
+                    <span class="-rotate-45 block">1</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-unitec-federal">Forjando la Pregunta Convincente</h2>
+            </div>
+            
+            <!-- Video Integration: Brief de Deconstrucción -->
+            <div class="mb-10 border-4 border-unitec-federal bg-unitec-light p-2 max-w-4xl mx-auto">
+                <video class="w-full h-auto border border-slate-200" controls preload="metadata">
+                    <source src="VID/Deconstruyendo_el_Silabo_pt1.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video. Por favor, descarga el archivo para verlo localmente.
+                </video>
+            </div>
+
+            <p class="text-lg mb-6">
+                <strong>Instrucción:</strong> Revisa las unidades del contenido de tu asignatura y elige las más desafiantes, o las que consideres centrales de tu sílabo actual. Utiliza la siguiente matriz para transformar un tema tradicional en una <em>Pregunta Convincente (Compelling Question)</em>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Paso 1 -->
+                <article class="solid-card p-6 flex flex-col relative overflow-hidden">
+                    <span class="absolute top-[-20px] right-[-10px] text-9xl font-bold step-number opacity-20">1</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 relative z-10">Sintetiza</h3>
+                    <p class="text-sm text-unitec-slate relative z-10 mb-4">
+                        Sintetiza el tema que seleccionaste en una frase.
+                    </p>
+                </article>
+
+                <!-- Paso 2 -->
+                <article class="solid-card p-6 flex flex-col relative overflow-hidden border-t-4 border-t-unitec-sky">
+                    <span class="absolute top-[-20px] right-[-10px] text-9xl font-bold step-number opacity-20">2</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 relative z-10">Encuentra el Valor</h3>
+                    <p class="text-sm text-unitec-slate relative z-10 mb-4">
+                        En una frase con menos de 20 palabras (approx), explica porque ese tema es importante (no solo pienses en las destrezas del futuro profesional, sino en la sociedad a la que entrarán los frutos de su trabajo). El reto está en evolucionar de pensar en "¿Qué les voy a enseñar?" y pasar a preguntarse "¿Qué problema real del mundo vamos a resolver juntos?".
+                    </p>
+                </article>
+
+                <!-- Paso 3 -->
+                <article class="solid-card p-6 flex flex-col relative overflow-hidden border-t-4 border-t-unitec-cyan">
+                    <span class="absolute top-[-20px] right-[-10px] text-9xl font-bold step-number opacity-20">3</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 relative z-10">Construye la Pregunta</h3>
+                    <p class="text-sm text-unitec-slate relative z-10 mb-4">
+                        Construye una pregunta abierta, intrigante y atractiva que funcione como un "llamado a la investigación" sobre contenido auténtico y relevante.
+                    </p>
+                </article>
+            </div>
+
+            <!-- Checklist -->
+            <div class="bg-white border-2 border-slate-200 p-6 mb-12 flex flex-col md:flex-row gap-6 items-start">
+                <div class="flex-shrink-0 bg-unitec-sky text-white p-3 rounded-none mt-1">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-unitec-federal mb-4">Checklist de Calidad</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start text-unitec-slate">
+                            <span class="text-unitec-cyan mr-3 font-bold text-lg leading-none">✓</span>
+                            <span class="leading-snug">¿Aborda un tema que realmente importa?</span>
+                        </li>
+                        <li class="flex items-start text-unitec-slate">
+                            <span class="text-unitec-cyan mr-3 font-bold text-lg leading-none">✓</span>
+                            <span class="leading-snug">¿Es una pregunta abierta, intrigante y atractiva? (No debe de tener una respuesta "correcta")</span>
+                        </li>
+                        <li class="flex items-start text-unitec-slate">
+                            <span class="text-unitec-cyan mr-3 font-bold text-lg leading-none">✓</span>
+                            <span class="leading-snug">¿Funciona como un "llamado a la investigación" sobre contenido auténtico y relevante?</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ejemplos desde el Piloto (Interactivos) -->
+            <div class="bg-slate-50 border-2 border-slate-200 p-8">
+                <h3 class="text-2xl font-extrabold text-unitec-federal mb-6 flex items-center">
+                    <svg class="w-6 h-6 mr-3 text-unitec-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    Ejemplos desde el Piloto
+                </h3>
+                <p class="text-sm text-unitec-slate mb-6"><em>Haz clic en cada asignatura para descubrir su Pregunta Convincente.</em></p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <button onclick="openModal('¿Vivimos para buscar la verdad… o para crearla?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-federal bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Filosofía
+                    </button>
+                    <button onclick="openModal('¿Hasta qué punto somos realmente dueños de nuestras decisiones, o es la sociedad quien decide por nosotros?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-cyan bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Sociología
+                    </button>
+                    <button onclick="openModal('¿Qué historia de Honduras es la que se nos ha enseñado?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-federal bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Historia de Honduras
+                    </button>
+                    <button onclick="openModal('¿Cómo veo el Álgebra en la Vida Real?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-cyan bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Álgebra
+                    </button>
+                    <button onclick="openModal('¿Cuál es el secreto para dominar la tecnología y entregar trabajos geniales con la mitad del esfuerzo?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-federal bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Ofimática
+                    </button>
+                    <button onclick="openModal('¿Podemos confiar más en los números que en nuestra experiencia?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-cyan bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Investigación Cuantitativa
+                    </button>
+                    <button onclick="openModal('¿Cómo puedo preparar una estructura para el futuro, con la menor cantidad de información posible?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-federal bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer lg:col-span-2">
+                        Análisis Estructural
+                    </button>
+                    <button onclick="openModal('¿Cuánto cuesta \'no saber\'? ¿Cómo utiliza el ingeniero su criterio para transformar la incertidumbre de las cargas en un riesgo calculado que sea financieramente aceptable y humanamente seguro?')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-cyan bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer lg:col-span-4">
+                        Diseño Estructural en Concreto
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividad 2: La Gran Idea -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-unitec-federal text-white text-xl font-bold w-12 h-12 flex items-center justify-center transform rotate-45">
+                    <span class="-rotate-45 block">2</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-unitec-federal">Destilando la Gran Idea</h2>
+            </div>
+
+            <!-- Video Integration: Brief Destilando la Gran Idea -->
+            <div class="mb-10 border-4 border-unitec-federal bg-unitec-light p-2 max-w-4xl mx-auto">
+                <video class="w-full h-auto border border-slate-200" controls preload="metadata">
+                    <source src="VID/Deconstruyendo_el_silabo_pt2.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video. Por favor, descarga el archivo para verlo localmente.
+                </video>
+            </div>
+
+            <!-- Nuevas Tarjetas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="solid-card p-6 border-t-4 border-t-unitec-federal bg-white text-center flex flex-col items-center justify-center">
+                    <span class="w-10 h-10 rounded-full bg-unitec-federal text-white flex items-center justify-center font-bold mb-3">1</span>
+                    <h3 class="text-lg font-bold text-unitec-federal">Escoge el contenido central</h3>
+                </div>
+                <div class="solid-card p-6 border-t-4 border-t-unitec-cyan bg-white text-center flex flex-col items-center justify-center">
+                    <span class="w-10 h-10 rounded-full bg-unitec-cyan text-white flex items-center justify-center font-bold mb-3">2</span>
+                    <h3 class="text-lg font-bold text-unitec-federal">Traza el hilo conductor</h3>
+                </div>
+                <div class="solid-card p-6 border-t-4 border-t-unitec-sky bg-white text-center flex flex-col items-center justify-center">
+                    <span class="w-10 h-10 rounded-full bg-unitec-sky text-white flex items-center justify-center font-bold mb-3">3</span>
+                    <h3 class="text-lg font-bold text-unitec-federal">No es necesario que todo el contenido esté cubierto</h3>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 border-l-4 border-unitec-federal p-5 mb-10">
+                <p class="text-sm text-unitec-slate italic">
+                    <strong>Advertencia:</strong> A veces menos es más, y no es necesario que la idea central sea específica. En casos como este, juega a nuestro favor dejar cierta ambigüedad.
+                </p>
+            </div>
+
+            <!-- Instrucción Principal -->
+            <div class="bg-white border-2 border-slate-200 p-8 mb-10 border-l-8 border-l-unitec-cyan">
+                <h3 class="text-xl font-bold text-unitec-federal mb-4">Instrucción para el participante:</h3>
+                <p class="text-lg text-unitec-slate mb-4 leading-relaxed">
+                    La Gran Idea es el ancla de tu módulo. Es el principio perdurable que quieres que tus estudiantes recuerden 5 años después de haberse graduado, cuando ya hayan olvidado las fórmulas específicas. 
+                </p>
+                <p class="text-lg text-unitec-slate leading-relaxed">
+                    Esta (la Gran Idea) será una declaración sencilla que aborda los conceptos clave del núcleo del módulo. Debe comenzar con la frase <strong class="text-unitec-federal font-bold bg-slate-100 px-2 py-1">"Entender que..."</strong>
+                </p>
+            </div>
+
+            <!-- Ejemplos desde el Piloto (Interactivos) -->
+            <div class="bg-slate-50 border-2 border-slate-200 p-8">
+                <h3 class="text-2xl font-extrabold text-unitec-federal mb-6 flex items-center">
+                    <svg class="w-6 h-6 mr-3 text-unitec-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    Ejemplos desde el Piloto
+                </h3>
+                <p class="text-sm text-unitec-slate mb-6"><em>Haz clic en cada asignatura para ver la transformación de sus "ingredientes" a su Gran Idea.</em></p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <button onclick="openSynthesisModal('diseno')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-federal bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Diseño Estructural
+                    </button>
+                    <button onclick="openSynthesisModal('historia')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-cyan bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Historia de Honduras
+                    </button>
+                    <button onclick="openSynthesisModal('algebra')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-sky bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Introducción al Álgebra
+                    </button>
+                    <button onclick="openSynthesisModal('ofimatica')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-federal bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Ofimática
+                    </button>
+                    <button onclick="openSynthesisModal('analisis')" class="solid-card py-6 px-4 border-t-4 border-t-unitec-cyan bg-white text-center font-bold text-unitec-federal hover:bg-slate-100 focus:outline-none cursor-pointer">
+                        Análisis Estructural
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actividad 3: Fijando la Identidad -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-unitec-federal text-white text-xl font-bold w-12 h-12 flex items-center justify-center transform rotate-45">
+                    <span class="-rotate-45 block">3</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-unitec-federal">Fijando la Identidad (Retrato)</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="solid-card p-8">
+                    <h3 class="text-xl font-bold text-unitec-federal mb-4">Selección y Justificación</h3>
+                    <p class="text-unitec-slate mb-6">
+                        Selecciona un enlace (o máximo 2) con el <strong>Retrato del Egresado</strong>. Teniendo en mente la <em>Gran Idea</em> y la <em>Pregunta Intrigante</em>, justifica tu selección.
+                    </p>
+                    <p class="text-sm text-unitec-slate bg-slate-50 p-4 border-2 border-slate-100">
+                        <em>Nota:</em> Seleccionar y definir estas partes te pueden ayudar en las siguientes fases, si no lo tienes claro en este momento puedes continuar y decidir a medida avancemos en el Planner.
+                    </p>
+                </div>
+
+                <div class="solid-card p-8 bg-unitec-federal text-white border-unitec-federal flex flex-col justify-center items-center text-center">
+                    <svg class="w-12 h-12 text-unitec-cyan mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>
+                    <h3 class="text-lg font-bold mb-2">Recurso de Apoyo</h3>
+                    <p class="text-sm text-blue-100 mb-6">
+                        Puedes ayudarte viendo el recurso describiendo las Comunalidades Humanas a partir de las cuales se cristalizan las capacidades humanas del retrato del egresado de Unitec.
+                    </p>
+                    <a href="comunalidades.html" target="_blank" class="inline-block bg-unitec-cyan hover:bg-sky-400 text-unitec-federal font-bold py-2 px-6 transition-colors">
+                        Ver Comunalidades
+                    </a>
+                </div>
+            </div>
+
+            <!-- Botones de las Capacidades -->
+            <div class="mt-12 bg-slate-50 border-2 border-slate-200 p-8">
+                <h3 class="text-xl font-bold text-unitec-federal mb-6 text-center">Selecciona las Capacidades Humanas de tu Módulo</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <button onclick="toggleCapacity(this)" class="solid-card p-4 text-center font-bold text-sm text-unitec-slate hover:text-unitec-federal transition-colors duration-200 outline-none">El Líder con Propósito</button>
+                    <button onclick="toggleCapacity(this)" class="solid-card p-4 text-center font-bold text-sm text-unitec-slate hover:text-unitec-federal transition-colors duration-200 outline-none">El Colaborador Constructivo</button>
+                    <button onclick="toggleCapacity(this)" class="solid-card p-4 text-center font-bold text-sm text-unitec-slate hover:text-unitec-federal transition-colors duration-200 outline-none">El Comunicador Efectivo</button>
+                    <button onclick="toggleCapacity(this)" class="solid-card p-4 text-center font-bold text-sm text-unitec-slate hover:text-unitec-federal transition-colors duration-200 outline-none">El Innovador Creativo</button>
+                    <button onclick="toggleCapacity(this)" class="solid-card p-4 text-center font-bold text-sm text-unitec-slate hover:text-unitec-federal transition-colors duration-200 outline-none">El Ciudadano Responsable</button>
+                    <button onclick="toggleCapacity(this)" class="solid-card p-4 text-center font-bold text-sm text-unitec-slate hover:text-unitec-federal transition-colors duration-200 outline-none">El Solucionador de Problemas Empático</button>
+                </div>
+                
+                <div class="mt-10 flex justify-center">
+                    <div class="p-2 border-4 border-unitec-federal bg-white inline-block">
+                        <img src="IMG/Ecosistema de Prendizaje.png" alt="Retrato del Egresado de UNITEC" class="w-full max-w-sm aspect-square object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkpoint & Justification -->
+        <section class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Checkpoint -->
+            <div class="bg-white border-4 border-unitec-cyan p-8 relative">
+                <div class="absolute -top-4 -left-4 bg-unitec-cyan text-unitec-federal p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-unitec-federal mb-4 mt-2">Revisión en Pares (Peer Review)</h3>
+                <p class="text-sm text-unitec-slate mb-6 leading-relaxed">
+                    Antes de avanzar al siguiente módulo, te pedimos que <strong>revises en pares</strong> lo que has redactado para La Pregunta Convincente y para La Gran Idea. Utiliza este simple checkpoint para que un compañero pueda evaluar tu trabajo. Es importante que el par pueda evaluar que el lenguaje sea entendible por un estudiante.
+                </p>
+                
+                <div class="bg-slate-50 border-2 border-slate-200 p-5">
+                    <h4 class="font-bold text-unitec-federal uppercase tracking-wide text-xs mb-3 border-b-2 border-slate-200 pb-2">EL PORQUÉ (Propósito y Contexto)</h4>
+                    
+                    <h5 class="font-bold text-unitec-sky text-sm mb-2 mt-4">La Pregunta Convincente</h5>
+                    <label class="flex items-start space-x-3 text-sm text-unitec-slate cursor-pointer mb-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-unitec-cyan rounded-none border-2 border-slate-300 mt-0.5">
+                        <span class="leading-snug">1. ¿Aborda un tema que realmente importa?</span>
+                    </label>
+                    <label class="flex items-start space-x-3 text-sm text-unitec-slate cursor-pointer mb-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-unitec-cyan rounded-none border-2 border-slate-300 mt-0.5">
+                        <span class="leading-snug">2. ¿Es una pregunta abierta, intrigante y atractiva?</span>
+                    </label>
+                    <label class="flex items-start space-x-3 text-sm text-unitec-slate cursor-pointer mb-4">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-unitec-cyan rounded-none border-2 border-slate-300 mt-0.5">
+                        <span class="leading-snug">3. ¿Funciona como un "llamado a la investigación" sobre contenido auténtico y relevante?</span>
+                    </label>
+
+                    <h5 class="font-bold text-unitec-sky text-sm mb-2 mt-5">La Gran Idea</h5>
+                    <label class="flex items-start space-x-3 text-sm text-unitec-slate cursor-pointer mb-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-unitec-cyan rounded-none border-2 border-slate-300 mt-0.5">
+                        <span class="leading-snug">4. ¿Es una declaración sencilla que aborda los conceptos clave del núcleo del módulo?</span>
+                    </label>
+                    <label class="flex items-start space-x-3 text-sm text-unitec-slate cursor-pointer mb-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-unitec-cyan rounded-none border-2 border-slate-300 mt-0.5">
+                        <span class="leading-snug">5. ¿Comienza con la frase inicial: "Entender..." o "Entender que..."?</span>
+                    </label>
+                    <label class="flex items-start space-x-3 text-sm text-unitec-slate cursor-pointer">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-unitec-cyan rounded-none border-2 border-slate-300 mt-0.5">
+                        <span class="leading-snug">6. ¿Expresa conceptos importantes que vale la pena comprender profundamente?</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Justificación de Alineación -->
+            <div class="bg-unitec-federal text-white p-8 border-r-8 border-unitec-sky flex flex-col justify-center">
+                <h3 class="text-xl font-bold text-unitec-cyan mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Justificación de Alineación
+                </h3>
+                <p class="text-blue-100 text-sm leading-relaxed mb-4">
+                    Al utilizar el ejemplo de <strong>Diseño Estructural en Concreto</strong>, demostramos a los ingenieros y docentes técnicos que el Ecosistema de Aprendizaje <em>no "suaviza"</em> el rigor académico, sino que lo eleva. 
+                </p>
+                <p class="text-blue-100 text-sm leading-relaxed">
+                    Obliga al estudiante a desarrollar <strong>"Pensamiento Sistémico" (Systems Thinking)</strong> y a prepararse para la toma de decisiones complejas, alineándose perfectamente con el retrato de egresado de UNITEC como un <span class="text-white font-bold border-b-2 border-unitec-cyan">Solucionador de Problemas Empático</span>.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-unitec-federal text-white py-8 text-center mt-12 border-t-4 border-unitec-cyan">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="mb-4 md:mb-0 text-sm opacity-90">&copy; 2026 UNITEC - Entrenamiento docente (Sesión 2).</p>
+            <p class="text-sm opacity-90">Diseñado con <span class="font-bold text-unitec-sky">Ecosistema de Aprendizaje 3Cs Toolkit</span></p>
+        </div>
+    </footer>
+
+    <!-- Full Screen Modal for Questions (Section 1) -->
+    <div id="questionModal" class="fixed inset-0 bg-unitec-federal bg-opacity-95 z-50 hidden flex items-center justify-center p-6 opacity-0 cursor-pointer" onclick="closeModal(event)">
+        <div class="relative max-w-4xl w-full text-center flex flex-col items-center justify-center min-h-[50vh]">
+            <!-- Botón Cerrar (X) -->
+            <button onclick="closeModal(event)" class="absolute -top-12 md:-top-16 right-0 text-white hover:text-unitec-cyan focus:outline-none transition-colors">
+                <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <p id="modalQuestionText" class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-snug italic"></p>
+        </div>
+    </div>
+
+    <!-- Full Screen Modal for Synthesis (Section 2) -->
+    <div id="synthesisModal" class="fixed inset-0 bg-unitec-federal bg-opacity-95 z-50 hidden flex items-center justify-center p-6 opacity-0 cursor-pointer" onclick="closeSynthesisModal(event)">
+        <div class="relative max-w-6xl w-full flex flex-col items-center justify-center min-h-[50vh]">
+            <!-- Botón Cerrar (X) -->
+            <button onclick="closeSynthesisModal(event)" class="absolute -top-8 right-0 text-white hover:text-unitec-cyan focus:outline-none transition-colors">
+                <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-white mt-8">
+                <!-- Izquierda: Ingredientes -->
+                <div class="bg-white/10 p-8 border-l-4 border-unitec-sky rounded-sm">
+                    <h4 class="text-unitec-sky font-bold uppercase text-sm mb-6 tracking-widest opacity-80">Los "Ingredientes" (Temas)</h4>
+                    <div id="modalIngredients" class="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed"></div>
+                </div>
+                <!-- Derecha: Síntesis -->
+                <div class="bg-white/10 p-8 border-l-4 border-unitec-cyan flex flex-col justify-center rounded-sm">
+                    <h4 class="text-unitec-cyan font-bold uppercase text-sm mb-6 tracking-widest opacity-80">La Síntesis (La Gran Idea)</h4>
+                    <p id="modalSynthesisText" class="text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight italic"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Data para Modal Síntesis (Sección 2)
+        const synthesisData = {
+            'diseno': {
+                ingredients: `<ol class="list-decimal list-inside space-y-4">
+                                <li>Introducción y fundamentos del diseño estructural</li>
+                                <li>Estructuración y modelación de edificaciones</li>
+                                <li>Análisis estructural y determinación de solicitaciones</li>
+                                <li>Dimensionamiento de elementos estructurales de concreto reforzado</li>
+                              </ol>`,
+                synthesis: '"Entender que una estructura de concreto no es una colección de elementos aislados, sino un sistema interdependiente donde la seguridad global depende de la continuity en el flujo de cargas y la correcta jerarquía entre sus partes."'
+            },
+            'historia': {
+                ingredients: `<ol class="list-decimal list-inside space-y-4">
+                                <li>Introducción a la Historia.</li>
+                                <li>Período Prehispánico.</li>
+                                <li>Período Colonial.</li>
+                                <li>Período Independiente.</li>
+                              </ol>`,
+                synthesis: '"Descubrir qué tipo de Historia de Honduras es la que se nos ha enseñado, para ser conscientes de su papel e impacto en nuestra vida cotidiana, el porqué de su importancia y el de su gran contribución para el Desarrollo de una Sociedad tan diversa como la nuestra."'
+            },
+            'algebra': {
+                ingredients: `<ol class="list-decimal list-inside space-y-4">
+                                <li>Sistemas de ecuaciones y desigualdades lineales.</li>
+                                <li>Polinomios y su factorización. Ecuaciones polinómicas.</li>
+                                <li>Expresiones y ecuaciones racionales.</li>
+                                <li>Raíces, radicales y ecuaciones con radicales.</li>
+                                <li>Números complejos.</li>
+                                <li>Ecuaciones y desigualdades cuadráticas.</li>
+                                <li>Ecuaciones polinómicas de grado mayor que dos.</li>
+                                <li>Descomposición de expresiones racionales en fracciones parciales.</li>
+                              </ol>`,
+                synthesis: '"Entender el significado de las matemáticas desde una cara del cubo para el uso de la vida cotidiana a partir de problemas cotidianos con un pensamiento crítico y resolviendo situaciones complejas con diseños soluciones sostenibles y equitativas."'
+            },
+            'ofimatica': {
+                ingredients: `<ol class="list-decimal list-inside space-y-4">
+                                <li>Aplicación de formatos.</li>
+                                <li>Revisión de documentos.</li>
+                                <li>Inserción de objetos, uso de Tablas, imágenes, portadas.</li>
+                                <li>Diseño estético de documentos.</li>
+                              </ol>`,
+                synthesis: '"Entender que el uso adecuado de la tecnología afina/potencia tus habilidades profesionales y permite mejorar la calidad de los trabajos."'
+            },
+            'analisis': {
+                ingredients: `<ol class="list-decimal list-inside space-y-4">
+                                <li>Introducción al análisis estructural.</li>
+                                <li>Cargas y estática estructural.</li>
+                                <li>Análisis de vigas y marcos isostáticos.</li>
+                                <li>Análisis Matricial de Armaduras y vigas/marcos hiperestáticos.</li>
+                              </ol>`,
+                synthesis: '"Entender que el Análisis Estructural es un proceso de modelación (idealización de materiales, geometría, apoyos y cargas) para predecir el comportamiento de los sistemas, y que la validez del resultado depende intrínsecamente del criterio del ingeniero y no solo de los cálculos."'
+            }
+        };
+
+        // Lógica Modal Preguntas Convincentes (Sección 1)
+        function openModal(text) {
+            const modal = document.getElementById('questionModal');
+            const textElement = document.getElementById('modalQuestionText');
+            textElement.textContent = text;
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            if (e) e.stopPropagation();
+            const modal = document.getElementById('questionModal');
+            
+            modal.classList.remove('opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Lógica Modal Síntesis (Sección 2)
+        function openSynthesisModal(key) {
+            const data = synthesisData[key];
+            document.getElementById('modalIngredients').innerHTML = data.ingredients;
+            document.getElementById('modalSynthesisText').textContent = data.synthesis;
+            
+            const modal = document.getElementById('synthesisModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSynthesisModal(e) {
+            if (e) e.stopPropagation();
+            const modal = document.getElementById('synthesisModal');
+            
+            modal.classList.remove('opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Lógica Selección de Capacidades (Máximo 2)
+        let selectedCapacities = [];
+
+        function toggleCapacity(btnElement) {
+            const index = selectedCapacities.indexOf(btnElement);
+            
+            // Si el botón ya está seleccionado, lo deseleccionamos
+            if (index > -1) {
+                btnElement.classList.remove('active-capacity');
+                selectedCapacities.splice(index, 1);
+            } else {
+                // Si ya hay 2 seleccionados, quitamos el más antiguo (FIFO)
+                if (selectedCapacities.length >= 2) {
+                    const firstBtn = selectedCapacities.shift();
+                    firstBtn.classList.remove('active-capacity');
+                }
+                // Añadimos el nuevo
+                btnElement.classList.add('active-capacity');
+                selectedCapacities.push(btnElement);
+            }
+        }
+    </script>
+</body>
+</html>
