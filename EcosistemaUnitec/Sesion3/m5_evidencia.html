@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Toolkits | UNITEC</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Poppins (Strictly Unitec) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration for Unitec Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unitec: {
+                            federal: '#06065C', // Federal Blue
+                            cyan: '#03AED2',    // Pacific Cyan
+                            sky: '#47C8FD',     // Vivid Sky Blue
+                            light: '#F8FAFC',   // Clean background
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #06065C; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #03AED2; }
+
+        .fade-in { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cortes de Diamante (Estética Dinámica UNITEC) */
+        .diamond-tag { clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+        .diamond-icon-bg { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        .diamond-btn { clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%); }
+        .diamond-border-top { border-top: 6px solid #03AED2; }
+
+        .modal-backdrop { backdrop-filter: blur(6px); }
+        
+        /* Tab shape for global nav */
+        .hub-tab { clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); }
+        @media (min-width: 640px) {
+            .hub-tab { clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 100%, 0 100%); }
+        }
+
+        /* Logos institucionales UNITEC */
+        .logo-unitec-white {
+            display: block;
+            height: 54px;
+            width: auto;
+            max-width: 260px;
+            object-fit: contain;
+        }
+
+        .logo-unitec-white-hero {
+            display: block;
+            height: 92px;
+            width: auto;
+            max-width: 420px;
+            object-fit: contain;
+        }
+
+        .logo-unitec-color {
+            display: block;
+            height: 64px;
+            width: auto;
+            max-width: 320px;
+            object-fit: contain;
+        }
+
+        .logo-unitec-footer {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 270px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-unitec-white {
+                height: 44px;
+                max-width: 220px;
+            }
+
+            .logo-unitec-white-hero {
+                height: 64px;
+                max-width: 300px;
+            }
+
+            .logo-unitec-color {
+                height: 52px;
+                max-width: 260px;
+            }
+
+            .logo-unitec-footer {
+                height: 48px;
+                max-width: 220px;
+            }
+        }
+
+    </style>
+</head>
+<body class="min-h-screen bg-unitec-light text-slate-800 selection:bg-unitec-cyan selection:text-white flex flex-col">
+
+    <!-- ========================================== -->
+    <!-- GLOBAL HUB NAVIGATION (Prominente y Responsivo) -->
+    <!-- ========================================== -->
+    <nav class="bg-unitec-federal pt-4 px-4 sm:px-6 lg:px-8 sticky top-0 z-50 shadow-2xl border-b-4 border-unitec-cyan">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-center items-end gap-2 sm:gap-4">
+            
+            <button id="btn-global-3cs" onclick="switchMainToolkit('3cs')" class="w-full sm:w-auto hub-tab px-6 md:px-12 py-3 md:py-4 text-base md:text-xl font-black transition-all flex items-center justify-center gap-3 bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white">
+                <i class="fa-solid fa-cube"></i> 3Cs Toolkit
+            </button>
+            
+            <button id="btn-global-l2l" onclick="switchMainToolkit('l2l')" class="w-full sm:w-auto hub-tab px-6 md:px-12 py-3 md:py-4 text-base md:text-xl font-black transition-all flex items-center justify-center gap-3 bg-unitec-cyan text-unitec-federal shadow-[0_-5px_15px_rgba(3,174,210,0.3)]">
+                <i class="fa-solid fa-graduation-cap"></i> L2L Toolkit
+            </button>
+            
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- WRAPPER: 3Cs TOOLKIT                       -->
+    <!-- ========================================== -->
+    <!-- IMPORTANTE: Se agregó flex-col para mantener el flujo vertical correcto -->
+    <div id="wrapper-3cs" class="hidden fade-in flex-grow flex-col">
+        
+        <!-- Header 3Cs -->
+        <header class="relative bg-unitec-federal text-white overflow-hidden shadow-xl w-full">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-unitec-federal/90 to-unitec-federal"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10 flex flex-col md:grid md:grid-cols-[240px_minmax(0,1fr)_auto] items-center gap-6 text-center md:text-left w-full">
+                <div class="w-full flex justify-center md:justify-start">
+                    <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec-white-hero">
+                </div>
+
+                <div class="w-full">
+                    <h1 class="text-3xl md:text-4xl font-black tracking-tight leading-none text-white">
+                        Ecosistema de Aprendizaje
+                    </h1>
+                    <p class="text-xs md:text-sm text-unitec-cyan font-bold tracking-widest uppercase mt-2">Base de Conocimiento Docente</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3">
+                    <span class="hidden md:inline-block diamond-tag bg-white/10 text-white border border-white/20 text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest backdrop-blur-md">
+                        Versión 2.0
+                    </span>
+                    <a href="DOC/CGC 3Cs Toolkit.pdf" target="_blank" rel="noopener noreferrer" class="diamond-btn bg-unitec-cyan text-unitec-federal hover:bg-white px-6 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all shadow-lg w-full sm:w-auto cursor-pointer">
+                        <i class="fa-solid fa-file-pdf text-lg"></i> <span>Descargar Original</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+            <!-- Definition Hero -->
+            <div class="mb-12 bg-white p-8 md:p-10 rounded-xl shadow-xl border-l-8 border-unitec-federal relative overflow-hidden group">
+                <div class="absolute -top-10 -right-10 opacity-5 transition-transform duration-500 group-hover:scale-110">
+                    <svg width="200" height="200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L23 12L12 23L1 12L12 1Z" fill="#06065C"/>
+                    </svg>
+                </div>
+                <h2 class="text-xs font-black text-unitec-cyan uppercase tracking-widest mb-4 flex items-center gap-2 relative z-10">
+                    <i class="fa-solid fa-circle-info"></i> Definición Central
+                </h2>
+                <p id="mainDefinition-3cs" class="text-xl md:text-3xl text-unitec-federal font-light leading-relaxed relative z-10"></p>
+            </div>
+
+            <!-- VISTA HUMANA 3Cs -->
+            <div class="space-y-8">
+                <!-- Navigation Tabs -->
+                <div id="tabsContainer-3cs" class="flex flex-col sm:flex-row gap-3 border-b-2 border-slate-200 pb-4 mb-8"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Sidebar Info -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <div id="goalBox-3cs" class="p-8 rounded-xl shadow-lg bg-white relative overflow-hidden diamond-border-top transition-all duration-300">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full -z-10"></div>
+                            <h3 class="font-black text-unitec-federal text-lg mb-4 flex items-center gap-3">
+                                <div class="diamond-icon-bg w-10 h-10 bg-unitec-cyan text-unitec-federal flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-bullseye text-sm"></i>
+                                </div>
+                                Meta de Aprendizaje
+                            </h3>
+                            <p id="goalText-3cs" class="italic text-slate-700 text-lg font-medium leading-relaxed border-l-4 border-unitec-cyan pl-4 py-1"></p>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl border border-slate-100 shadow-md relative overflow-hidden group">
+                            <div class="absolute -right-4 -bottom-4 opacity-5">
+                                <i class="fa-solid fa-quote-right text-6xl text-unitec-federal"></i>
+                            </div>
+                            <h4 class="font-black text-unitec-federal text-xs uppercase tracking-widest mb-3 relative z-10">Descripción General</h4>
+                            <p id="descText-3cs" class="text-slate-600 text-sm leading-relaxed font-light relative z-10"></p>
+                        </div>
+                    </div>
+
+                    <!-- Phases Columns -->
+                    <div id="phasesContainer-3cs" class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-start"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- WRAPPER: L2L TOOLKIT                       -->
+    <!-- ========================================== -->
+    <!-- IMPORTANTE: Se agregó flex-col para mantener el flujo vertical correcto -->
+    <div id="wrapper-l2l" class="flex fade-in flex-grow flex-col">
+        
+        <!-- Header L2L -->
+        <header class="relative bg-unitec-federal text-white overflow-hidden shadow-xl w-full">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-unitec-federal/90 to-unitec-federal"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10 flex flex-col md:grid md:grid-cols-[240px_minmax(0,1fr)_auto] items-center gap-6 text-center md:text-left w-full">
+                <div class="w-full flex justify-center md:justify-start">
+                    <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec-white-hero">
+                </div>
+
+                <div class="w-full">
+                    <h1 class="text-3xl md:text-4xl font-black tracking-tight leading-none text-white">
+                        L2L Toolkit
+                    </h1>
+                    <p class="text-xs md:text-sm text-unitec-cyan font-bold tracking-widest uppercase mt-2">Aprender a Aprender</p>
+                </div>
+
+                <!-- Action Area L2L -->
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-1.5 flex gap-1 w-full sm:w-auto border border-white/20">
+                    <button id="btn-l2l-continuum" onclick="switchL2lView('continuum')" class="diamond-btn flex-1 sm:flex-none px-5 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-unitec-cyan text-unitec-federal shadow-md">
+                        <i class="fa-solid fa-arrow-trend-up"></i> El Continuo
+                    </button>
+                    <button id="btn-l2l-tools" onclick="switchL2lView('tools')" class="diamond-btn flex-1 sm:flex-none px-5 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all text-white hover:bg-white/10">
+                        <i class="fa-solid fa-layer-group"></i> Herramientas
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-[600px] w-full">
+            
+            <!-- VISTA: CONTINUO L2L -->
+            <div id="view-l2l-continuum" class="fade-in space-y-10 block">
+                <div class="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-slate-100 text-center relative overflow-hidden group diamond-border-top">
+                    <div class="absolute -left-10 -bottom-10 opacity-5 transition-transform duration-700 group-hover:rotate-45">
+                        <i class="fa-solid fa-chart-line text-9xl text-unitec-federal"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-unitec-federal mb-4 relative z-10">El Continuo del Aprendizaje</h2>
+                    <p class="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed font-light relative z-10">
+                        El viaje de "Aprender a Aprender" describe la evolución del estudiante. No es lineal, pero muestra una progresión clara desde la dependencia externa hacia la autonomía y la trascendencia.
+                    </p>
+                </div>
+                <div id="continuum-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"></div>
+            </div>
+
+            <!-- VISTA: HERRAMIENTAS L2L -->
+            <div id="view-l2l-tools" class="fade-in hidden flex-col lg:flex-row gap-8">
+                <div class="w-full lg:w-1/3 xl:w-1/4 space-y-4">
+                    <div class="bg-unitec-federal p-6 rounded-xl shadow-lg mb-6 text-white relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 opacity-20">
+                            <i class="fa-solid fa-layer-group text-6xl"></i>
+                        </div>
+                        <h3 class="font-black flex items-center gap-3 text-lg relative z-10">
+                            <i class="fa-solid fa-layer-group text-unitec-cyan"></i> Ejes de Aprendizaje
+                        </h3>
+                        <p class="text-xs text-unitec-sky mt-2 relative z-10 font-medium">Selecciona un eje para explorar.</p>
+                    </div>
+                    <div id="strands-sidebar" class="space-y-3 pr-2 lg:max-h-[calc(100vh-250px)] lg:overflow-y-auto custom-scrollbar"></div>
+                </div>
+
+                <div class="w-full lg:w-2/3 xl:w-3/4 space-y-8">
+                    <div class="bg-white rounded-xl shadow-xl border border-slate-100 p-8 relative overflow-hidden diamond-border-top">
+                        <div class="absolute top-0 right-0 w-48 h-48 bg-slate-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 -mr-10 -mt-10"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="diamond-icon-bg w-14 h-14 bg-unitec-cyan text-unitec-federal flex items-center justify-center shadow-lg">
+                                    <i id="strand-icon" class="fa-solid fa-brain text-2xl"></i>
+                                </div>
+                                <h2 id="strand-title" class="text-2xl md:text-3xl font-black text-unitec-federal leading-tight"></h2>
+                            </div>
+                            <p id="strand-desc" class="text-lg text-slate-600 border-l-4 border-unitec-sky pl-4 font-light leading-relaxed"></p>
+                        </div>
+                    </div>
+                    <div id="tools-container-l2l" class="grid gap-6"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL UNIFICADO PARA AMBOS TOOLKITS        -->
+    <!-- ========================================== -->
+    <div id="toolModal" class="fixed inset-0 hidden z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="absolute inset-0 modal-backdrop bg-unitec-federal/60" onclick="closeModal()"></div>
+        
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col relative z-10 animate-in fade-in zoom-in-95 duration-200 overflow-hidden diamond-border-top">
+            
+            <div class="p-6 md:p-8 border-b border-slate-100 flex justify-between items-start sticky top-0 bg-white/95 backdrop-blur-md z-20">
+                <div class="pr-8">
+                    <span id="modalTag" class="diamond-tag inline-block px-3 py-1 bg-unitec-light text-unitec-cyan font-bold text-[10px] uppercase tracking-widest mb-2">
+                        Detalle de Herramienta
+                    </span>
+                    <h3 id="modalTitle" class="text-2xl md:text-3xl font-black text-unitec-federal leading-tight"></h3>
+                    <p id="modalSubtitle" class="text-sm text-slate-500 font-medium mt-2 leading-relaxed border-l-2 border-unitec-cyan pl-2"></p>
+                </div>
+                <button onclick="closeModal()" class="w-10 h-10 bg-slate-100 hover:bg-unitec-cyan hover:text-white text-slate-400 rounded-full flex items-center justify-center transition-colors shrink-0">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 md:p-8 overflow-y-auto custom-scrollbar space-y-8 bg-slate-50/30">
+                
+                <!-- Propósito común a ambos -->
+                <div class="flex gap-4 md:gap-5">
+                    <div class="flex-shrink-0">
+                        <div class="diamond-icon-bg w-12 h-12 bg-unitec-federal text-unitec-sky flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-compass text-lg"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black text-unitec-federal uppercase tracking-widest mb-2 mt-1">Propósito Principal</h4>
+                        <p id="modalPurpose" class="text-slate-700 text-sm md:text-base leading-relaxed font-light"></p>
+                    </div>
+                </div>
+
+                <!-- Procedimiento / Metodología común a ambos -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 mb-5 gap-3">
+                        <h4 class="text-xs font-black text-unitec-federal uppercase tracking-widest flex items-center gap-2">
+                            <i class="fa-solid fa-route text-unitec-cyan text-base"></i> Procedimiento / Metodología
+                        </h4>
+                        <!-- El tiempo solo se muestra si existe (L2L) -->
+                        <span id="modalTime" class="hidden text-[10px] font-bold bg-unitec-light text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest"></span>
+                    </div>
+                    <div id="modalSteps" class="space-y-4"></div>
+                </div>
+
+                <!-- Tips y Materiales (Presentación adaptativa) -->
+                <div id="modalBottomGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div id="modalTipsContainer" class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-yellow-400">
+                        <h4 class="text-xs font-black text-unitec-federal uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-yellow-400 text-base"></i> Tips & Variaciones
+                        </h4>
+                        <p id="modalTips" class="text-sm text-slate-600 leading-relaxed font-light"></p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-unitec-cyan">
+                        <h4 class="text-xs font-black text-unitec-federal uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-box-open text-unitec-cyan text-base"></i> Materiales/Recursos
+                        </h4>
+                        <p id="modalMaterials" class="text-sm text-slate-600 leading-relaxed font-light"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6 border-t border-slate-100 bg-white flex justify-end">
+                <button onclick="closeModal()" class="px-8 py-3 bg-unitec-federal hover:bg-[#040440] text-white rounded-lg transition-colors text-sm font-bold shadow-lg flex items-center gap-2">
+                    <i class="fa-solid fa-check"></i> Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white text-slate-500 py-10 text-center border-t border-slate-200 mt-auto w-full">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center mb-4">
+                <img src="IMG/UNITEC-COLOR-HORIZONTAL.png" alt="UNITEC" class="logo-unitec-footer">
+            </div>
+            <p class="text-sm mb-2 opacity-80 font-light">© 2026 Universidad Tecnológica Centroamericana (UNITEC).</p>
+            <p class="text-xs text-unitec-cyan font-bold tracking-widest uppercase">Ecosistema de Aprendizaje UNITEC.</p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- LÓGICA JAVASCRIPT GLOBAL                   -->
+    <!-- ========================================== -->
+    <script>
+        // ==========================================
+        // 1. DATOS COMPLETOS: 3Cs TOOLKIT
+        // ==========================================
+        const data3Cs = {
+            metadata: {
+                definition: "El aprendizaje es un proceso que conduce a una consolidación o extensión sostenida y demostrable de la comprensión CONCEPTUAL, las COMPETENCIAS o el CARÁCTER."
+            },
+            categories: [
+                {
+                    id: "conceptual", title: "Aprendizaje Conceptual", icon: "fa-brain", 
+                    btnActiveClass: "bg-unitec-federal text-white shadow-xl transform scale-[1.02]", 
+                    borderClass: "border-unitec-federal",
+                    goalStem: "Los estudiantes entienden que...",
+                    description: "Ocurre cuando los estudiantes están construyendo y reconstruyendo teorías de cómo funcionan las cosas.",
+                    phases: [
+                        {
+                            name: "Conectar (Connecting)",
+                            description: "Conectar conocimiento nuevo y potencialmente disruptivo con la comprensión previa.",
+                            tools: [
+                                {
+                                    name: "Chalk Talk",
+                                    summary: "Una conversación silenciosa en papel para acceder al conocimiento previo.",
+                                    details: {
+                                        purpose: "Acceder y comprometerse con lo que se entiende actualmente y las experiencias pasadas. Generar preguntas para guiar la indagación. Sacar a la luz conceptos erróneos.",
+                                        howTo: [
+                                            "1. El facilitador explica MUY BREVEMENTE que Chalk Talk es una actividad SILENCIOSA.",
+                                            "2. El facilitador escribe una pregunta relevante en un círculo en la pizarra o póster.",
+                                            "3. Se entregan marcadores a todos.",
+                                            "4. Las personas escriben cuando se sienten motivadas. Pueden comentar dibujando líneas.",
+                                            "5. Permite que ocurran largos silencios.",
+                                            "6. Interacción del facilitador: expandir el pensamiento circulando ideas interesantes."
+                                        ],
+                                        tips: "Puede hacerse en grupo completo o grupos pequeños. Úsalo al inicio para evaluar conocimiento previo.",
+                                        materials: "Pósters, marcadores, pregunta/estímulo."
+                                    }
+                                },
+                                {
+                                    name: "See Think Wonder",
+                                    summary: "Rutina para observar cuidadosamente y generar preguntas estimulantes.",
+                                    details: {
+                                        purpose: "Acceder y comprometerse con la comprensión actual. Crear un sentido de asombro que motive a los estudiantes.",
+                                        howTo: [
+                                            "1. Selecciona una imagen, objeto o evidencia.",
+                                            "2. Presenta el objeto de manera que los detalles sean visibles.",
+                                            "3. Pregunta '¿Qué VEMOS?'. IMPORTANTE: NO interpretar, solo observar.",
+                                            "4. Pregunta '¿Qué PIENSAS que podría estar pasando?'.",
+                                            "5. Pregunta '¿Qué te PREGUNTAS?'."
+                                        ],
+                                        tips: "A veces es útil estrechar el foco. Fomenta la observación cuidadosa antes de sacar conclusiones.",
+                                        materials: "Un artefacto, imagen o estímulo."
+                                    }
+                                },
+                                {
+                                    name: "Give One Take One",
+                                    summary: "Intercambio dinámico de ideas para identificar brechas y conocimientos.",
+                                    details: {
+                                        purpose: "Acceder a la comprensión actual. Buscar brechas y conceptos erróneos en la comprensión colectiva.",
+                                        howTo: [
+                                            "1. Los estudiantes dividen un papel en 2 columnas: 'Dar uno' y 'Recibir uno'.",
+                                            "2. Listan sus pensamientos iniciales en 'Dar uno'.",
+                                            "3. El grupo se levanta y mezcla. Grita 'DAR UNO a un compañero'.",
+                                            "4. En parejas, cada uno da UNA idea y recibe UNA idea.",
+                                            "5. Grita 'MOVERSE' y se mezclan de nuevo.",
+                                            "6. Concluye buscando patrones de confusión."
+                                        ],
+                                        tips: "Anima a distinguir entre evidencia y creencias. Varía el tamaño de los grupos.",
+                                        materials: "Papel y lápices."
+                                    }
+                                },
+                                {
+                                    name: "Question Formulation Technique",
+                                    summary: "Proceso riguroso para que los estudiantes generen y mejoren sus propias preguntas.",
+                                    details: {
+                                        purpose: "Identificar grandes preguntas/problemas para una investigación sostenida. Permitir que los estudiantes impulsen su propio aprendizaje.",
+                                        howTo: [
+                                            "1. PRODUCIR PREGUNTAS: Preguntar tantas como puedas, sin detenerse a juzgar.",
+                                            "2. MEJORAR PREGUNTAS: Categorizar como ABIERTAS o CERRADAS.",
+                                            "3. PRIORIZAR PREGUNTAS: Elegir las 3 más importantes.",
+                                            "4. DISCUTIR: ¿Cómo usaremos estas preguntas?",
+                                            "5. REFLEXIONAR: ¿Qué aprendiste?"
+                                        ],
+                                        tips: "La primera fase debe ser libre de juicio.",
+                                        materials: "Papelógrafo, marcadores, estímulo."
+                                    }
+                                },
+                                {
+                                    name: "Question Starts",
+                                    summary: "Uso de inicios de oraciones para ampliar la variedad y profundidad de las preguntas.",
+                                    details: {
+                                        purpose: "Identificar grandes preguntas. Lograr amplitud y multidimensionalidad.",
+                                        howTo: [
+                                            "1. Lluvia de ideas de al menos 12 preguntas sobre el tema u objeto.",
+                                            "2. Usa Inicios obligatorios: '¿Por qué...?', '¿Cómo sería diferente si...?', etc.",
+                                            "3. Revisa la lista y marca con una estrella las más interesantes.",
+                                            "4. Reflexiona: ¿Qué nuevas ideas tienes?"
+                                        ],
+                                        tips: "Úsalo a mitad de un tema para reavivar la curiosidad.",
+                                        materials: "Pósters con los inicios de preguntas, marcadores."
+                                    }
+                                },
+                                {
+                                    name: "Question Funnel",
+                                    summary: "Un sistema de filtrado de múltiples etapas para refinar y seleccionar preguntas esenciales.",
+                                    details: {
+                                        purpose: "Generar un conjunto de preguntas guía que formen el camino para entender conceptos grandes.",
+                                        howTo: [
+                                            "1. Estímulo y Generación: Usa un estímulo y genera preguntas.",
+                                            "2. FILTRO 1 (TIPO): Clasifica en Cerradas, Hecho, Conocimiento, Conceptuales.",
+                                            "3. FILTRO 2 (UTILIDAD): Agrupa bajo los propósitos de la unidad. Prioriza.",
+                                            "4. FILTRO 3 (NECESARIAS Y SUFICIENTES): ¿Es cada pregunta necesaria?",
+                                            "5. FILTRO 4: Combina los sets de los grupos. Elimina duplicados."
+                                        ],
+                                        tips: "No descartes preguntas cerradas si son pasos necesarios para una más grande.",
+                                        materials: "Tiras de papel, marcadores."
+                                    }
+                                },
+                                {
+                                    name: "Questions Sorts",
+                                    summary: "Matriz de coordenadas para evaluar el valor de investigación de las preguntas.",
+                                    details: {
+                                        purpose: "Evaluar preguntas usando dos criterios: GENERATIVAS (llevan a algo) y GENUINAS (nos interesan).",
+                                        howTo: [
+                                            "1. Lluvia de ideas de preguntas en notas adhesivas.",
+                                            "2. Crea EJE HORIZONTAL (Generatividad).",
+                                            "3. Crea EJE VERTICAL (Genuinidad).",
+                                            "4. Analiza los CUADRANTES para decidir qué investigar."
+                                        ],
+                                        tips: "La discusión detrás de la colocación es más importante que la ubicación final.",
+                                        materials: "Notas adhesivas, cinta para ejes."
+                                    }
+                                },
+                                {
+                                    name: "Wonder Wall",
+                                    summary: "Un espacio visible y evolutivo para capturar preguntas.",
+                                    details: {
+                                        purpose: "Mantener la curiosidad viva y visible durante toda la unidad.",
+                                        howTo: [
+                                            "1. Designar un espacio físico o digital.",
+                                            "2. Explicar el propósito: capturar preguntas emergentes.",
+                                            "3. Los estudiantes agregan preguntas en cualquier momento.",
+                                            "4. Organizar: Usar colores para categorizar preguntas."
+                                        ],
+                                        tips: "Dedica lecciones ocasionales de 'investigación libre' para responder preguntas del muro.",
+                                        materials: "Muro/Ventana, Post-its, Marcadores."
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            name: "Construir (Constructing)",
+                            description: "Construir y reconstruir teorías de cómo funcionan las cosas y por qué son así.",
+                            tools: [
+                                {
+                                    name: "Question on the Wall",
+                                    summary: "Una variación de Wonder Wall enfocada en una pregunta central.",
+                                    details: {
+                                        purpose: "Focalizado en mantener una pregunta central visible y acumular respuestas.",
+                                        howTo: [
+                                            "1. Escribir una pregunta central en un lugar visible.",
+                                            "2. Agregar nueva información o respuestas tentativas alrededor de la pregunta.",
+                                            "3. Revisar periódicamente cómo evoluciona."
+                                        ],
+                                        tips: "Útil para rastrear el progreso del aprendizaje.",
+                                        materials: "Espacio en pared, marcadores."
+                                    }
+                                },
+                                {
+                                    name: "Tug of War",
+                                    summary: "Explorar la complejidad de un dilema 'tirando' desde perspectivas opuestas.",
+                                    details: {
+                                        purpose: "Explorar la complejidad de un problema de justicia o dilema.",
+                                        howTo: [
+                                            "1. Dibujar una línea (cuerda) en la pizarra o suelo.",
+                                            "2. Identificar dos lados opuestos de un argumento.",
+                                            "3. Generar 'Tirones' (razones) en post-its para cada lado.",
+                                            "4. Colocar los tirones en la cuerda según su fuerza.",
+                                            "5. Investigar los 'tirones' más a fondo.",
+                                            "6. Discutir hallazgos."
+                                        ],
+                                        tips: "Anima a buscar matices, no solo blanco/negro.",
+                                        materials: "Cuerda, Post-its, Marcadores."
+                                    }
+                                },
+                                {
+                                    name: "Carousel Brainstorm",
+                                    summary: "Estaciones rotativas para construir conocimiento colectivo.",
+                                    details: {
+                                        purpose: "Explorar nueva información/perspectivas. Evaluar sesgos y credibilidad.",
+                                        howTo: [
+                                            "1. Colocar 6 preguntas/estímulos en estaciones.",
+                                            "2. Formar grupos y asignarlos a estaciones.",
+                                            "3. Ronda 1: Los grupos responden en su estación.",
+                                            "4. Rotar: Cada 3-5 min, moverse, leer y agregar ideas.",
+                                            "5. Reflexión final en la estación original."
+                                        ],
+                                        tips: "Variación 'Graffiti': Los estudiantes dibujan libremente.",
+                                        materials: "Papelógrafos, marcadores de colores."
+                                    }
+                                },
+                                {
+                                    name: "The Story Routine",
+                                    summary: "Analizar narrativas para descubrir perspectivas marginadas u ocultas.",
+                                    details: {
+                                        purpose: "Construir diferentes narrativas, evaluar sesgos e identificar puntos de vista no representados.",
+                                        howTo: [
+                                            "1. Identificar la HISTORIA PRINCIPAL (Lo obvio).",
+                                            "2. Identificar la HISTORIA LATERAL (¿Qué pasa en los márgenes?).",
+                                            "3. Identificar la HISTORIA OCULTA (¿Qué está oscurecido o no se dice?).",
+                                            "4. Investigar basadas en estas perspectivas."
+                                        ],
+                                        tips: "Combina bien con 'See-Think-Wonder'.",
+                                        materials: "Pizarra, documento fuente."
+                                    }
+                                },
+                                {
+                                    name: "Sketchnoting",
+                                    summary: "Toma de notas visual para sintetizar y conectar ideas.",
+                                    details: {
+                                        purpose: "Interpretar y representar información para darle significado.",
+                                        howTo: [
+                                            "1. Elegir medio (digital o papel).",
+                                            "2. Crear una 'galería visual' (símbolos para conceptos clave).",
+                                            "3. Elegir una estructura (lineal, radial, camino).",
+                                            "4. Usar Tipografía, Contenedores, Conectores, Iconos.",
+                                            "5. Sintetizar visualmente, no transcribir."
+                                        ],
+                                        tips: "No se trata de arte, sino de pensamiento.",
+                                        materials: "Papel/iPads, lápices de colores."
+                                    }
+                                },
+                                {
+                                    name: "Causal Interaction Map",
+                                    summary: "Mapear factores directos e indirectos que causan un resultado.",
+                                    details: {
+                                        purpose: "Interpretar relaciones causales complejas.",
+                                        howTo: [
+                                            "1. Especificar el evento/resultado de interés.",
+                                            "2. Listar factores causales en post-its.",
+                                            "3. Seleccionar factores DIRECTOS y colocarlos debajo.",
+                                            "4. Seleccionar causas Indirectas y colocarlas en capas.",
+                                            "5. Dibujar flechas de flujo causal.",
+                                            "6. Dibujar correlaciones."
+                                        ],
+                                        tips: "Sé muy específico con el 'resultado de interés'.",
+                                        materials: "Post-its, superficie grande, marcadores."
+                                    }
+                                },
+                                {
+                                    name: "Hexagons",
+                                    summary: "Conectar ideas de forma no lineal para revelar relaciones.",
+                                    details: {
+                                        purpose: "Interpretar información para encontrar conexiones entre ideas.",
+                                        howTo: [
+                                            "1. Escribir ideas/conceptos en hexágonos de papel.",
+                                            "2. En grupos, discutir y agrupar los hexágonos tocándose.",
+                                            "3. Cada lado que toca debe tener una razón de conexión válida.",
+                                            "4. Buscar nodos centrales o cadenas largas.",
+                                            "5. Explicar el conjunto de conexiones más poderoso."
+                                        ],
+                                        tips: "Anima a no quedarse con la primera conexión obvia.",
+                                        materials: "Papeles hexagonales, cinta."
+                                    }
+                                },
+                                {
+                                    name: "Connection Circle",
+                                    summary: "Visualizar bucles de retroalimentación y causalidad sistémica.",
+                                    details: {
+                                        purpose: "Representar cómo funciona la causa y efecto en un sistema.",
+                                        howTo: [
+                                            "1. Identificar un problema/situación.",
+                                            "2. Listar factores dinámicos.",
+                                            "3. Seleccionar los 6-10 más importantes alrededor de un círculo.",
+                                            "4. Identificar relaciones causales.",
+                                            "5. Dibujar flechas cruzando el círculo.",
+                                            "6. Analizar bucles y causas raíz."
+                                        ],
+                                        tips: "Mantén el círculo limpio. Busca bucles cerrados.",
+                                        materials: "Papel, marcadores."
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            name: "Contribuir (Contributing)",
+                            description: "Contribuir con sus teorías/explicaciones refinadas para compartir nuevos entendimientos.",
+                            tools: [
+                                {
+                                    name: "Module Summary Matrix",
+                                    summary: "Matriz para organizar evidencia y ver patrones a través del módulo.",
+                                    details: {
+                                        purpose: "Organizar información para detectar patrones y construir teorías.",
+                                        howTo: [
+                                            "1. Preparar matriz con conceptos clave como encabezados.",
+                                            "2. Incluir una columna '¿Y qué?'.",
+                                            "3. Los estudiantes llenan la matriz a medida que recolectan evidencia.",
+                                            "4. Usar la matriz completa para buscar patrones."
+                                        ],
+                                        tips: "Enseñar explícitamente habilidades de toma de notas.",
+                                        materials: "Matrices impresas o digitales."
+                                    }
+                                },
+                                {
+                                    name: "Claim-Support-Question",
+                                    summary: "Rutina para hacer afirmaciones, apoyarlas con evidencia y cuestionarlas.",
+                                    details: {
+                                        purpose: "Sintetizar información y construir teorías propias.",
+                                        howTo: [
+                                            "1. Hacer una AFIRMACIÓN (Claim).",
+                                            "2. Identificar APOYO (Support) con hechos y ejemplos.",
+                                            "3. Plantear una PREGUNTA (Question) sobre dudas o cambios.",
+                                            "4. Compartir y discutir."
+                                        ],
+                                        tips: "Enfócate en la calidad de la evidencia, no en lo 'correcto'.",
+                                        materials: "Acceso a la evidencia, Pizarra."
+                                    }
+                                },
+                                {
+                                    name: "Consensus 1-3-6",
+                                    summary: "Proceso escalonado para construir una teoría grupal consensuada.",
+                                    details: {
+                                        purpose: "Desarrollar habilidades de colaboración, revisar evidencia y construir teoría colectiva.",
+                                        howTo: [
+                                            "1. INDIVIDUAL (1): Construir teoría propia.",
+                                            "2. TRÍO (3): Discutir y justificar hasta consenso.",
+                                            "3. SEXTETO (6): Juntar dos tríos y crear teoría final.",
+                                            "4. Publicar la teoría."
+                                        ],
+                                        tips: "Animar a considerar qué evidencia NO explica su teoría.",
+                                        materials: "Papelógrafos, marcadores."
+                                    }
+                                },
+                                {
+                                    name: "Placemat",
+                                    summary: "Herramienta colaborativa con espacios individuales y un centro común.",
+                                    details: {
+                                        purpose: "Construir teorías colaborativamente asegurando la participación individual.",
+                                        howTo: [
+                                            "1. Dividir papelógrafo en secciones exteriores y un centro.",
+                                            "2. Escribir la pregunta en el centro.",
+                                            "3. PENSAR Y ESCRIBIR en silencio en secciones exteriores.",
+                                            "4. COMPARTIR con el grupo.",
+                                            "5. CONSENSO: Sintetizar en el centro."
+                                        ],
+                                        tips: "Respetar el tiempo de silencio es clave.",
+                                        materials: "Papelógrafos divididos."
+                                    }
+                                },
+                                {
+                                    name: "Theory Journal Conversations",
+                                    summary: "Protocolo de pares para profundizar y probar teorías personales.",
+                                    details: {
+                                        purpose: "Asegurar que la teoría explica la evidencia y refinar el pensamiento.",
+                                        howTo: [
+                                            "1. Mantener un 'Diario de Teoría'.",
+                                            "2. Socio A comparte su teoría.",
+                                            "3. Socio B hace preguntas de profundidad (ej. '¿Hay evidencia que contradiga esto?').",
+                                            "4. Socio A toma notas y refina su teoría.",
+                                            "5. Cambiar roles."
+                                        ],
+                                        tips: "Modelar buenas respuestas antes de empezar.",
+                                        materials: "Diarios, lista de preguntas guía."
+                                    }
+                                },
+                                {
+                                    name: "Bloom's Taxonomy Reflection Questions",
+                                    summary: "Preguntas de reflexión escalonadas desde recordar hasta crear.",
+                                    details: {
+                                        purpose: "Reflexionar sobre QUÉ se aprendió y CÓMO se aprendió.",
+                                        howTo: [
+                                            "Usar niveles de Bloom:",
+                                            "RECORDAR: ¿Qué hice?",
+                                            "COMPRENDER: ¿Qué fue importante?",
+                                            "APLICAR: ¿Dónde podría usar esto de nuevo?",
+                                            "ANALIZAR: ¿Veo patrones en mi trabajo?",
+                                            "EVALUAR: ¿Qué tan bien lo hice?",
+                                            "CREAR: ¿Qué debo hacer después?"
+                                        ],
+                                        tips: "Útil para ensayos reflexivos o presentaciones finales.",
+                                        materials: "Lista de preguntas."
+                                    }
+                                },
+                                {
+                                    name: "Four Corners",
+                                    summary: "Tomar una postura física sobre una afirmación ética o controvertida.",
+                                    details: {
+                                        purpose: "Tomar una postura ética basada en el aprendizaje.",
+                                        howTo: [
+                                            "1. Colocar carteles de acuerdo/desacuerdo en esquinas.",
+                                            "2. Leer afirmación provocativa.",
+                                            "3. Moverse a la esquina representativa.",
+                                            "4. Entrevistar: '¿Por qué elegiste esto?'.",
+                                            "5. Discutir qué influye en decisiones."
+                                        ],
+                                        tips: "Requiere un ambiente de clase seguro y respetuoso.",
+                                        materials: "Carteles para las esquinas."
+                                    }
+                                },
+                                {
+                                    name: "Experience, Struggles, Puzzles, Insights",
+                                    summary: "Marco para reflexionar sobre proyectos o indagaciones largas.",
+                                    details: {
+                                        purpose: "Reflexionar sobre el proceso (metacognición) y empoderar para la acción futura.",
+                                        howTo: [
+                                            "Reflexionar sobre 4 áreas:",
+                                            "EXPERIENCIA: ¿Qué acciones clave movieron el pensamiento?",
+                                            "LUCHAS: ¿Qué fue desafiante y cómo lo superaste?",
+                                            "PUZZLES: ¿Qué nuevas preguntas surgieron?",
+                                            "INSIGHTS: ¿Qué nuevas comprensiones profundas tienes?"
+                                        ],
+                                        tips: "Ideal para el final de proyectos largos.",
+                                        materials: "Plantilla de 4 cuadrantes."
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: "competency", title: "Aprendizaje de Competencias", icon: "fa-layer-group",
+                    btnActiveClass: "bg-unitec-federal text-white shadow-xl transform scale-[1.02] border-unitec-cyan border-2", 
+                    borderClass: "border-unitec-cyan",
+                    goalStem: "Los estudiantes son capaces de...",
+                    description: "Ocurre cuando los estudiantes deconstruyen el desempeño experto, identifican ajustes y practican habilidades.",
+                    phases: [
+                        { name: "Deconstruir (Deconstructing)", description: "Deconstruir el desempeño experto y compararlo con el propio.", tools: [] },
+                        { name: "Identificar (Identifying)", description: "Identificar los ajustes que necesitan hacer.", tools: [] },
+                        { name: "Practicar (Practicing)", description: "Practicar una habilidad para refinarla.", tools: [] },
+                        { name: "Ajustar (Adjusting)", description: "Realizar ajustes basados en retroalimentación.", tools: [] }
+                    ]
+                },
+                {
+                    id: "character", title: "Aprendizaje del Carácter", icon: "fa-heart",
+                    btnActiveClass: "bg-unitec-federal text-white shadow-xl transform scale-[1.02] border-unitec-sky border-2", 
+                    borderClass: "border-unitec-sky",
+                    goalStem: "Los estudiantes se vuelven más...",
+                    description: "Ocurre cuando los estudiantes consideran disposiciones, actúan en consecuencia y reflexionan sobre los efectos.",
+                    phases: [
+                        {
+                            name: "Considerar (Considering)",
+                            description: "Considerar cómo se verían disposiciones y valores particulares aplicados.",
+                            tools: [
+                                {
+                                    name: "Question of Character (Para mayores)",
+                                    summary: "Preguntas profundas para explorar disposiciones y valores.",
+                                    details: {
+                                        purpose: "Fomentar la reflexión crítica sobre valores personales.",
+                                        howTo: [
+                                            "Selecciona un rasgo de carácter para enfocar.",
+                                            "Integridad: '¿Mis acciones reflejan mis creencias?'",
+                                            "Justicia: '¿Cuán justa es esta decisión?'",
+                                            "Empatía: '¿Cómo impacto positivamente?'",
+                                            "Resiliencia: '¿Cómo uso el fracaso como aprendizaje?'"
+                                        ],
+                                        tips: "Úsalo para diarios reflexivos o debates.",
+                                        materials: "Lista de preguntas."
+                                    }
+                                },
+                                {
+                                    name: "Question of Character (Para menores)",
+                                    summary: "Preguntas accesibles para que los estudiantes más jóvenes exploren su carácter.",
+                                    details: {
+                                        purpose: "Introducir conceptos de valores en un lenguaje accesible.",
+                                        howTo: [
+                                            "Elige un valor para discutir.",
+                                            "Integridad: '¿Qué pasa cuando lo que hago no coincide con lo que creo?'",
+                                            "Empatía: '¿Son mis acciones útiles o dañinas?'",
+                                            "Resiliencia: '¿Quién me ayuda a seguir cuando se pone difícil?'"
+                                        ],
+                                        tips: "Funciona bien en asambleas o resolución de conflictos.",
+                                        materials: "Lista de preguntas simplificadas."
+                                    }
+                                }
+                            ]
+                        },
+                        { name: "Actuar (Acting)", description: "Actuar como resultado de estas consideraciones.", tools: [] },
+                        { name: "Reflexionar (Reflecting)", description: "Reflexionar sobre los efectos de estas acciones.", tools: [] }
+                    ]
+                }
+            ]
+        };
+
+        // ==========================================
+        // 2. DATOS COMPLETOS: L2L TOOLKIT
+        // ==========================================
+        const dataL2L = {
+            continuum: [
+                {
+                    stage: "Transaccional", stage_en: "Transacting",
+                    mindset: "El aprendizaje como tarea a completar.",
+                    description: "Los aprendices se involucran en el aprendizaje como una tarea para terminar en lugar de un proceso para entender. Dependencia total.",
+                    characteristics: [
+                        "Completa el trabajo para cumplir requisitos.",
+                        "Depende de la dirección del maestro.",
+                        "Evita desafíos difíciles.",
+                        "Responde a la retroalimentación pasivamente."
+                    ]
+                },
+                {
+                    stage: "Transicional", stage_en: "Transitioning",
+                    mindset: "Experimentación incipiente con estrategias.",
+                    description: "Los aprendices comienzan a experimentar con cómo aprenden y consideran por qué sus estrategias importan.",
+                    characteristics: [
+                        "Prueba diferentes estrategias cuando se le pide.",
+                        "Hace preguntas sobre expectativas.",
+                        "Muestra voluntad de persistir a través de dificultades.",
+                        "Usa la retroalimentación para pequeñas mejoras."
+                    ]
+                },
+                {
+                    stage: "Transformacional", stage_en: "Transforming",
+                    mindset: "Apropiación intencional y estratégica.",
+                    description: "Los aprendices toman una propiedad creciente de sus procesos de aprendizaje, adaptándose estratégicamente.",
+                    characteristics: [
+                        "Procesa información intencionalmente.",
+                        "Co-crea y usa rúbricas.",
+                        "Reflexiona sobre el crecimiento en el tiempo.",
+                        "Da y recibe Feedback STAR.",
+                        "Planifica el trabajo colaborativo."
+                    ]
+                },
+                {
+                    stage: "Trascendente", stage_en: "Transcending",
+                    mindset: "Capacidad humana plena y sin techos.",
+                    description: "Los aprendices encarnan plenamente el 'Aprender a Aprender' como una capacidad humana de por vida, autodirigida.",
+                    characteristics: [
+                        "Emergencia plena de la capacidad humana.",
+                        "El aprendizaje no tiene límites visibles.",
+                        "Impulsado por la curiosidad radical.",
+                        "Autonomía total en la búsqueda de conocimiento."
+                    ]
+                }
+            ],
+            strands: [
+                {
+                    id: 1, name: "Metacognición y Autoconciencia", icon: "fa-brain",
+                    description: "Notar y nombrar hábitos de pensamiento y emociones. Entender cómo pensamos.",
+                    tools: [
+                        {
+                            name: "El Espejo de Pensamiento", question: "¿Cómo puede el notar mi pensamiento ayudarme a aprender mejor?", purpose: "Reconocer y nombrar patrones de pensamiento durante el aprendizaje.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "El maestro modela un breve pensamiento en voz alta mientras resuelve una tarea." },
+                                { phase: "Construir", action: "La clase construye una lista compartida de estados de pensamiento comunes." },
+                                { phase: "Aplicar", action: "Los aprendices completan una tarea corta y pausan 3 veces para registrar observaciones." },
+                                { phase: "Reflexionar", action: "Compartir un hallazgo sobre su propio pensamiento." }
+                            ],
+                            resources: "Prompt de tarea, hoja de reflexión."
+                        },
+                        {
+                            name: "Reporte del Clima de Aprendizaje", question: "¿Qué cambia cómo me siento y aprendo durante el día?", purpose: "Construir conciencia de los estados emocionales y su impacto.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Lluvia de ideas: '¿En qué se parece el aprendizaje al clima?'." },
+                                { phase: "Construir", action: "Introducir 'íconos del clima' emocional." },
+                                { phase: "Aplicar", action: "Los aprendices hacen un check-in al inicio y al final de una tarea." },
+                                { phase: "Reflexionar", action: "¿Qué ayudó a que mi clima mejorara?" }
+                            ],
+                            resources: "Tabla de íconos de clima."
+                        },
+                        {
+                            name: "Tarjeta de Cambio de Estrategia", question: "¿Qué puedo hacer cuando la forma en que estoy aprendiendo no funciona?", purpose: "Reconocer cuándo cambiar de estrategia independientemente.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Discutir momentos en los que 'esforzarse más' no ayudó." },
+                                { phase: "Construir", action: "Crear una lista de clase de 6-8 'opciones de cambio'." },
+                                { phase: "Aplicar", action: "Usar una 'Tarjeta de Cambio' durante una tarea; si se atascan, marcan su elección." },
+                                { phase: "Reflexionar", action: "Pase de salida: '¿Qué cambio me ayudó hoy?'." }
+                            ],
+                            resources: "Plantilla de tarjeta de cambio."
+                        }
+                    ]
+                },
+                {
+                    id: 2, name: "Estrategias de Aprendizaje", icon: "fa-layer-group",
+                    description: "Seleccionar, aplicar y adaptar estrategias con propósito.",
+                    tools: [
+                        {
+                            name: "El Menú de Estrategias", question: "¿Cómo elegir la estrategia correcta me ayuda?", purpose: "Seleccionar estrategias intencionalmente basadas en la tarea.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Mostrar dos ejemplos diferentes de tareas." },
+                                { phase: "Construir", action: "Construir un 'menú de estrategias' de la clase." },
+                                { phase: "Aplicar", action: "Elegir una estrategia a propósito durante una tarea." },
+                                { phase: "Reflexionar", action: "Compartir: '¿Qué estrategia ayudó más?'." }
+                            ],
+                            resources: "Póster de menú."
+                        },
+                        {
+                            name: "Círculo de 'Teach-Back'", question: "¿Cómo nos ayuda explicar algo a aprenderlo?", purpose: "Fortalecer la comprensión mediante explicación entre pares.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Charla: '¿Cuándo has entendido mejor después de explicarlo?'." },
+                                { phase: "Construir", action: "El maestro modela un breve teach-back." },
+                                { phase: "Aplicar", action: "Los aprendices se turnan para explicar un concepto sin mirar notas." },
+                                { phase: "Reflexionar", action: "Identificar qué se explicó bien y qué revisar." }
+                            ],
+                            resources: "Mini pizarras."
+                        },
+                        {
+                            name: "Sprint de Recuperación", question: "¿Cómo recordar sin mirar fortalece mi aprendizaje?", purpose: "Práctica de recuperación de bajo riesgo.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar: '¿Qué pasa cuando solo repasamos releyendo?'." },
+                                { phase: "Construir", action: "El maestro modela la recuperación sin notas." },
+                                { phase: "Aplicar", action: "Escribir/dibujar todo lo que recuerdan sobre un tema reciente sin notas." },
+                                { phase: "Reflexionar", action: "Verificar brechas y reflexionar sobre qué practicar de nuevo." }
+                            ],
+                            resources: "Papel, bolígrafos."
+                        }
+                    ]
+                },
+                {
+                    id: 3, name: "Pensamiento Crítico y Resolución", icon: "fa-bolt",
+                    description: "Analizar información, cuestionar suposiciones y usar evidencia.",
+                    tools: [
+                        {
+                            name: "La Escalera de Razonamiento", question: "¿Cómo construyo explicaciones más fuertes?", purpose: "Pasar de opiniones a razonamientos basados en evidencia.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Presentar opinión vs evidencia." },
+                                { phase: "Construir", action: "Introducir la Escalera de pensamiento." },
+                                { phase: "Aplicar", action: "Usar la escalera para responder una pregunta real." },
+                                { phase: "Reflexionar", action: "Evaluar el cambio en el pensamiento." }
+                            ],
+                            resources: "Raíces de oraciones."
+                        },
+                        {
+                            name: "La Caza de Suposiciones", question: "¿Cómo mejora nuestro pensamiento cuestionar suposiciones?", purpose: "Identificar y desafiar suposiciones ocultas.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Compartir una suposición cotidiana." },
+                                { phase: "Construir", action: "Enseñar a detectar suposiciones." },
+                                { phase: "Aplicar", action: "Analizar un escenario y listar suposiciones + alternativas." },
+                                { phase: "Reflexionar", action: "Compartir la suposición desafiada." }
+                            ],
+                            resources: "Tarjetas de escenarios."
+                        },
+                        {
+                            name: "Desafío de Pensamiento Flexible", question: "¿Cómo ver un problema diferente ayuda a resolverlo?", purpose: "Fortalecer la flexibilidad cognitiva generando múltiples soluciones.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Maestro modela dos soluciones a un problema." },
+                                { phase: "Construir", action: "Regla: 'Al menos tres soluciones posibles antes de elegir una'." },
+                                { phase: "Aplicar", action: "Grupos reciben un desafío y generan 3+ soluciones." },
+                                { phase: "Reflexionar", action: "'¿Qué solución parece más fuerte y por qué?'." }
+                            ],
+                            resources: "Tarjetas de desafío."
+                        }
+                    ]
+                },
+                {
+                    id: 4, name: "Autorregulación Reflexiva", icon: "fa-circle-check",
+                    description: "Planificar, monitorear y ajustar procesos usando metas y feedback.",
+                    tools: [
+                        {
+                            name: "Ciclo Meta-Plan-Hacer-Revisar", question: "¿Cómo planificar ayuda a mi aprendizaje?", purpose: "Establecer metas significativas y tomar acción.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Compartir escenarios con y sin plan." },
+                                { phase: "Construir", action: "Enseñar el ciclo estructurado." },
+                                { phase: "Aplicar", action: "Usar el ciclo durante una tarea actual." },
+                                { phase: "Reflexionar", action: "Evaluar ajustes después de la revisión." }
+                            ],
+                            resources: "Plantilla del ciclo."
+                        },
+                        {
+                            name: "Estrategia Verificar-Cambiar (Check-In)", question: "¿Cómo sé cuándo ajustar mi enfoque?", purpose: "Monitorear aprendizaje y hacer ajustes oportunos.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar: '¿Qué pasa cuando notamos muy tarde que no funciona?'." },
+                                { phase: "Construir", action: "Prompts: 'Check-In: ¿Cómo va?' y 'Cambio: ¿Qué ajusto?'." },
+                                { phase: "Aplicar", action: "Pausar a mitad de tarea para mini-reflexión." },
+                                { phase: "Reflexionar", action: "Compartir el cambio útil." }
+                            ],
+                            resources: "Tarjetas de mini reflexión."
+                        },
+                        {
+                            name: "Co-creación de Criterios de Éxito", question: "¿Cómo saber cómo se ve el éxito me ayuda a mejorar?", purpose: "Entender expectativas y tomar propiedad de la mejora.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Mostrar ejemplos de trabajo fuerte y débil." },
+                                { phase: "Construir", action: "Co-crear 4-6 criterios de éxito con la clase." },
+                                { phase: "Aplicar", action: "Usar criterios para autoevaluación o pares." },
+                                { phase: "Reflexionar", action: "Definir próximos pasos." }
+                            ],
+                            resources: "Muestras de trabajo, rúbricas."
+                        }
+                    ]
+                },
+                {
+                    id: 5, name: "Mentalidad de Crecimiento", icon: "fa-chart-pie",
+                    description: "Responder al desafío con persistencia, viendo errores como aprendizaje.",
+                    tools: [
+                        {
+                            name: "Mapa de Lucha Productiva", question: "¿Cómo la lucha ayuda a crecer a mi cerebro?", purpose: "Reconocer el desafío como parte normal del aprendizaje.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Historia del maestro sobre aprender algo difícil." },
+                                { phase: "Construir", action: "Introducir 4 etapas: Inicio, Lucha, Estrategia, Fortaleza." },
+                                { phase: "Aplicar", action: "Marcar la etapa en la que están durante tarea desafiante." },
+                                { phase: "Reflexionar", action: "Compartir la estrategia útil." }
+                            ],
+                            resources: "Plantilla de mapa."
+                        },
+                        {
+                            name: "Transformación de Errores", question: "¿Cómo los errores me ayudan a aprender?", purpose: "Reencuadrar errores como información para la resiliencia.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Mostrar respuestas constructivas y destructivas al error." },
+                                { phase: "Construir", action: "Establecer prompts analíticos de errores." },
+                                { phase: "Aplicar", action: "Elegir un error reciente y transformarlo." },
+                                { phase: "Reflexionar", action: "Extraer el insight más útil." }
+                            ],
+                            resources: "Plantilla de transformación."
+                        },
+                        {
+                            name: "Plan de Avance con Feedback", question: "¿Cómo el feedback ayuda a crecer?", purpose: "Convertir retroalimentación en pasos accionables.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar cómo se siente recibir feedback." },
+                                { phase: "Construir", action: "Enseñar 3 pasos: Escuchar, Elevar, Avanzar." },
+                                { phase: "Aplicar", action: "Crear un plan de avance basado en feedback reciente." },
+                                { phase: "Reflexionar", action: "Notar el cambio en confianza al usar el feedback." }
+                            ],
+                            resources: "Muestras de feedback, plan."
+                        }
+                    ]
+                },
+                {
+                    id: 6, name: "Alfabetización Informacional", icon: "fa-magnifying-glass",
+                    description: "Localizar, evaluar y sintetizar información con precisión y responsabilidad.",
+                    tools: [
+                        {
+                            name: "Semáforo de Fuentes", question: "¿Cómo sé si la información es confiable?", purpose: "Evaluar fuentes responsablemente antes de usarlas.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Mostrar dos fuentes contrastantes. ¿Confiamos igual?" },
+                                { phase: "Construir", action: "Semáforo: Amarillo, Verde, Rojo." },
+                                { phase: "Aplicar", action: "Evaluar 3 fuentes y etiquetarlas." },
+                                { phase: "Reflexionar", action: "Identificar la pista clave para juzgar la fuente." }
+                            ],
+                            resources: "Textos, resaltadores, semáforo."
+                        },
+                        {
+                            name: "Prueba de Tri-Verificación", question: "¿Por qué verificar información en varios lugares?", purpose: "Construir hábitos de verificación cruzada.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar sobre creer lo primero que se escucha." },
+                                { phase: "Construir", action: "Regla Tri-Verificar: Encontrar 3 fuentes, comparar hechos." },
+                                { phase: "Aplicar", action: "Investigar una pregunta simple usando 3 fuentes." },
+                                { phase: "Reflexionar", action: "Notar el cambio al verificar más de una vez." }
+                            ],
+                            resources: "Enlaces seguros o textos."
+                        },
+                        {
+                            name: "Clasificación Hecho vs. Opinión", question: "¿Cómo diferenciar hecho y opinión?", purpose: "Separar información verificable de puntos de vista.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Compartir dos declaraciones (factual vs opinión)." },
+                                { phase: "Construir", action: "Establecer Criterios: Probar/Chequear vs Pensar/Sentir." },
+                                { phase: "Aplicar", action: "Clasificar declaraciones de un artículo." },
+                                { phase: "Reflexionar", action: "Discutir por qué importa esta diferencia." }
+                            ],
+                            resources: "Tarjetas de declaraciones."
+                        }
+                    ]
+                },
+                {
+                    id: 7, name: "Colaboración entre Pares", icon: "fa-users",
+                    description: "Construir entendimiento a través del diálogo, escucha activa y resolución compartida.",
+                    tools: [
+                        {
+                            name: "Relevo de Escucha", question: "¿Cómo mostrarle a alguien que lo escuché?", purpose: "Fortalecer la escucha activa y creación de significado.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Modelar escucha 'buena' vs 'pobre'." },
+                                { phase: "Construir", action: "Secuencia: Escuchar -> Añadir pregunta -> Parafrasear." },
+                                { phase: "Aplicar", action: "Discutir un prompt en parejas rotativas usando el relevo." },
+                                { phase: "Reflexionar", action: "Identificar una forma de mostrar escucha activa." }
+                            ],
+                            resources: "Tarjetas de prompt."
+                        },
+                        {
+                            name: "Cadena de Preguntas Circular", question: "¿Cómo las preguntas ayudan a grupos a aprender?", purpose: "Construir diálogo basado en indagación.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Comparar pregunta cerrada vs abierta." },
+                                { phase: "Construir", action: "Generar preguntas abiertas con iniciadores." },
+                                { phase: "Aplicar", action: "Construir cadena: cada respuesta incluye una nueva pregunta." },
+                                { phase: "Reflexionar", action: "Identificar la pregunta que más movió el pensamiento." }
+                            ],
+                            resources: "Iniciadores de preguntas."
+                        },
+                        {
+                            name: "Intercambio de Feedback STAR", question: "¿Cómo el feedback mejora ideas juntos?", purpose: "Dar y aplicar feedback que apoye el crecimiento.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Discutir ejemplos de feedback útil vs inútil." },
+                                { phase: "Construir", action: "Enseñar STAR: Específico, Oportuno, Accionable, Respetuoso." },
+                                { phase: "Aplicar", action: "Pares intercambian STAR feedback sobre trabajo." },
+                                { phase: "Reflexionar", action: "Elegir un cambio basado en el feedback." }
+                            ],
+                            resources: "Iniciadores STAR."
+                        },
+                        {
+                            name: "Mapa de Ruta del Equipo", question: "¿Cómo planificar juntos asegura el éxito?", purpose: "Clarificar roles, responsabilidades y puntos de chequeo.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Discutir problemas comunes en trabajos grupales." },
+                                { phase: "Construir", action: "Introducir Mapa: Meta, Roles, Hitos, Check-ins." },
+                                { phase: "Aplicar", action: "Grupos completan un Mapa para una tarea próxima." },
+                                { phase: "Reflexionar", action: "Notar cómo el plan ayudó." }
+                            ],
+                            resources: "Plantilla de Mapa."
+                        }
+                    ]
+                },
+                {
+                    id: 8, name: "Alfabetización Digital", icon: "fa-microchip",
+                    description: "Usar herramientas digitales de forma segura y estratégica.",
+                    tools: [
+                        {
+                            name: "Selector Tecnológico con Propósito", question: "¿Cómo elegir la herramienta correcta?", purpose: "Seleccionar tecnología intencionalmente.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Mostrar ejemplos variados de uso de tecnología." },
+                                { phase: "Construir", action: "Preguntas: ¿Qué intento hacer? ¿Qué herramienta ayuda mejor?" },
+                                { phase: "Aplicar", action: "Elegir herramienta para tarea actual y justificar." },
+                                { phase: "Reflexionar", action: "Evaluar la utilidad de la elección." }
+                            ],
+                            resources: "Acceso a dispositivos."
+                        },
+                        {
+                            name: "Chequeo de Huella Digital", question: "¿Cómo mis acciones online dan forma a mi imagen?", purpose: "Entender y gestionar la presencia digital responsablemente.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar sobre la primera impresión digital." },
+                                { phase: "Construir", action: "Enseñar 3 ideas: Visible, Permanente, Impactante." },
+                                { phase: "Aplicar", action: "Revisar perfiles ficticios e identificar riesgos." },
+                                { phase: "Reflexionar", action: "Definir una elección diferente en línea." }
+                            ],
+                            resources: "Perfiles ficticios."
+                        },
+                        {
+                            name: "Configuración Organizar-Optimizar", question: "¿Cómo el orden digital ayuda a enfocarme?", purpose: "Construir hábitos que apoyen la atención y eficiencia.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Discutir qué pasa al no encontrar archivos." },
+                                { phase: "Construir", action: "Pasos: Nombrarlo claro, Guardarlo con propósito, Limpiar distracciones." },
+                                { phase: "Aplicar", action: "Crear o limpiar un espacio digital." },
+                                { phase: "Reflexionar", action: "Notar el cambio en el aprendizaje por el orden." }
+                            ],
+                            resources: "Dispositivos, guía de nomenclatura."
+                        }
+                    ]
+                },
+                {
+                    id: 9, name: "Creatividad e Innovación", icon: "fa-palette",
+                    description: "Generar ideas, explorar posibilidades y crear resultados originales.",
+                    tools: [
+                        {
+                            name: "Generador '¿Qué pasaría si...?'", question: "¿Cómo crear nuevas ideas con preguntas?", purpose: "Ir más allá del pensamiento familiar.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Mostrar objeto simple. '¿Para qué más sirve?'." },
+                                { phase: "Construir", action: "Iniciadores: ¿Si cambiamos tamaño? ¿Si no hubiera reglas?" },
+                                { phase: "Aplicar", action: "Aplicar preguntas a un tema para generar 5-10 ideas." },
+                                { phase: "Reflexionar", action: "Compartir la idea sorprendente." }
+                            ],
+                            resources: "Objetos cotidianos."
+                        },
+                        {
+                            name: "Ciclo Divergente-Convergente", question: "¿Cómo tener muchas ideas y elegir la mejor?", purpose: "Proceso creativo de expandir y estrechar ideas.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Comparar lluvia de ideas pobre vs productiva." },
+                                { phase: "Construir", action: "Ciclo: Divergente (sin juzgar) -> Convergente (criterios)." },
+                                { phase: "Aplicar", action: "Lluvia de ideas, luego elección de la mejor con criterios." },
+                                { phase: "Reflexionar", action: "Evaluar el uso de criterios en la elección." }
+                            ],
+                            resources: "Notas adhesivas."
+                        },
+                        {
+                            name: "Bucle Prototipar y Probar", question: "¿Cómo probar ayuda a mejorar ideas?", purpose: "Tomar riesgos creativos mediante experimentación.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Ejemplo de invención que cambió muchas veces." },
+                                { phase: "Construir", action: "Bucle: Crear -> Probar -> Mejorar." },
+                                { phase: "Aplicar", action: "Construir prototipo y probar con feedback." },
+                                { phase: "Reflexionar", action: "Identificar la mejora realizada por la prueba." }
+                            ],
+                            resources: "Materiales de construcción simple."
+                        }
+                    ]
+                },
+                {
+                    id: 10, name: "Salud y Bienestar (Cerebro-Cuerpo)", icon: "fa-heart-pulse",
+                    description: "Decisiones informadas sobre bienestar para apoyar foco y memoria.",
+                    tools: [
+                        {
+                            name: "Chequeo Cerebro-Cuerpo", question: "¿Cómo afecta cómo me siento a qué tan bien aprendo?", purpose: "Notar conexión entre estado físico/emocional y aprendizaje.", time: "35 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar por efectos de cansancio o hambre." },
+                                { phase: "Construir", action: "Prompts: Cuerpo, Cerebro, Balance." },
+                                { phase: "Aplicar", action: "Chequeo antes de tarea y elegir pequeña acción de bienestar." },
+                                { phase: "Reflexionar", action: "Notar cambio post-cuidado personal." }
+                            ],
+                            resources: "Tarjetas de chequeo."
+                        },
+                        {
+                            name: "Rutina de Enfoque y Reinicio", question: "¿Qué hacer cuando necesito enfocarme?", purpose: "Técnicas de regulación simples para la atención.", time: "40 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Discusión sobre el 'reinicio' de atletas." },
+                                { phase: "Construir", action: "Rutina: Pausa -> Respira -> Re-enfoca." },
+                                { phase: "Aplicar", action: "Practicar rutina a mitad de tarea." },
+                                { phase: "Reflexionar", action: "Evaluar utilidad del reinicio." }
+                            ],
+                            resources: "Tarjeta de prompt."
+                        },
+                        {
+                            name: "Mapa de Energía para Aprender", question: "¿Cuándo aprendo mejor?", purpose: "Rastrear patrones de energía e influencias.", time: "45 minutos",
+                            methodology: [
+                                { phase: "Conectar", action: "Preguntar por horarios óptimos de aprendizaje." },
+                                { phase: "Construir", action: "Zonas de Energía: Alta/Lista, Baja/Lenta, Rápida/Dispersa." },
+                                { phase: "Aplicar", action: "Rastrear energía en 3 puntos y notar influencias." },
+                                { phase: "Reflexionar", action: "Identificar hábitos para mantenerse en zona lista." }
+                            ],
+                            resources: "Hoja de rastreo."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // ==========================================
+        // 3. ESTADOS GLOBALES Y LÓGICA DE NAVEGACIÓN
+        // ==========================================
+        let currentToolkit = 'l2l'; // '3cs' o 'l2l'
+        let active3CsTab = 'conceptual';
+        let activeL2LStrand = 1;
+
+        function switchMainToolkit(toolkit) {
+            currentToolkit = toolkit;
+            const wrapper3Cs = document.getElementById('wrapper-3cs');
+            const wrapperL2L = document.getElementById('wrapper-l2l');
+            const btn3Cs = document.getElementById('btn-global-3cs');
+            const btnL2L = document.getElementById('btn-global-l2l');
+
+            closeModal();
+
+            if (toolkit === '3cs') {
+                btn3Cs.className = "w-full sm:w-auto hub-tab px-6 md:px-12 py-3 md:py-4 text-base md:text-xl font-black transition-all flex items-center justify-center gap-3 bg-unitec-cyan text-unitec-federal shadow-[0_-5px_15px_rgba(3,174,210,0.3)]";
+                btnL2L.className = "w-full sm:w-auto hub-tab px-6 md:px-12 py-3 md:py-4 text-base md:text-xl font-black transition-all flex items-center justify-center gap-3 bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white";
+                
+                // Mantenemos flex-col para evitar deformaciones horizontales en el wrapper principal
+                wrapper3Cs.classList.remove('hidden');
+                wrapper3Cs.classList.add('flex');
+                wrapperL2L.classList.add('hidden');
+                wrapperL2L.classList.remove('flex');
+                
+                document.getElementById('mainDefinition-3cs').innerText = `"${data3Cs.metadata.definition}"`;
+                render3CsTabs();
+                render3CsContent();
+
+            } else {
+                btnL2L.className = "w-full sm:w-auto hub-tab px-6 md:px-12 py-3 md:py-4 text-base md:text-xl font-black transition-all flex items-center justify-center gap-3 bg-unitec-cyan text-unitec-federal shadow-[0_-5px_15px_rgba(3,174,210,0.3)]";
+                btn3Cs.className = "w-full sm:w-auto hub-tab px-6 md:px-12 py-3 md:py-4 text-base md:text-xl font-black transition-all flex items-center justify-center gap-3 bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white";
+                
+                wrapperL2L.classList.remove('hidden');
+                wrapperL2L.classList.add('flex');
+                wrapper3Cs.classList.add('hidden');
+                wrapper3Cs.classList.remove('flex');
+                
+                renderL2LContinuum();
+                renderL2LSidebar();
+                renderL2LTools();
+            }
+        }
+
+        // ==========================================
+        // 4. LÓGICA 3Cs TOOLKIT
+        // ==========================================
+        function render3CsTabs() {
+            const container = document.getElementById('tabsContainer-3cs');
+            container.innerHTML = '';
+            data3Cs.categories.forEach(cat => {
+                const isActive = cat.id === active3CsTab;
+                const btn = document.createElement('button');
+                
+                let classes = "flex-1 min-w-[160px] flex items-center justify-center gap-3 px-6 py-4 transition-all duration-300 cursor-pointer font-bold text-sm rounded-xl ";
+                if (isActive) {
+                    classes += cat.btnActiveClass + " border-2 shadow-2xl";
+                } else {
+                    classes += "bg-white text-slate-500 border border-slate-200 hover:border-unitec-cyan hover:bg-unitec-light hover:text-unitec-federal hover:shadow-md";
+                }
+                
+                btn.className = classes;
+                btn.innerHTML = `<i class="fa-solid ${cat.icon} text-lg"></i> <span>${cat.title}</span>`;
+                btn.onclick = () => {
+                    active3CsTab = cat.id;
+                    render3CsTabs();
+                    render3CsContent();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function render3CsContent() {
+            const cat = data3Cs.categories.find(c => c.id === active3CsTab);
+            document.getElementById('goalBox-3cs').className = `p-8 rounded-xl shadow-lg bg-white relative overflow-hidden transition-all duration-300 diamond-border-top`;
+            document.getElementById('goalText-3cs').innerText = `"${cat.goalStem}"`;
+            document.getElementById('descText-3cs').innerText = cat.description;
+
+            const container = document.getElementById('phasesContainer-3cs');
+            container.innerHTML = '';
+            
+            cat.phases.forEach((phase, idx) => {
+                let toolsHtml = phase.tools.length > 0 ? phase.tools.map(tool => {
+                    return `
+                        <li class="flex items-start cursor-pointer hover:bg-unitec-light rounded-lg px-3 py-2 -mx-3 transition-colors" onclick="openUnifiedModal('3cs', '${tool.name.replace(/'/g, "\\'")}')">
+                            <i class="fa-solid fa-chevron-right text-xs mt-1 flex-shrink-0 mr-2 text-unitec-cyan"></i>
+                            <span class="text-sm text-unitec-federal font-bold">${tool.name}</span>
+                        </li>`;
+                }).join('') : `<li class="text-sm text-slate-400 italic font-light">No hay herramientas en esta fase.</li>`;
+
+                container.innerHTML += `
+                    <div class="bg-white rounded-xl border border-slate-100 shadow-md flex flex-col h-full overflow-hidden hover:shadow-xl transition-all duration-300 group w-full">
+                        <div class="p-6 border-b border-slate-100 bg-slate-50 relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 opacity-5">
+                                <i class="fa-solid fa-layer-group text-6xl text-unitec-federal"></i>
+                            </div>
+                            <div class="flex items-center gap-4 mb-3 relative z-10">
+                                <span class="diamond-icon-bg flex-shrink-0 w-10 h-10 bg-unitec-federal text-unitec-sky flex items-center justify-center text-sm font-black shadow-md">${idx + 1}</span>
+                                <h3 class="font-black text-unitec-federal text-lg leading-tight">${phase.name}</h3>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed font-light mt-2">${phase.description}</p>
+                        </div>
+                        <div class="p-6 flex-grow bg-white w-full">
+                            <h4 class="text-xs font-black text-unitec-cyan uppercase tracking-widest mb-5 flex items-center gap-2">
+                                <i class="fa-solid fa-wrench"></i> Herramientas
+                            </h4>
+                            <ul class="space-y-3 w-full">${toolsHtml}</ul>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // ==========================================
+        // 5. LÓGICA L2L TOOLKIT
+        // ==========================================
+        function switchL2lView(viewName) {
+            const btnContinuum = document.getElementById('btn-l2l-continuum');
+            const btnTools = document.getElementById('btn-l2l-tools');
+            const viewContinuum = document.getElementById('view-l2l-continuum');
+            const viewTools = document.getElementById('view-l2l-tools');
+
+            if (viewName === 'continuum') {
+                btnContinuum.className = "diamond-btn flex-1 sm:flex-none px-5 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-unitec-cyan text-unitec-federal shadow-md";
+                btnTools.className = "diamond-btn flex-1 sm:flex-none px-5 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all text-white hover:bg-white/10";
+                
+                viewContinuum.classList.remove('hidden');
+                viewContinuum.classList.add('block');
+                viewTools.classList.add('hidden');
+                viewTools.classList.remove('flex');
+            } else {
+                btnTools.className = "diamond-btn flex-1 sm:flex-none px-5 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all bg-unitec-cyan text-unitec-federal shadow-md";
+                btnContinuum.className = "diamond-btn flex-1 sm:flex-none px-5 py-3 text-sm md:text-base font-bold flex items-center justify-center gap-2 transition-all text-white hover:bg-white/10";
+                
+                viewTools.classList.remove('hidden');
+                viewTools.classList.add('flex');
+                viewContinuum.classList.add('hidden');
+                viewContinuum.classList.remove('block');
+            }
+        }
+
+        function renderL2LContinuum() {
+            const container = document.getElementById('continuum-grid');
+            container.innerHTML = '';
+            
+            dataL2L.continuum.forEach((stage, idx) => {
+                let gradientClass = idx === 0 ? 'from-slate-400 to-slate-300' : 
+                                    idx === 1 ? 'from-unitec-sky to-blue-300' : 
+                                    idx === 2 ? 'from-unitec-cyan to-unitec-sky' : 
+                                    'from-unitec-federal to-unitec-cyan';
+                let iconColorClass = idx === 0 ? 'text-slate-400' : 
+                                     idx === 1 ? 'text-unitec-sky' : 
+                                     idx === 2 ? 'text-unitec-cyan' : 
+                                     'text-unitec-federal';
+
+                let charsHtml = stage.characteristics.map(char => `
+                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                        <i class="fa-solid fa-circle-check mt-1 flex-shrink-0 ${iconColorClass}"></i>
+                        <span class="leading-snug font-light">${char}</span>
+                    </li>
+                `).join('');
+
+                container.innerHTML += `
+                    <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col h-full relative">
+                        <div class="h-2 w-full bg-gradient-to-r ${gradientClass}"></div>
+                        <div class="p-8 flex-grow flex flex-col">
+                            <div class="mb-6 text-center">
+                                <h3 class="text-2xl font-black text-unitec-federal mb-1">${stage.stage}</h3>
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">${stage.stage_en}</span>
+                            </div>
+                            <div class="mb-6 bg-slate-50 p-5 rounded-lg border-l-4 border-unitec-cyan">
+                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2"><i class="fa-solid fa-brain"></i> Mentalidad</span>
+                                <p class="text-sm font-bold text-unitec-federal italic">"${stage.mindset}"</p>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-8 leading-relaxed font-light">${stage.description}</p>
+                            <div class="mt-auto pt-6 border-t border-slate-100">
+                                <span class="text-[10px] font-black text-unitec-cyan uppercase tracking-widest block mb-4">Características Clave</span>
+                                <ul class="space-y-4">${charsHtml}</ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderL2LSidebar() {
+            const container = document.getElementById('strands-sidebar');
+            container.innerHTML = '';
+            dataL2L.strands.forEach(strand => {
+                const isActive = activeL2LStrand === strand.id;
+                const activeBtnClass = isActive ? 'bg-white border-unitec-cyan shadow-md' : 'bg-transparent border-transparent hover:bg-white/50 hover:border-slate-200';
+                const activeIconClass = isActive ? 'bg-unitec-federal text-white shadow-inner' : 'bg-slate-100 text-slate-400 group-hover:bg-unitec-sky group-hover:text-unitec-federal';
+                const activeTextClass = isActive ? 'text-unitec-federal font-black' : 'text-slate-600 font-semibold';
+
+                container.innerHTML += `
+                    <button onclick="activeL2LStrand=${strand.id}; renderL2LSidebar(); renderL2LTools();" class="w-full text-left p-4 rounded-xl flex items-center gap-4 transition-all duration-200 border-2 group ${activeBtnClass}">
+                        <div class="diamond-icon-bg w-10 h-10 flex items-center justify-center shrink-0 transition-colors ${activeIconClass}">
+                            <i class="fa-solid ${strand.icon} text-sm"></i>
+                        </div>
+                        <span class="text-sm leading-tight ${activeTextClass}">${strand.name}</span>
+                    </button>
+                `;
+            });
+        }
+
+        function renderL2LTools() {
+            const strand = dataL2L.strands.find(s => s.id === activeL2LStrand);
+            if (!strand) return;
+
+            document.getElementById('strand-icon').className = `fa-solid ${strand.icon} text-2xl`;
+            document.getElementById('strand-title').innerText = strand.name;
+            document.getElementById('strand-desc').innerText = strand.description;
+
+            const container = document.getElementById('tools-container-l2l');
+            container.innerHTML = '';
+
+            strand.tools.forEach((tool, idx) => {
+                let stepsPreview = tool.methodology.slice(0, 2).map(m => `<span class="inline-block bg-slate-100 text-slate-500 text-[10px] px-2 py-1 rounded-full font-bold uppercase mr-1 mb-1">${m.phase}</span>`).join('');
+                
+                container.innerHTML += `
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 group diamond-border-top">
+                        <div class="bg-slate-50 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-100 relative overflow-hidden">
+                            <div class="absolute -right-4 -bottom-4 opacity-5"><i class="fa-solid fa-wrench text-8xl text-unitec-federal group-hover:rotate-12 transition-transform"></i></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="diamond-tag px-3 py-1 bg-unitec-federal text-white text-[10px] font-black uppercase tracking-widest">Herramienta ${idx + 1}</span>
+                                    <div class="flex items-center gap-1 text-unitec-cyan text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-clock"></i> ${tool.time}</div>
+                                </div>
+                                <h3 class="text-2xl font-black text-unitec-federal mb-2">${tool.name}</h3>
+                                <p class="text-sm text-slate-500 font-light italic">"${tool.question}"</p>
+                            </div>
+                            <button onclick="openUnifiedModal('l2l', '${tool.name.replace(/'/g, "\\'")}')" class="relative z-10 shrink-0 bg-white border-2 border-unitec-cyan text-unitec-federal hover:bg-unitec-cyan hover:text-white px-6 py-3 rounded-lg font-bold transition-colors text-sm shadow-sm flex items-center justify-center gap-2">
+                                Ver Metodología <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="p-6 md:p-8 bg-white grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xs font-black text-unitec-cyan uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-bullseye"></i> Propósito</h4>
+                                <p class="text-sm text-slate-600 font-light leading-relaxed">${tool.purpose}</p>
+                            </div>
+                            <div class="border-l border-slate-100 md:pl-8">
+                                <h4 class="text-xs font-black text-unitec-cyan uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Fases</h4>
+                                <div class="mt-2">${stepsPreview} <span class="text-[10px] text-slate-400 font-bold uppercase ml-1">+ ${tool.methodology.length - 2} pasos</span></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // ==========================================
+        // 6. MODAL UNIFICADO (MANEJA AMBOS FORMATOS)
+        // ==========================================
+        function openUnifiedModal(type, toolName) {
+            let foundTool = null;
+            
+            if (type === '3cs') {
+                for (let cat of data3Cs.categories) {
+                    for (let phase of cat.phases) {
+                        foundTool = phase.tools.find(t => t.name === toolName);
+                        if (foundTool) break;
+                    }
+                    if (foundTool) break;
+                }
+            } else if (type === 'l2l') {
+                for (let strand of dataL2L.strands) {
+                    foundTool = strand.tools.find(t => t.name === toolName);
+                    if (foundTool) break;
+                }
+            }
+
+            if (foundTool) {
+                document.getElementById('modalTitle').innerText = foundTool.name;
+                document.getElementById('modalTag').innerText = type === '3cs' ? "Herramienta de Evidencia (3Cs)" : "Herramienta de Agencia (L2L)";
+                document.getElementById('modalSubtitle').innerText = type === '3cs' ? foundTool.summary : `"${foundTool.question}"`;
+                
+                document.getElementById('modalPurpose').innerText = type === '3cs' ? foundTool.details.purpose : foundTool.purpose;
+                
+                const timeEl = document.getElementById('modalTime');
+                if (type === 'l2l' && foundTool.time) {
+                    timeEl.innerText = foundTool.time;
+                    timeEl.classList.remove('hidden');
+                } else {
+                    timeEl.classList.add('hidden');
+                }
+
+                const stepsContainer = document.getElementById('modalSteps');
+                stepsContainer.innerHTML = '';
+                
+                if (type === '3cs') {
+                    foundTool.details.howTo.forEach((step, idx) => {
+                        stepsContainer.innerHTML += `
+                            <div class="flex gap-4">
+                                <span class="diamond-icon-bg flex-shrink-0 w-6 h-6 bg-unitec-cyan text-unitec-federal flex items-center justify-center text-[10px] font-black shadow-sm mt-0.5">${idx + 1}</span>
+                                <p class="text-sm text-slate-700 leading-relaxed font-light">${step}</p>
+                            </div>
+                        `;
+                    });
+                } else if (type === 'l2l') {
+                    foundTool.methodology.forEach((step, idx) => {
+                        stepsContainer.innerHTML += `
+                            <div class="flex gap-5 group">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border-2 border-unitec-cyan text-unitec-federal font-black flex items-center justify-center text-sm shadow-sm group-hover:bg-unitec-cyan group-hover:text-white transition-all mt-0.5">${idx + 1}</div>
+                                <div class="flex-grow bg-slate-50 p-4 rounded-xl border border-slate-100 group-hover:border-unitec-cyan/30 transition-colors">
+                                    <span class="block font-black text-unitec-federal text-xs mb-2 uppercase tracking-widest">${step.phase}</span>
+                                    <p class="text-sm text-slate-600 font-light leading-relaxed">${step.action}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+
+                const tipsContainer = document.getElementById('modalTipsContainer');
+                if (type === '3cs') {
+                    tipsContainer.classList.remove('hidden');
+                    document.getElementById('modalTips').innerText = foundTool.details.tips;
+                    document.getElementById('modalMaterials').innerText = foundTool.details.materials;
+                } else if (type === 'l2l') {
+                    tipsContainer.classList.add('hidden');
+                    document.getElementById('modalMaterials').innerText = foundTool.resources;
+                }
+
+                document.getElementById('toolModal').classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('toolModal').classList.add('hidden');
+        }
+
+        // ==========================================
+        // 7. INICIALIZACIÓN
+        // ==========================================
+        window.onload = () => {
+            switchMainToolkit('l2l'); // Iniciar con L2L por defecto
+        };
+
+    </script>
+</body>
+</html>
