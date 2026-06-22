@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Definición del Aprendizaje - UNITEC CEUTEC</title>
+    
+    <!-- Tipografía Institucional: Poppins Estricto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuración de Colores de Marca y Tipografía -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            federal: '#06065C',
+                            cyan: '#03AED2',
+                            sky: '#47C8FD',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+
+        .diamond-cut-reverse {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 85%);
+        }
+
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        .hover-solid-shift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .hover-solid-shift:hover {
+            transform: translate(-8px, -8px);
+        }
+
+        .solid-border-bg {
+            background-color: #03AED2;
+        }
+        
+        body {
+            background-color: #06065C;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .logo-unitec {
+            display: block;
+            height: 88px;
+            width: auto;
+            max-width: 390px;
+        }
+
+        .logo-unitec-footer {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 270px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-unitec {
+                height: 68px;
+                max-width: 300px;
+            }
+
+            .logo-unitec-footer {
+                height: 48px;
+                max-width: 220px;
+            }
+        }
+
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-sky selection:text-brand-federal">
+
+    <!-- Navegación Corporativa -->
+    <nav class="w-full bg-brand-federal border-b-4 border-brand-cyan py-6 px-8 flex justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+            <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec">
+        </div>
+        <div class="flex items-center justify-end gap-3">
+            <a href="index.html" class="border-2 border-brand-cyan text-white font-bold px-4 py-2 text-xs md:text-sm uppercase tracking-widest hover:bg-brand-cyan hover:text-brand-federal transition-colors duration-200">
+        Página principal
+             </a>
+        </div>
+    </nav>
+    <!-- Encabezado -->
+    <header class="relative pt-24 pb-20 px-6 max-w-6xl mx-auto">
+        <div class="absolute top-10 right-10 w-32 h-32 bg-brand-cyan opacity-20 diamond-shape"></div>
+        
+        <div class="relative z-10">
+            <h2 class="text-brand-sky font-bold tracking-[0.2em] uppercase mb-4 text-sm md:text-base border-l-4 border-brand-sky pl-4">El Modelo de las 3 Cs</h2>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tight text-white uppercase">
+                La Definición <br>
+                <span class="text-brand-cyan">Del Aprendizaje</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-medium text-gray-300 max-w-2xl mt-8 border-l-4 border-brand-cyan pl-6">
+                Para iniciar el cambio de paradigma, debemos redefinir qué significa "aprender". El aprendizaje profundo ocurre en la intersección de <span class="text-brand-sky font-bold">tres dimensiones inseparables</span>.
+            </p>
+        </div>
+    </header>
+
+    <!-- Sección de las 3 Cs -->
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 mt-12">
+            
+            <!-- Bloque 1: Conceptual -->
+            <div class="relative">
+                <div class="absolute inset-0 solid-border-bg diamond-cut mt-4 ml-4"></div>
+                <div class="relative bg-white text-brand-federal p-10 diamond-cut hover-solid-shift z-10 h-full flex flex-col">
+                    <div class="w-20 h-20 bg-brand-federal diamond-shape flex items-center justify-center mb-8">
+                        <i data-lucide="lightbulb" class="w-10 h-10 text-brand-sky"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-1 uppercase">Conceptual</h2>
+                    <h3 class="text-sm font-bold text-brand-cyan mb-6 uppercase tracking-widest">Entender que...</h3>
+                    <p class="font-medium text-gray-700 mb-8 flex-grow">
+                        Se enfoca en la comprensión profunda de <span class="font-black text-brand-federal">"La Gran Idea"</span> y los principios que rigen el mundo, más allá de la memorización de datos.
+                    </p>
+                    <div class="mt-auto p-5 bg-gray-100 border-l-8 border-brand-federal flex flex-col gap-3">
+                        <p class="text-sm">
+                            <span class="font-black block mb-1">En Ingeniería:</span> 
+                            Comprender la causalidad y el comportamiento físico de los materiales, no solo aplicar fórmulas.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Arte y Diseño:</span> 
+                            Entender que el diseño trasciende la estética; es un sistema de comunicación y resolución de problemas que interactúa con la psicología y cultura humana.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Ciencias Admon. y Sociales:</span> 
+                            Entender que una organización es un ecosistema vivo donde las decisiones legales, financieras o de mercado impactan directamente en la sociedad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque 2: Competencias -->
+            <div class="relative">
+                <div class="absolute inset-0 bg-brand-sky diamond-cut mt-4 ml-4"></div>
+                <div class="relative bg-white text-brand-federal p-10 diamond-cut hover-solid-shift z-10 h-full flex flex-col">
+                    <div class="w-20 h-20 bg-brand-cyan diamond-shape flex items-center justify-center mb-8">
+                        <i data-lucide="cog" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-1 uppercase">Competencias</h2>
+                    <h3 class="text-sm font-bold text-brand-cyan mb-6 uppercase tracking-widest">Ser capaz de...</h3>
+                    <p class="font-medium text-gray-700 mb-8 flex-grow">
+                        Es el desarrollo de habilidades y destrezas observables, utilizando la taxonomía de Bloom adaptada con estricta precisión por UNITEC.
+                    </p>
+                    <div class="mt-auto p-5 bg-gray-100 border-l-8 border-brand-cyan flex flex-col gap-3">
+                        <p class="text-sm">
+                            <span class="font-black block mb-1">En Ingeniería:</span> 
+                            Analizar, diseñar, evaluar y crear en contextos auténticos y exigentes del mundo real.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Arte y Diseño:</span> 
+                            Conceptualizar ideas complejas, bocetar, prototipar y materializar experiencias (espacios, platillos, identidades visuales) centradas en el usuario.
+                        </p>
+                        <p class="text-sm border-t border-gray-300 pt-3">
+                            <span class="font-black block mb-1">En Ciencias Admon. y Sociales:</span> 
+                            Investigar tendencias, interpretar datos complejos, argumentar jurídicamente y estructurar planes estratégicos viables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque 3: Carácter -->
+            <div class="relative">
+                <div class="absolute inset-0 bg-white diamond-cut mt-4 ml-4 opacity-20"></div>
+                <div class="relative bg-brand-cyan text-brand-federal p-10 diamond-cut hover-solid-shift z-10 h-full flex flex-col">
+                    <div class="w-20 h-20 bg-white diamond-shape flex items-center justify-center mb-8">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-brand-federal"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-1 uppercase text-white">Carácter</h2>
+                    <h3 class="text-sm font-bold text-brand-federal mb-6 uppercase tracking-widest">Convertirse en...</h3>
+                    <p class="font-medium text-brand-federal mb-8 flex-grow">
+                        El pilar de nuestra misión de <span class="font-black">Becoming Human</span>. Consiste en desarrollar valores inquebrantables, ética profesional y compromiso.
+                    </p>
+                    <div class="mt-auto p-5 bg-brand-federal text-white border-l-8 border-brand-sky flex flex-col gap-3">
+                        <p class="text-sm">
+                            <span class="font-black text-brand-sky block mb-1">En Ingeniería:</span> 
+                            Un ingeniero competente pero sin carácter ético es un riesgo inaceptable para la sociedad.
+                        </p>
+                        <p class="text-sm border-t border-white/20 pt-3">
+                            <span class="font-black text-brand-sky block mb-1">En Arte y Diseño:</span> 
+                            Un artista y diseñador reconoce el impacto cultural e inclusivo de su obra, diseñando con responsabilidad humana.
+                        </p>
+                        <p class="text-sm border-t border-white/20 pt-3">
+                            <span class="font-black text-brand-sky block mb-1">En Ciencias Admon. y Sociales:</span> 
+                            Un gerente o abogado no solo busca la rentabilidad o ganar casos, sino promover la justicia y equidad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Sección de Video -->
+    <section class="bg-white text-brand-federal py-24 relative overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-64 h-64 bg-brand-sky diamond-shape opacity-20"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-cyan diamond-shape opacity-10"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-12 uppercase tracking-tight">
+                Profundiza en el <span class="text-brand-cyan">Paradigma</span>
+            </h2>
+            
+            <div class="relative p-2 bg-brand-cyan diamond-cut-reverse inline-block w-full">
+                <div class="w-full bg-brand-federal diamond-cut-reverse overflow-hidden relative">
+                    <video 
+                        id="brandVideo" 
+                        class="w-full h-auto aspect-video"
+                        controls
+                        preload="metadata"
+                    >
+                        <source src="VID/Redefiniendo_el_Aprendizaje.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página Institucional -->
+    <footer class="bg-brand-federal border-t-8 border-brand-sky py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec-footer">
+            </div>
+            <p class="text-sm font-medium text-brand-sky uppercase tracking-widest text-center md:text-right">
+                Alineado con <span class="text-white font-bold">Entrenamiento Docente</span><br>
+                y la Visión UNITEC 2030.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

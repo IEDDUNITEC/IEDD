@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNITEC | Impacto de la Evaluación Ecosistema de Aprendizaje en Ingeniería</title>
+
+    <style>
+        :root {
+            --federal-blue: #06065C;
+            --pacific-cyan: #03AED2;
+            --vivid-sky-blue: #47C8FD;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-500: #64748B;
+            --gray-700: #334155;
+            --gray-900: #0F172A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Poppins, Arial, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        button,
+        audio {
+            font-family: inherit;
+        }
+
+        .diamond {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+        }
+
+        .app-header {
+            background: var(--federal-blue);
+            color: var(--white);
+            border-bottom: 4px solid var(--pacific-cyan);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand svg {
+            width: 170px;
+            height: auto;
+        }
+
+        .header-title {
+            display: none;
+            color: var(--vivid-sky-blue);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-left: 1px solid rgba(255,255,255,0.25);
+            padding-left: 1rem;
+        }
+
+        .header-meta {
+            display: none;
+            text-align: right;
+        }
+
+        .header-meta strong {
+            color: var(--vivid-sky-blue);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .header-meta span {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .menu-toggle {
+            border: 0;
+            background: var(--pacific-cyan);
+            color: var(--federal-blue);
+            padding: 0.65rem;
+            cursor: pointer;
+        }
+
+        .menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .top-panel {
+            background: var(--white);
+            border-bottom: 2px solid var(--gray-200);
+            display: none;
+        }
+
+        .top-panel.open {
+            display: block;
+        }
+
+        .audio-row {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: stretch;
+            justify-content: space-between;
+        }
+
+        .audio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .audio-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--federal-blue);
+            color: var(--white);
+            display: grid;
+            place-items: center;
+        }
+
+        .audio-label strong {
+            display: block;
+            color: var(--federal-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .audio-label span {
+            display: block;
+            color: var(--gray-500);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .nav-row {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-700);
+            padding: 0.85rem 1rem;
+            font-weight: 800;
+            font-size: 0.82rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--federal-blue);
+            color: var(--white);
+            border-color: var(--federal-blue);
+        }
+
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .section-title {
+            border-left: 6px solid var(--pacific-cyan);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h1 {
+            color: var(--federal-blue);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.1;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            color: var(--gray-500);
+            margin-top: 0.35rem;
+            font-weight: 600;
+        }
+
+        .card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            margin-bottom: 1.5rem;
+        }
+
+        .card::before {
+            content: "";
+            display: block;
+            height: 6px;
+            background: var(--pacific-cyan);
+        }
+
+        .card-body {
+            padding: clamp(1.25rem, 3vw, 2rem);
+        }
+
+        .card h2,
+        .card h3 {
+            color: var(--federal-blue);
+            line-height: 1.2;
+        }
+
+        .card p {
+            color: var(--gray-700);
+            margin: 0.8rem 0;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: var(--gray-100);
+            border-left: 5px solid var(--vivid-sky-blue);
+            padding: 1.2rem;
+            color: var(--federal-blue);
+            font-weight: 800;
+            font-style: italic;
+            margin: 1.5rem 0;
+        }
+
+        .meta-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .pill {
+            display: inline-block;
+            background: var(--pacific-cyan);
+            color: var(--white);
+            padding: 0.35rem 0.65rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .pill.dark {
+            background: var(--federal-blue);
+        }
+
+        .list-block {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .track-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .track-letter {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            color: var(--white);
+            background: var(--federal-blue);
+            font-size: 1.1rem;
+            font-weight: 900;
+            flex: 0 0 auto;
+        }
+
+        .track-letter.b {
+            background: var(--pacific-cyan);
+        }
+
+        .track-letter.c {
+            background: var(--gray-500);
+        }
+
+        .tabs-layout {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .indicator-list {
+            display: grid;
+            gap: 0.5rem;
+            max-height: 520px;
+            overflow: auto;
+            padding-right: 0.25rem;
+        }
+
+        .indicator-btn {
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-700);
+            padding: 0.9rem;
+            text-align: left;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .indicator-btn.active {
+            background: var(--federal-blue);
+            color: var(--white);
+            border-color: var(--pacific-cyan);
+        }
+
+        .chart-area {
+            display: grid;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .bar-group {
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .bar-label {
+            font-weight: 900;
+            color: var(--federal-blue);
+            font-size: 0.9rem;
+        }
+
+        .bar-stack {
+            height: 34px;
+            display: flex;
+            width: 100%;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .bar-segment {
+            height: 100%;
+            display: grid;
+            place-items: center;
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 900;
+            min-width: 0;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--gray-700);
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+        }
+
+        .observation {
+            margin-top: 1.5rem;
+            background: var(--gray-100);
+            border-left: 5px solid var(--federal-blue);
+            padding: 1rem;
+        }
+
+        .observation strong {
+            display: block;
+            color: var(--federal-blue);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.25rem;
+        }
+
+        .quote-grid,
+        .three-grid,
+        .two-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .quote {
+            border-left: 5px solid var(--pacific-cyan);
+            background: var(--gray-100);
+            padding: 1rem;
+            font-style: italic;
+            color: var(--gray-700);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .trajectory-header {
+            color: var(--white);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: var(--federal-blue);
+        }
+
+        .trajectory-header.b {
+            background: var(--pacific-cyan);
+        }
+
+        .trajectory-header.c {
+            background: var(--gray-700);
+        }
+
+        .trajectory-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            line-height: 1.1;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .pie-box {
+            display: grid;
+            place-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .pie {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(var(--federal-blue) 0 66%, var(--pacific-cyan) 66% 100%);
+            position: relative;
+        }
+
+        .pie::after {
+            content: "";
+            position: absolute;
+            inset: 48px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .conclusion-item {
+            display: flex;
+            gap: 1rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .check {
+            color: var(--pacific-cyan);
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        footer {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            border-top: 2px solid var(--gray-200);
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        footer strong {
+            color: var(--federal-blue);
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.25rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .header-title,
+            .header-meta {
+                display: block;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .top-panel {
+                display: block;
+            }
+
+            .audio-row {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .tabs-layout {
+                grid-template-columns: 340px 1fr;
+            }
+
+            .two-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .three-grid,
+            .quote-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .trajectory-header {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .logo-unitec {
+            display: block;
+            height: 88px;
+            width: auto;
+            max-width: 390px;
+        }
+
+        .logo-unitec-footer {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 270px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-unitec {
+                height: 68px;
+                max-width: 300px;
+            }
+
+            .logo-unitec-footer {
+                height: 48px;
+                max-width: 220px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="brand">
+                <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec">
+                <div class="header-title">Facultad de Ingeniería</div>
+            </div>
+
+            <div class="header-meta">
+                <strong>Estudio 2025</strong>
+                <span>CIV324 Análisis Estructural</span>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="top-panel" id="topPanel">
+            <div class="audio-row">
+                <div class="audio-label">
+                    <div class="audio-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"></path>
+                            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Podcast del Estudio</strong>
+                        <span>Comentarios sobre la implementación</span>
+                    </div>
+                </div>
+
+                <audio controls preload="metadata">
+                    <source src="AUD/Comentario_Piloto_de_Implementacion_CIV324.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <nav class="nav-row" id="mainNav"></nav>
+        </div>
+    </header>
+
+    <main class="page" id="content"></main>
+
+    <footer>
+        <strong>Autor: Marco Tulio Canales Chavez, PhD</strong>
+        <p>© 2025 Universidad Tecnológica Centroamericana (UNITEC). Todos los derechos reservados.</p>
+        <p style="color:#03AED2; font-weight:900;">Diseñado bajo los principios del Ecosistema de Aprendizaje (Ecosistema de Aprendizaje).</p>
+    </footer>
+
+    <script>
+        const COLORS = {
+            blue: "#06065C",
+            cyan: "#03AED2",
+            sky: "#47C8FD",
+            gray: "#CBD5E1",
+            red: "#EF4444"
+        };
+
+        const tabs = [
+            ["summary", "Resumen"],
+            ["intro", "Introducción"],
+            ["comparative", "Comparativa"],
+            ["A", "Trayectoria A"],
+            ["B", "Trayectoria B"],
+            ["C", "Trayectoria C"],
+            ["reflection", "Reflexiones"],
+            ["discussion", "Discusión"],
+            ["conclusion", "Conclusiones"]
+        ];
+
+        let activeTab = "summary";
+        let selectedQuestion = "L1";
+
+        const comparativeData = [
+            {
+                id: "L1",
+                question: "Entendimiento Profundo",
+                fullQuestion: "Siento que entiendo por qué las estructuras se comportan como lo hacen, más allá de simplemente saber usar las fórmulas o el software.",
+                observation: "La evaluación con Ecosistema de Aprendizaje logró una percepción del 100% en entendimiento profundo. La metodología mixta resultó ser la menos efectiva en este aspecto.",
+                data: [
+                    { name: "Trayectoria A", values: { "Totalmente de acuerdo": 66, "De acuerdo": 0, "Neutro": 33 } },
+                    { name: "Trayectoria B", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0, "Neutro": 0 } },
+                    { name: "Trayectoria C", values: { "Totalmente de acuerdo": 0, "De acuerdo": 100, "Neutro": 0 } }
+                ],
+                keys: ["Totalmente de acuerdo", "De acuerdo", "Neutro"]
+            },
+            {
+                id: "L2",
+                question: "Idealización vs Matemáticas",
+                fullQuestion: "La evaluación me ayudó a entender que el Análisis Estructural es un proceso de idealización, donde mi criterio define la geometría y cargas, y no solo un proceso matemático.",
+                observation: "La evaluación con Ecosistema de Aprendizaje alcanzó un 100% de percepción respecto a la idealización de conceptos, superando el paradigma del simple cálculo numérico.",
+                data: [
+                    { name: "Trayectoria A", values: { "Totalmente de acuerdo": 33, "De acuerdo": 33, "Neutro": 33 } },
+                    { name: "Trayectoria B", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0, "Neutro": 0 } },
+                    { name: "Trayectoria C", values: { "Totalmente de acuerdo": 50, "De acuerdo": 50, "Neutro": 0 } }
+                ],
+                keys: ["Totalmente de acuerdo", "De acuerdo", "Neutro"]
+            },
+            {
+                id: "L3",
+                question: "Toma de Decisiones",
+                fullQuestion: "Me siento capaz de tomar decisiones de diseño incluso cuando no tengo toda la información perfecta o completa.",
+                observation: "La evaluación con Ecosistema de Aprendizaje obtuvo la mejor percepción en capacidad de toma de decisiones bajo incertidumbre, un rasgo clave del Creador Innovador.",
+                data: [
+                    { name: "Trayectoria A", values: { "Totalmente de acuerdo": 33, "De acuerdo": 33, "Neutro": 33 } },
+                    { name: "Trayectoria B", values: { "Totalmente de acuerdo": 50, "De acuerdo": 50, "Neutro": 0 } },
+                    { name: "Trayectoria C", values: { "Totalmente de acuerdo": 0, "De acuerdo": 100, "Neutro": 0 } }
+                ],
+                keys: ["Totalmente de acuerdo", "De acuerdo", "Neutro"]
+            },
+            {
+                id: "L4",
+                question: "Uso Real y Seguridad",
+                fullQuestion: "Siento que la evaluación me hizo considerar el uso real, la seguridad y las necesidades de las personas que habitarán la estructura.",
+                observation: "El 100% de los estudiantes bajo Ecosistema de Aprendizaje conectaron el cálculo estructural con la empatía hacia el usuario final.",
+                data: [
+                    { name: "Trayectoria A", values: { "Totalmente de acuerdo": 66, "De acuerdo": 33, "Neutro": 0 } },
+                    { name: "Trayectoria B", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0, "Neutro": 0 } },
+                    { name: "Trayectoria C", values: { "Totalmente de acuerdo": 0, "De acuerdo": 0, "Neutro": 100 } }
+                ],
+                keys: ["Totalmente de acuerdo", "De acuerdo", "Neutro"]
+            },
+            {
+                id: "L5",
+                question: "Responsabilidad Ética",
+                fullQuestion: "Sentí la responsabilidad ética de que mis cálculos impactan directamente en la seguridad pública.",
+                observation: "Tanto Ecosistema de Aprendizaje como la vía tradicional obtuvieron altas marcas, demostrando que el rigor técnico inspira responsabilidad, aunque el Ecosistema de Aprendizaje lo contextualiza mejor.",
+                data: [
+                    { name: "Trayectoria A", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0 } },
+                    { name: "Trayectoria B", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0 } },
+                    { name: "Trayectoria C", values: { "Totalmente de acuerdo": 50, "De acuerdo": 50 } }
+                ],
+                keys: ["Totalmente de acuerdo", "De acuerdo"]
+            },
+            {
+                id: "L6",
+                question: "Aplicabilidad",
+                fullQuestion: "Siento que puedo aplicar lo aprendido a situaciones completamente nuevas o a otros cursos.",
+                observation: "La percepción de aplicabilidad es absoluta en las trayectorias puras A y B, destacando el valor de la inmersión profunda frente a enfoques híbridos.",
+                data: [
+                    { name: "Trayectoria A", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0 } },
+                    { name: "Trayectoria B", values: { "Totalmente de acuerdo": 100, "De acuerdo": 0 } },
+                    { name: "Trayectoria C", values: { "Totalmente de acuerdo": 0, "De acuerdo": 100 } }
+                ],
+                keys: ["Totalmente de acuerdo", "De acuerdo"]
+            },
+            {
+                id: "L7",
+                question: "Esfuerzo Percibido",
+                fullQuestion: "Comparado con la otra opción de evaluación, siento que mi elección requirió:",
+                observation: "El método Ecosistema de Aprendizaje exige significativamente mayor esfuerzo y tiempo. Su éxito no radica en ser más fácil, sino en ofrecer un mayor retorno de valor.",
+                data: [
+                    { name: "Trayectoria A", values: { "Mucho más esfuerzo": 0, "Esfuerzo similar": 100, "Mucho menos esfuerzo": 0 } },
+                    { name: "Trayectoria B", values: { "Mucho más esfuerzo": 50, "Esfuerzo similar": 50, "Mucho menos esfuerzo": 0 } },
+                    { name: "Trayectoria C", values: { "Mucho más esfuerzo": 0, "Esfuerzo similar": 50, "Mucho menos esfuerzo": 50 } }
+                ],
+                keys: ["Mucho más esfuerzo", "Esfuerzo similar", "Mucho menos esfuerzo"]
+            },
+            {
+                id: "L8",
+                question: "Elección Futura",
+                fullQuestion: "Si pudieras volver a cursar la asignatura, ¿volverías a elegir el mismo método de evaluación?",
+                observation: "A pesar del mayor esfuerzo, el 100% de la Trayectoria B reafirma su elección, evidenciando alta satisfacción intrínseca por el aprendizaje logrado.",
+                data: [
+                    { name: "Trayectoria A", values: { "Mismo método": 0, "Tal vez cambiaría": 66, "Cambiaría": 33 } },
+                    { name: "Trayectoria B", values: { "Mismo método": 100, "Tal vez cambiaría": 0, "Cambiaría": 0 } },
+                    { name: "Trayectoria C", values: { "Mismo método": 50, "Tal vez cambiaría": 0, "Cambiaría": 50 } }
+                ],
+                keys: ["Mismo método", "Tal vez cambiaría", "Cambiaría"]
+            }
+        ];
+
+        const reflectionData = [
+            {
+                label: "Trayectoria A",
+                title: "Evaluación Tradicional",
+                observation: "Las reflexiones muestran satisfacción con la claridad del docente, pero una curiosidad latente por no haber vivido la experiencia de modelación del proyecto.",
+                responses: [
+                    "No cambiaría nada porque el desarrollo del curso estuvo bien explicado por parte del docente.",
+                    "Que si se da la opción de un proyecto sea como el del segundo parcial, elegir el modelo.",
+                    "Creo que nada."
+                ]
+            },
+            {
+                label: "Trayectoria B",
+                title: "Evaluación Ecosistema de Aprendizaje",
+                observation: "La inmersión generó alta satisfacción, pero los estudiantes solicitan más andamiaje a través de foros y tiempo de discusión formativa.",
+                responses: [
+                    "Usaría el método de los foros. Si se usa de nuevo para los dos proyectos, habría más orden y coordinación.",
+                    "La metodología me pareció buena. Tal vez se podría incluir más tiempo para preguntas o discusión.",
+                    "Considero que fue una clase muy productiva. La combinación entre software y cálculos manuales fue excelente."
+                ]
+            },
+            {
+                label: "Trayectoria C",
+                title: "Evaluación Mixta",
+                observation: "El enfoque híbrido evidenció presión temporal; combinar metodologías activas y tradicionales puede sobrecargar al estudiante.",
+                responses: [
+                    "Nada, todo me pareció bien explicado a pesar que fuera una clase bien analítica y con bastantes cálculos.",
+                    "Más tiempo para hacer el primer proyecto."
+                ]
+            }
+        ];
+
+        const trajectoryData = {
+            A: {
+                className: "",
+                title: "Trayectoria A - Evaluación Tradicional",
+                description: "Estudiantes que optaron exclusivamente por exámenes escritos enfocados en competencia matemática.",
+                pie: "conic-gradient(#06065C 0 66%, #03AED2 66% 100%)",
+                pieTitle: "PA1: Factor determinante para NO intentar el proyecto Ecosistema de Aprendizaje",
+                pieObservation: "La percepción de falta de tiempo y la comodidad de la costumbre fueron los principales disuasivos.",
+                quotesTitle: "PA2: ¿Sientes que perdiste una oportunidad?",
+                quotesObservation: "Reconocimiento retrospectivo del valor del aprendizaje transformacional sobre el transaccional.",
+                quotes: [
+                    "Al final sentí que era mejor opción el proyecto por la toma de decisiones y si volviera a haber la oportunidad escogería el proyecto.",
+                    "Sentí que mis compañeros que realizaron el proyecto pudieron trabajar de manera más cercana a lo que nos espera en un ambiente laboral."
+                ]
+            },
+            B: {
+                className: "b",
+                title: "Trayectoria B - Evaluación Ecosistema de Aprendizaje",
+                description: "Estudiantes inmersos en el rol de consultores, enfrentando la idealización y toma de decisiones.",
+                pie: "conic-gradient(#06065C 0 100%)",
+                pieTitle: "PB1: Carga de trabajo frente a la vía tradicional",
+                pieObservation: "Todos reconocieron una inversión alta, validando que el Ecosistema de Aprendizaje no reduce el rigor, sino que lo reorienta hacia la utilidad práctica.",
+                quotesTitle: "PB2: De estudiante a consultor empático",
+                quotesObservation: "Evidencia directa de la formación de la capacidad de solucionador de problemas empático.",
+                quotes: [
+                    "Sí. Con los proyectos sentí que ya no estaba pensando solo en la nota, sino en resolver un problema real.",
+                    "Así es como vamos a diseñar, con los planos y la computadora, no como una evaluación tradicional."
+                ]
+            },
+            C: {
+                className: "c",
+                title: "Trayectoria C - Evaluación Mixta",
+                description: "Estudiantes que transicionaron entre metodologías debido a externalidades temporales o técnicas.",
+                pie: "conic-gradient(#03AED2 0 100%)",
+                pieTitle: "PC1: Método que generó más orgullo",
+                pieObservation: "El sentido de agencia y logro es superior cuando el alumno construye el conocimiento mediante el proyecto.",
+                quotesTitle: "PC2: Cambio de método a mitad del curso",
+                quotesObservation: "El abandono del Ecosistema de Aprendizaje estuvo ligado a brechas de acceso a tecnología o sobrecarga.",
+                quotes: [
+                    "En el primero hice examen porque vi que era mucho trabajo.",
+                    "Hice el primer proyecto pero no hice el segundo, principalmente por mi computadora."
+                ]
+            }
+        };
+
+        function sectionTitle(title, subtitle) {
+            return `
+                <div class="section-title">
+                    <h1>${title}</h1>
+                    ${subtitle ? `<p>${subtitle}</p>` : ""}
+                </div>
+            `;
+        }
+
+        function card(content) {
+            return `<div class="card"><div class="card-body">${content}</div></div>`;
+        }
+
+        function renderNav() {
+            const nav = document.getElementById("mainNav");
+            nav.innerHTML = tabs.map(([id, label]) => `
+                <button class="nav-btn ${activeTab === id ? "active" : ""}" data-tab="${id}">${label}</button>
+            `).join("");
+
+            nav.querySelectorAll(".nav-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    activeTab = btn.dataset.tab;
+                    document.getElementById("topPanel").classList.remove("open");
+                    render();
+                });
+            });
+        }
+
+        function renderSummary() {
+            return `
+                ${sectionTitle("Resumen Ejecutivo", "Transición del modelo de competencias a la formación de capacidades humanas.")}
+                ${card(`
+                    <h2>Piloto de Implementación del Ecosistema de Aprendizaje (Ecosistema de Aprendizaje) en Ingeniería</h2>
+                    <div class="meta-grid">
+                        <div><span class="pill">Autor</span> Marco Tulio Canales Chavez, PhD</div>
+                        <div><span class="pill dark">Institución</span> Universidad Tecnológica Centroamericana (UNITEC)</div>
+                    </div>
+                    <p>Este estudio presenta los resultados de un piloto de implementación del Ecosistema de Aprendizaje (Ecosistema de Aprendizaje) en la enseñanza de Ingeniería, contrastando el modelo tradicional transaccional con un enfoque de formación de capacidades humanas integrales promovido por la Visión UNITEC 2030.</p>
+                    <p>Mediante un diseño de investigación comparativo en la asignatura de Análisis Estructural (CIV324), se evaluaron tres trayectorias de aprendizaje para analizar su impacto en la comprensión conceptual, la identidad profesional y la ética.</p>
+                    <div class="highlight">“Los estudiantes demostraron disposición a asumir una carga cognitiva y temporal superior cuando perciben un retorno de valor en su formación profesional.”</div>
+                    <p>El estudio concluye que el modelo Ecosistema de Aprendizaje es superior para activar la responsabilidad ética intrínseca y la seguridad cognitiva, permitiendo al estudiante evolucionar de un buscador de notas a un solucionador de problemas empático.</p>
+                `)}
+            `;
+        }
+
+        function renderIntro() {
+            return `
+                ${sectionTitle("Introducción y Metodología", "Contexto pedagógico y diseño del estudio.")}
+                ${card(`
+                    <h3>De la Transacción a la Transformación</h3>
+                    <p>Históricamente, la educación en ingeniería ha estado anclada a la adquisición de competencias duras: resolución matemática, uso de normativas y software. Sin embargo, este enfoque puede convertirse en aprendizaje transaccional cuando el alumno busca únicamente la respuesta correcta para obtener una calificación.</p>
+                    <p>UNITEC adopta el <strong>Ecosistema de Aprendizaje (Ecosistema de Aprendizaje)</strong> para trascender la enseñanza procedimental y enfocarse en la formación de capacidades humanas.</p>
+
+                    <h3>El Reto del Análisis Estructural</h3>
+                    <p>En Análisis Estructural, la principal barrera cognitiva no es la matemática, sino la incertidumbre de la idealización. Un ingeniero debe asumir cargas, idealizar apoyos y tomar decisiones seguras con información incompleta.</p>
+
+                    <h3>Metodología de Implementación</h3>
+                    <p>El estudio se implementó con 12 estudiantes de CIV324. Se otorgó libertad para elegir metodología de evaluación, derivando en tres trayectorias:</p>
+
+                    <div class="list-block">
+                        <div class="track-item">
+                            <div class="track-letter">A</div>
+                            <p><strong>Trayectoria Tradicional:</strong> evaluaciones sumativas enfocadas en dominio mecánico y algorítmico del cálculo estructural.</p>
+                        </div>
+                        <div class="track-item">
+                            <div class="track-letter b">B</div>
+                            <p><strong>Trayectoria Ecosistema de Aprendizaje:</strong> proyecto integrador donde los estudiantes asumieron el rol de consultores estructurales.</p>
+                        </div>
+                        <div class="track-item">
+                            <div class="track-letter c">C</div>
+                            <p><strong>Trayectoria Mixta:</strong> combinación de ambos métodos durante el periodo académico.</p>
+                        </div>
+                    </div>
+                `)}
+            `;
+        }
+
+        function getColor(key) {
+            if (key.includes("Totalmente") || key.includes("Mismo") || key.includes("más esfuerzo")) return COLORS.blue;
+            if (key.includes("De acuerdo") || key.includes("Similar") || key.includes("Tal vez")) return COLORS.cyan;
+            if (key.includes("Neutro") || key.includes("Cambiaría")) return COLORS.sky;
+            if (key.includes("menos")) return COLORS.red;
+            return COLORS.gray;
+        }
+
+        function renderComparative() {
+            const current = comparativeData.find(item => item.id === selectedQuestion);
+
+            const indicatorButtons = comparativeData.map(item => `
+                <button class="indicator-btn ${item.id === selectedQuestion ? "active" : ""}" data-question="${item.id}">
+                    <strong>${item.id}</strong> ${item.question}
+                </button>
+            `).join("");
+
+            const bars = current.data.map(row => {
+                const segments = current.keys.map(key => {
+                    const value = row.values[key] || 0;
+                    return `
+                        <div class="bar-segment" style="width:${value}%; background:${getColor(key)};">
+                            ${value > 12 ? value + "%" : ""}
+                        </div>
+                    `;
+                }).join("");
+
+                return `
+                    <div class="bar-group">
+                        <div class="bar-label">${row.name}</div>
+                        <div class="bar-stack">${segments}</div>
+                    </div>
+                `;
+            }).join("");
+
+            const legend = current.keys.map(key => `
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:${getColor(key)};"></span>
+                    ${key}
+                </div>
+            `).join("");
+
+            return `
+                ${sectionTitle("Análisis Comparativo", "Comparación de percepciones sobre la adquisición de capacidades.")}
+                <div class="tabs-layout">
+                    <div>
+                        <div style="font-weight:900; color:#64748B; text-transform:uppercase; font-size:.8rem; margin-bottom:.75rem;">Seleccionar Indicador</div>
+                        <div class="indicator-list">${indicatorButtons}</div>
+                    </div>
+                    ${card(`
+                        <h3>${current.fullQuestion}</h3>
+                        <div class="chart-area">${bars}</div>
+                        <div class="legend">${legend}</div>
+                        <div class="observation">
+                            <strong>Hallazgo Clave</strong>
+                            ${current.observation}
+                        </div>
+                    `)}
+                </div>
+            `;
+        }
+
+        function renderTrajectory(id) {
+            const item = trajectoryData[id];
+            return `
+                <div class="trajectory-header ${item.className}">
+                    <div>
+                        <h2>${item.title}</h2>
+                        <p>${item.description}</p>
+                    </div>
+                </div>
+
+                <div class="two-grid">
+                    ${card(`
+                        <h3>${item.pieTitle}</h3>
+                        <div class="pie-box">
+                            <div class="pie" style="background:${item.pie};"></div>
+                        </div>
+                        <div class="observation">
+                            <strong>Observación</strong>
+                            ${item.pieObservation}
+                        </div>
+                    `)}
+
+                    ${card(`
+                        <h3>${item.quotesTitle}</h3>
+                        ${item.quotes.map(q => `<div class="quote">“${q}”</div>`).join("")}
+                        <div class="observation">
+                            <strong>Conexión Ecosistema de Aprendizaje</strong>
+                            ${item.quotesObservation}
+                        </div>
+                    `)}
+                </div>
+            `;
+        }
+
+        function renderReflection() {
+            return `
+                ${sectionTitle("Reflexiones Metacognitivas", "Retroalimentación estudiantil sobre la experiencia de aprendizaje.")}
+                <div class="highlight">“¿Qué cambiarías de la metodología del curso para mejorar tu aprendizaje futuro?”</div>
+                <div class="quote-grid">
+                    ${reflectionData.map(item => card(`
+                        <h3>${item.label}</h3>
+                        <p><strong>${item.title}</strong></p>
+                        ${item.responses.map(resp => `<div class="quote">“${resp}”</div>`).join("")}
+                        <div class="observation">
+                            <strong>Análisis Ecosistema de Aprendizaje</strong>
+                            ${item.observation}
+                        </div>
+                    `)).join("")}
+                </div>
+            `;
+        }
+
+        function renderDiscussion() {
+            return `
+                ${sectionTitle("Discusión de Resultados", "Análisis de los hallazgos a la luz del Ecosistema de Aprendizaje.")}
+                ${card(`
+                    <h3>1. El Factor Tiempo vs. Retorno de Valor</h3>
+                    <p>La principal razón para evadir el proyecto Ecosistema de Aprendizaje fue la gestión del tiempo y la carga académica, no la falta de interés. El 100% de la Trayectoria B consideró que la alta inversión de tiempo valió la pena por el aprendizaje profesional obtenido.</p>
+                `)}
+                ${card(`
+                    <h3>2. Del Cálculo Aislado a la Responsabilidad Ética</h3>
+                    <p>La evaluación Ecosistema de Aprendizaje forzó a los estudiantes a vincular los números con la realidad física y humana. Un fallo de cálculo no es un punto menos en un examen: puede representar un riesgo para vidas humanas.</p>
+                `)}
+                ${card(`
+                    <h3>3. Seguridad Cognitiva en la Incertidumbre</h3>
+                    <p>El modelo Ecosistema de Aprendizaje empoderó a los estudiantes a sentirse seguros tomando decisiones de diseño con información incompleta, defendiendo su criterio ingenieril y asumiendo un rol profesional.</p>
+                `)}
+            `;
+        }
+
+        function renderConclusion() {
+            return `
+                ${sectionTitle("Conclusiones Generales", "Implicaciones para el diseño pedagógico en UNITEC.")}
+                ${card(`
+                    <div class="conclusion-item">
+                        <div class="check">✓</div>
+                        <div>
+                            <h3>Efectividad del Modelo Ecosistema de Aprendizaje en Ingeniería</h3>
+                            <p>El sistema es superior al modelo tradicional para activar responsabilidad ética intrínseca y seguridad cognitiva. Enseñar capacidades humanas no resta rigor técnico; le da contexto.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-item">
+                        <div class="check">✓</div>
+                        <div>
+                            <h3>Redefinición de la Resistencia Académica</h3>
+                            <p>Los estudiantes están dispuestos a asumir mayor rigor si la actividad es auténtica, simula la vida real y ofrece retorno de valor para su carrera.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-item">
+                        <div class="check">✓</div>
+                        <div>
+                            <h3>Recomendaciones Estructurales</h3>
+                            <p>Para escalar metodologías Ecosistema de Aprendizaje, UNITEC debe cuidar la carga de trabajo en sílabos y planners. La inmersión total con andamiaje es preferible a metodologías híbridas sobrecargadas.</p>
+                        </div>
+                    </div>
+                `)}
+            `;
+        }
+
+        function render() {
+            renderNav();
+
+            const content = document.getElementById("content");
+
+            if (activeTab === "summary") content.innerHTML = renderSummary();
+            if (activeTab === "intro") content.innerHTML = renderIntro();
+            if (activeTab === "comparative") content.innerHTML = renderComparative();
+            if (activeTab === "A") content.innerHTML = renderTrajectory("A");
+            if (activeTab === "B") content.innerHTML = renderTrajectory("B");
+            if (activeTab === "C") content.innerHTML = renderTrajectory("C");
+            if (activeTab === "reflection") content.innerHTML = renderReflection();
+            if (activeTab === "discussion") content.innerHTML = renderDiscussion();
+            if (activeTab === "conclusion") content.innerHTML = renderConclusion();
+
+            document.querySelectorAll(".indicator-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    selectedQuestion = btn.dataset.question;
+                    render();
+                });
+            });
+        }
+
+        document.getElementById("menuToggle").addEventListener("click", () => {
+            document.getElementById("topPanel").classList.toggle("open");
+        });
+
+        render();
+    </script>
+</body>
+</html>

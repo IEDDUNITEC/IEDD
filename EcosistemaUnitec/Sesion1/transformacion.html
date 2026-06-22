@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformación Pedagógica Ecosistema de Aprendizaje | Caso UNITEC</title>
+    
+    <!-- Tipografía Institucional: Poppins Estricto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Configuración de Colores de Marca y Tipografía -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            federal: '#06065C',
+                            cyan: '#03AED2',
+                            sky: '#47C8FD',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .diamond-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+
+        .diamond-cut-reverse {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 85%);
+        }
+
+        .diamond-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        .hover-solid-shift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .hover-solid-shift:hover {
+            transform: translate(-8px, -8px);
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #06065C;
+            overflow-x: hidden;
+        }
+
+        .logo-unitec {
+            display: block;
+            height: 88px;
+            width: auto;
+            max-width: 390px;
+        }
+
+        .logo-unitec-footer {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 270px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-unitec {
+                height: 68px;
+                max-width: 300px;
+            }
+
+            .logo-unitec-footer {
+                height: 48px;
+                max-width: 220px;
+            }
+        }
+
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-sky selection:text-brand-federal leading-relaxed">
+
+    <!-- Navegación Corporativa Estricta -->
+    <nav class="w-full bg-brand-federal border-b-4 border-brand-cyan py-6 px-8 flex justify-between items-center z-50 sticky top-0">
+        <div class="flex items-center gap-3">
+            <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec">
+        </div>
+        <div class="hidden md:flex flex-col items-end">
+            <div class="text-brand-sky font-semibold tracking-widest uppercase text-xs mt-2">
+                Guía para Docentes
+            </div>
+            <div class="text-white text-[10px] tracking-widest uppercase opacity-70">
+                Ecosistema de Aprendizaje
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="bg-brand-federal text-white py-20 px-6 relative overflow-hidden border-b-8 border-brand-cyan">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-brand-sky opacity-10 diamond-shape translate-x-1/4 -translate-y-1/4 animate-pulse"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="flex flex-wrap items-center gap-4 mb-8">
+                <span class="bg-brand-cyan text-white font-black px-4 py-1.5 text-xs tracking-widest uppercase diamond-cut">Metodología del Ecosistema de Aprendizaje</span>
+                <span class="border-2 border-brand-sky text-brand-sky font-black px-4 py-1 text-xs tracking-widest uppercase diamond-cut">Visión 2030</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight uppercase tracking-tight">De la Evaluación Transaccional <br><span class="text-brand-cyan">al Desempeño Auténtico</span></h1>
+            <p class="text-xl md:text-2xl font-medium text-brand-sky max-w-3xl mb-10 border-l-4 border-brand-cyan pl-4">Caso de estudio: CIV414 - Diseño Estructural en Concreto. Una guía de transferencia pedagógica para orientar el rediseño curricular en todas las facultades.</p>
+            
+            <div class="flex flex-wrap gap-3 text-xs font-bold uppercase tracking-widest">
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-brand-federal transition-colors"><i data-lucide="hard-hat" class="w-4 h-4 text-brand-cyan"></i> Ingeniería</span>
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-brand-federal transition-colors"><i data-lucide="briefcase" class="w-4 h-4 text-brand-cyan"></i> Ciencias Administrativas</span>
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-brand-federal transition-colors"><i data-lucide="palette" class="w-4 h-4 text-brand-cyan"></i> Arte y Diseño</span>
+                <span class="border border-white/30 text-white px-4 py-2 flex items-center gap-2 hover:bg-white hover:text-brand-federal transition-colors"><i data-lucide="microscope" class="w-4 h-4 text-brand-cyan"></i> Ciencias de la Salud</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-20 space-y-24">
+
+        <!-- PARTE 1 -->
+        <div class="text-center mb-16">
+            <h2 class="text-sm font-black tracking-[0.2em] text-gray-400 uppercase mb-4">Primera Parte: La Arquitectura del Curso</h2>
+            <div class="w-24 h-2 bg-brand-cyan mx-auto diamond-cut"></div>
+        </div>
+
+        <!-- 1. El Porqué -->
+        <section id="el-porque" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-brand-cyan diamond-shape flex items-center justify-center text-white font-black text-2xl shrink-0">1</div>
+                        <h2 class="text-3xl font-black text-brand-federal uppercase tracking-tight">El Porqué</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-200 pl-4">El Propósito de la asignatura, <strong class="text-brand-federal font-black">La Gran Idea</strong> y su alineación directa con el Retrato del Egresado. Abandonamos el enfoque mecánico para centrarnos en la gestión ética de la incertidumbre.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 space-y-8">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-federal diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-10 diamond-cut border border-gray-100 z-10 hover-solid-shift flex flex-col h-full">
+                        <h3 class="text-2xl font-black text-brand-federal mb-4 flex items-center gap-3 uppercase"><i data-lucide="target" class="text-brand-cyan w-8 h-8"></i> El Paradigma a Romper en CIV414</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6 font-medium">El rediseño de Diseño Estructural abandonó la premisa de enseñar a los alumnos a resolver cálculos matemáticos impecables sobre modelos incorrectos. Se detectó que el verdadero problema profesional no es calcular bien, sino saber <strong class="text-brand-federal font-black">modelar la realidad con criterio</strong> para evitar desastres (el costo de "no saber").</p>
+                        
+                        <div class="mb-8 text-center p-6 bg-brand-federal text-white diamond-cut border-b-4 border-brand-sky">
+                            <p class="text-xs font-black text-brand-sky uppercase tracking-[0.2em] mb-3">La Gran Idea (Comunalidad Humana: Sistemas)</p>
+                            <p class="text-lg md:text-xl font-bold italic leading-relaxed">"Entender que una estructura de concreto no es una colección de elementos aislados, sino un <strong class="text-brand-cyan font-black">sistema interdependiente</strong> donde la seguridad global depende de la continuity en el flujo de cargas y la correcta jerarquía entre sus partes."</p>
+                        </div>
+
+                        <div class="bg-gray-50 p-8 border-l-8 border-brand-cyan diamond-cut">
+                            <h4 class="font-black text-brand-federal mb-6 flex items-center gap-2 uppercase tracking-tight"><i data-lucide="user-check" class="text-brand-cyan"></i> Capacidades Humanas: El Retrato en Acción</h4>
+                            <ul class="space-y-6">
+                                <li class="flex items-start gap-4">
+                                    <div class="bg-brand-federal p-3 diamond-shape shrink-0"><i data-lucide="heart-handshake" class="w-5 h-5 text-brand-sky"></i></div>
+                                    <div>
+                                        <strong class="text-brand-federal font-black block uppercase mb-1">Solucionador de Problemas Empático</strong>
+                                        <span class="text-gray-700 text-sm font-medium">El estudiante asimila que la ingeniería no es abstracta: sus decisiones estructurales protegen directamente vidas humanas reales en entornos de alta vulnerabilidad sísmica.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="bg-brand-cyan p-3 diamond-shape shrink-0"><i data-lucide="users" class="w-5 h-5 text-white"></i></div>
+                                    <div>
+                                        <strong class="text-brand-federal font-black block uppercase mb-1">Colaborador Constructivo</strong>
+                                        <span class="text-gray-700 text-sm font-medium">Aprenden que la revisión de pares y la auditoría de cálculos no es "criticar", sino asegurar la calidad del producto final mediante el crecimiento colectivo.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-federal text-white p-8 diamond-cut border-l-8 border-brand-sky">
+                    <h4 class="font-black text-brand-sky mb-4 flex items-center gap-3 uppercase"><i data-lucide="eye" class="w-6 h-6 text-white"></i> Lente de Transferencia para Docentes</h4>
+                    <p class="text-gray-200 text-sm leading-relaxed font-medium">
+                        Como docente, puedes replantear a cambiar la pregunta inicial al diseñar su *Planner*. En lugar de <em>"¿Qué temas debo cubrir para el examen?"</em>, la pregunta es <strong class="text-white font-bold">"¿Qué problema real del entorno requiere que los alumnos desarrollen estas competencias?"</strong>. En Negocios, el propósito puede ser diseñar modelos sostenibles (Pensador Innovador); en Salud, la gestión ética del diagnóstico bajo presión (Líder con Propósito).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. El Qué -->
+        <section id="el-que" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-brand-sky diamond-shape flex items-center justify-center text-brand-federal font-black text-2xl shrink-0">2</div>
+                        <h2 class="text-3xl font-black text-brand-federal uppercase tracking-tight">El Qué</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-200 pl-4">Las <strong class="text-brand-federal font-black">Metas de Aprendizaje</strong> y las Preguntas Orientadoras. Establecen los resultados conceptuales, de competencia y de carácter que guiarán la investigación y el diseño.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-cyan diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-10 diamond-cut border border-gray-100 z-10 hover-solid-shift flex flex-col h-full">
+                        
+                        <h4 class="font-black text-brand-federal mb-6 flex items-center gap-3 uppercase"><i data-lucide="check-square" class="text-brand-cyan w-6 h-6"></i> Metas de Aprendizaje</h4>
+                        <div class="space-y-4 mb-10">
+                            <div class="p-4 border-l-4 border-brand-federal bg-gray-50">
+                                <span class="text-xs font-black text-brand-federal uppercase tracking-widest block mb-1">Meta Conceptual</span>
+                                <p class="text-gray-700 text-sm font-medium">Comprender que la validez del análisis estructural reside en la idealización apropiada de sus componentes (geometría, materiales, apoyos y cargas).</p>
+                            </div>
+                            <div class="p-4 border-l-4 border-brand-cyan bg-gray-50">
+                                <span class="text-xs font-black text-brand-cyan uppercase tracking-widest block mb-1">Meta de Competencia</span>
+                                <p class="text-gray-700 text-sm font-medium">Modelar rigurosamente los esquemas de carga (Muerta, Viva, Viento y Sismo) para un marco de la estructura.</p>
+                            </div>
+                            <div class="p-4 border-l-4 border-brand-sky bg-gray-50">
+                                <span class="text-xs font-black text-brand-sky uppercase tracking-widest block mb-1">Meta de Carácter</span>
+                                <p class="text-gray-700 text-sm font-medium">Desarrollar un criterio ético y empático para transformar la incertidumbre en un riesgo calculado que priorice la seguridad humana.</p>
+                            </div>
+                        </div>
+
+                        <h4 class="font-black text-brand-federal mb-6 flex items-center gap-3 uppercase"><i data-lucide="lightbulb" class="text-brand-cyan w-6 h-6"></i> Preguntas Orientadoras (Framing Questions)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-8 border-2 border-gray-100 diamond-cut hover:border-brand-federal transition-colors bg-brand-federal text-white flex flex-col justify-center items-center text-center">
+                                <i data-lucide="help-circle" class="w-8 h-8 text-brand-sky mb-4 opacity-70"></i>
+                                <p class="text-xl font-bold leading-relaxed">¿Cuánto cuesta <br><span class="text-brand-sky font-black">"no saber"</span>?</p>
+                            </div>
+                            <div class="p-8 border-2 border-gray-100 diamond-cut hover:border-brand-cyan transition-colors bg-brand-cyan text-white flex flex-col justify-center items-center text-center">
+                                <i data-lucide="compass" class="w-8 h-8 text-brand-federal mb-4 opacity-70"></i>
+                                <p class="text-sm font-bold leading-relaxed">¿Cómo utiliza el ingeniero su criterio para transformar la incertidumbre de las cargas en un riesgo calculado que sea <strong class="text-brand-federal font-black">financieramente aceptable</strong> y <strong class="text-brand-federal font-black">humanamente seguro</strong>?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION 1 -->
+        <section class="py-12 relative border-y-4 border-brand-cyan bg-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-brand-federal uppercase tracking-tight mb-4">La Arquitectura en Acción</h2>
+                <span class="text-sm font-bold text-brand-cyan uppercase tracking-widest">(Video Referencial - Parte 1)</span>
+                <p class="text-gray-600 font-medium mt-6 max-w-2xl mx-auto">Observen cómo los principios de la planeación del Ecosistema de Aprendizaje establecen las bases para un aprendizaje profundo y contextualizado desde el primer día de clases.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="relative p-2 bg-brand-cyan diamond-cut-reverse inline-block w-full">
+                    <div class="w-full bg-brand-federal diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                        <div id="videoOverlayCIV1" class="absolute inset-0 bg-brand-federal flex flex-col items-center justify-center z-20 group-hover:bg-opacity-90 transition duration-300">
+                             <div class="w-24 h-24 bg-brand-sky diamond-shape flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                                <i data-lucide="play" class="w-10 h-10 text-brand-federal ml-2"></i>
+                             </div>
+                             <span class="bg-brand-cyan text-white text-xs font-black px-3 py-1 uppercase tracking-widest mb-2 diamond-cut">Parte 1</span>
+                             <p class="text-white font-bold tracking-widest uppercase text-sm">El Porqué y El Qué</p>
+                        </div>
+                        <video id="brandVideoCIV1" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" preload="metadata">
+                            <source src="VID/Guia_de_Transformacion_pt1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTE 2 -->
+        <div class="text-center mb-16 mt-24">
+            <h2 class="text-sm font-black tracking-[0.2em] text-gray-400 uppercase mb-4">Segunda Parte: La Experiencia de Aprendizaje</h2>
+            <div class="w-24 h-2 bg-brand-federal mx-auto diamond-cut"></div>
+        </div>
+
+        <!-- 3. La Evidencia -->
+        <section id="la-evidencia" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-brand-federal diamond-shape flex items-center justify-center text-brand-sky font-black text-2xl shrink-0">3</div>
+                        <h2 class="text-3xl font-black text-brand-federal uppercase tracking-tight">La Evidencia</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-200 pl-4">¿Cómo demuestran competencia los estudiantes? Reemplazando el examen transaccional escrito por <strong class="text-brand-federal font-black">Tareas de Desempeño Auténtico</strong>. A continuación, la comparativa real de la asignatura.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 space-y-10">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-sky diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-10 diamond-cut border border-gray-100 z-10 hover-solid-shift">
+                        <h3 class="text-2xl font-black text-brand-federal mb-4 flex items-center gap-3 uppercase"><i data-lucide="arrow-right-left" class="text-brand-cyan w-8 h-8"></i> De lo Tradicional a lo Auténtico</h3>
+                        <p class="text-gray-700 mb-8 font-medium">El rediseño eliminó las tareas mecánicas y pasivas para integrar un proyecto de vida real que evalúa de forma auténtica el criterio profesional bajo incertidumbre, dividiendo la transformación en dos actividades clave.</p>
+                        
+                        <h4 class="font-black text-brand-federal mb-4 uppercase tracking-tight text-sm bg-gray-100 p-3 border-l-4 border-brand-cyan">Actividad 1: Actividades de Aprendizaje</h4>
+                        <div class="overflow-x-auto mb-10">
+                            <table class="w-full text-left border-collapse border-t-4 border-brand-federal">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="py-4 px-4 font-black text-brand-federal uppercase tracking-widest text-xs border-b border-gray-200 w-1/4">Dimensión</th>
+                                        <th class="py-4 px-4 font-black text-gray-400 uppercase tracking-widest text-xs border-b border-gray-200 w-2/5">Actividad Original</th>
+                                        <th class="py-4 px-4 font-black text-brand-cyan uppercase tracking-widest text-xs border-b border-gray-200 w-2/5">Actividad Rediseñada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-brand-federal text-sm">Descripción general</td>
+                                        <td class="py-4 px-4 text-gray-500 font-medium text-sm">El examen brindaba una serie de características cerradas: un bosquejo de la estructura, ubicación geográfica, materiales de construcción, condiciones de carga y tipos de sistema.</td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">El estudiante asume el rol de Auditor de la SIT para evaluar el proyecto "Plaza Outset" en Roatán. Se enfrenta a una memoria técnica con deficiencias críticas (ej. falta de estudios geotécnicos y optimización insegura de costos).</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-brand-federal text-sm">Entregables</td>
+                                        <td class="py-4 px-4 text-gray-500 font-medium text-sm">
+                                            <ol class="list-decimal pl-4 space-y-1">
+                                                <li>Crear un modelo usando software especializado.</li>
+                                                <li>Determinar esquemas de carga.</li>
+                                                <li>Realizar configuraciones específicas sobre el modelo.</li>
+                                            </ol>
+                                        </td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">
+                                            <ol class="list-decimal pl-4 space-y-1">
+                                                <li>Reconstrucción del modelo en software contrastado con el Código Hondureño de la Construcción (CHOC).</li>
+                                                <li>Entrega de un borrador preliminar para recibir retroalimentación.</li>
+                                            </ol>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-brand-federal text-sm">Qué se evalúa</td>
+                                        <td class="py-4 px-4 text-gray-500 font-medium text-sm">Medición puramente sumativa de competencias técnicas: capacidad para crear el modelo con la información dada, generar información de valor y aplicar modificaciones.</td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">
+                                            <p class="mb-2">Proceso formativo de 4 semanas:</p>
+                                            <ul class="list-disc pl-4 space-y-1">
+                                                <li>50%: Calidad de la evaluación técnica realizada al compañero usando un Checklist (identificando "si cumple/no cumple" y oportunidades de mejora).</li>
+                                                <li>50%: Entrega final del modelo propio, incorporando de forma obligatoria las mejoras señaladas en la retroalimentación (si aplican).</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="font-black text-brand-federal mb-4 uppercase tracking-tight text-sm bg-gray-100 p-3 border-l-4 border-brand-sky">Actividad 2: Evaluación Sumativa</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse border-t-4 border-brand-federal">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="py-4 px-4 font-black text-brand-federal uppercase tracking-widest text-xs border-b border-gray-200 w-1/4">Dimensión</th>
+                                        <th class="py-4 px-4 font-black text-gray-400 uppercase tracking-widest text-xs border-b border-gray-200 w-2/5">Actividad Original</th>
+                                        <th class="py-4 px-4 font-brand-federal text-brand-sky font-black uppercase tracking-widest text-xs border-b border-gray-200 w-2/5">Actividad Rediseñada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-brand-federal text-sm">Descripción general</td>
+                                        <td class="py-4 px-4 text-gray-500 font-medium text-sm">Se brindaba al estudiante un modelo estructural ya elaborado y cargado por el docente, acompañado de un bosquejo general de la estructura.</td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">Mantiene la misma meta y rol de la Fase 1. El estudiante debe evaluar los hallazgos para determinar si el diseño es viable o si procede emitir una orden legal para detener la obra por riesgos públicos.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-brand-federal text-sm">Entregables</td>
+                                        <td class="py-4 px-4 text-gray-500 font-medium text-sm">
+                                            <p class="mb-2">Diseño estructural aislado de:</p>
+                                            <ol class="list-decimal pl-4 space-y-1">
+                                                <li>La losa de entrepiso.</li>
+                                                <li>Las vigas principales.</li>
+                                                <li>Las columnas del primer nivel.</li>
+                                            </ol>
+                                        </td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">
+                                            <ol class="list-decimal pl-4 space-y-1">
+                                                <li>Matriz de Hallazgos.</li>
+                                                <li>Memoria de Cálculo.</li>
+                                                <li>Dictamen técnico final dirigido al docente (actuando como Director de Supervisión).</li>
+                                            </ol>
+                                            <p class="mt-2 text-xs italic font-medium text-gray-600">(Nota: No se solicitan planos).</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-4 px-4 font-bold text-brand-federal text-sm">Qué se evalúa</td>
+                                        <td class="py-4 px-4 text-gray-500 font-medium text-sm">Medía la capacidad técnica de utilizar un modelo para generar diseño de elementos. Se permitía usar hojas de cálculo propias, pero con restricciones (sin presentaciones).</td>
+                                        <td class="py-4 px-4 text-gray-800 font-bold text-sm">
+                                            <p class="mb-2">Proceso de 4 semanas bajo el mismo esquema de maduración:</p>
+                                            <ul class="list-disc pl-4 space-y-1">
+                                                <li>50%: Brindar retroalimentación de valor a los pares utilizando un nuevo checklist avanzado.</li>
+                                                <li>50%: Calidad y justificación técnica de la entrega final del dictamen.</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-federal text-white p-10 diamond-cut relative overflow-hidden">
+                    <div class="absolute right-0 bottom-0 opacity-10 transform translate-x-1/4 translate-y-1/4">
+                        <i data-lucide="star" class="w-64 h-64 text-brand-sky"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 relative z-10 uppercase tracking-tight text-brand-sky border-b-2 border-brand-cyan pb-2 inline-block">Learning to Learn: Feedback S.T.A.R.</h3>
+                    <p class="text-gray-200 mb-8 relative z-10 text-sm font-medium leading-relaxed max-w-2xl">La evidencia del aprendizaje se da en el <em>proceso</em>. Para cultivar el carácter (Colaborador Constructivo) y la Metacognición, implementamos rúbricas de retroalimentación de pares utilizando S.T.A.R. antes de la entrega final.</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
+                        <div class="bg-brand-cyan/20 p-6 diamond-cut border border-brand-cyan text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">S</strong>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block">Specific</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Crítica el cálculo, no a la persona. Ubica el error exacto en la memoria.</p>
+                        </div>
+                        <div class="bg-brand-cyan/20 p-6 diamond-cut border border-brand-cyan text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">T</strong>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block">Timely</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Oportuno. Se brinda a medio proyecto, cuando aún hay tiempo de corregir.</p>
+                        </div>
+                        <div class="bg-brand-cyan/20 p-6 diamond-cut border border-brand-cyan text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">A</strong>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block">Actionable</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Propone un camino o fórmula clara de mejora (What worked well, Even better if).</p>
+                        </div>
+                        <div class="bg-brand-cyan/20 p-6 diamond-cut border border-brand-cyan text-center group">
+                            <strong class="block text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform">R</strong>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block">Respectful</span>
+                            <p class="text-[10px] mt-2 text-white font-medium leading-tight">Se da con empatía profesional, simulando un entorno laboral ético y seguro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. El Cómo -->
+        <section id="el-como" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <div class="sticky top-32">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-brand-cyan diamond-shape flex items-center justify-center text-white font-black text-2xl shrink-0">4</div>
+                        <h2 class="text-3xl font-black text-brand-federal uppercase tracking-tight">El Cómo</h2>
+                    </div>
+                    <p class="text-gray-700 font-medium text-lg leading-relaxed border-l-4 border-gray-200 pl-4">Orquestando las experiencias en el aula bajo la secuencia constructivista de las <strong class="text-brand-federal font-black">3Cs del Ecosistema de Aprendizaje</strong>. Dejamos atrás las clases magistrales pasivas.</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2">
+                <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-brand-cyan before:opacity-30">
+                    
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-12 h-12 diamond-shape bg-brand-federal text-brand-sky shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-4 border-white">
+                            <i data-lucide="link" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 diamond-cut border border-gray-200 shadow-sm hover:border-brand-federal transition-colors">
+                            <h3 class="font-black text-xl text-brand-federal mb-2 uppercase tracking-tight">Conectar <span class="text-brand-cyan font-bold lowercase tracking-normal text-sm md:text-base ml-1">(Connect)</span></h3>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block mb-4 border-b border-gray-100 pb-2">Enganchar conocimiento previo</span>
+                            <p class="text-gray-700 text-sm font-medium leading-relaxed">
+                                <strong class="text-brand-federal font-black block mb-1">Bitácora de Criterio Estructural:</strong> Los estudiantes publican comentarios de manera continua, conectando el trabajo que realizan en la semana con conceptos previos asimilados, generando un puente activo hacia el nuevo aprendizaje y anclando la teoría a la práctica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-12 h-12 diamond-shape bg-brand-cyan text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-4 border-white">
+                            <i data-lucide="hammer" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 diamond-cut border border-gray-200 shadow-sm hover:border-brand-cyan transition-colors">
+                            <h3 class="font-black text-xl text-brand-federal mb-2 uppercase tracking-tight">Construir <span class="text-brand-cyan font-bold lowercase tracking-normal text-sm md:text-base ml-1">(Construct)</span></h3>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block mb-4 border-b border-gray-100 pb-2">Andamiaje de habilidades duras</span>
+                            <p class="text-gray-700 text-sm font-medium leading-relaxed">
+                                <strong class="text-brand-federal font-black block mb-1">Aplicaciones a Menor Escala:</strong> En las actividades prácticas, los estudiantes resuelven en el aula aplicaciones diseñadas estratégicamente para "traer a la superficie" dudas conceptuales tempranas antes de que se conviertan en errores dentro del proyecto principal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-12 h-12 diamond-shape bg-brand-sky text-brand-federal shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-4 border-white">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-8 diamond-cut border border-gray-200 shadow-sm hover:border-brand-sky transition-colors">
+                            <h3 class="font-black text-xl text-brand-federal mb-2 uppercase tracking-tight">Contribuir <span class="text-brand-cyan font-bold lowercase tracking-normal text-sm md:text-base ml-1">(Contribute)</span></h3>
+                            <span class="text-xs font-bold text-brand-sky uppercase tracking-widest block mb-4 border-b border-gray-100 pb-2">Pasar del aislamiento a la comunidad</span>
+                            <p class="text-gray-700 text-sm font-medium leading-relaxed">
+                                <strong class="text-brand-federal font-black block mb-1">Auditoría de Cálculo Cruzada:</strong> Los alumnos aplican formalmente la herramienta <strong class="text-brand-federal font-black">Feedback S.T.A.R.</strong> para auditar los cálculos de sus compañeros, fortaleciendo el carácter colaborativo y la calidad del entregable final.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="bg-brand-cyan text-brand-federal p-8 diamond-cut border-l-8 border-brand-federal mt-16">
+                    <h4 class="font-black text-brand-federal mb-4 flex items-center gap-3 uppercase"><i data-lucide="repeat" class="w-6 h-6 text-brand-federal"></i> Herramientas de Coaching para Jefes</h4>
+                    <p class="text-brand-federal font-medium text-sm leading-relaxed mb-4">
+                        Tus docentes pueden usar esta secuencia 3C en cualquier disciplina. Guíalos utilizando estos ejemplos durante sus horas de planificación:
+                    </p>
+                    <ul class="text-brand-federal text-sm font-medium space-y-2 ml-2">
+                        <li><strong class="font-black text-white">Conectar:</strong> Análisis de caso sobre una campaña publicitaria ofensiva (Comunicaciones) o el fracaso financiero de una Startup (Finanzas).</li>
+                        <li><strong class="font-black text-white">Construir:</strong> Talleres, uso guiado y crítico de IA, modelado de prototipos en Figma.</li>
+                        <li><strong class="font-black text-white">Contribuir:</strong> Revisiones de portafolios de diseño o defensas simuladas de tesis de maestría con pares, previo a la defensa real.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION 2 -->
+        <section class="py-12 relative border-y-4 border-brand-federal bg-white">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-brand-federal uppercase tracking-tight mb-4">Evidencia del Crecimiento Colectivo</h2>
+                <span class="text-sm font-bold text-brand-cyan uppercase tracking-widest">(Video Referencial - Parte 2)</span>
+                <p class="text-gray-600 font-medium mt-6 max-w-2xl mx-auto">Observen la culminación de la experiencia: estudiantes demostrando dominio metacognitivo al evaluar su propio crecimiento y el de sus pares.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="relative p-2 bg-brand-sky diamond-cut-reverse inline-block w-full">
+                    <div class="w-full bg-brand-federal diamond-cut-reverse overflow-hidden relative group cursor-pointer">
+                        <div id="videoOverlayCIV2" class="absolute inset-0 bg-brand-federal flex flex-col items-center justify-center z-20 group-hover:bg-opacity-90 transition duration-300">
+                             <div class="w-24 h-24 bg-brand-cyan diamond-shape flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                                <i data-lucide="play" class="w-10 h-10 text-white ml-2"></i>
+                             </div>
+                             <span class="bg-brand-sky text-brand-federal text-xs font-black px-3 py-1 uppercase tracking-widest mb-2 diamond-cut">Parte 2</span>
+                             <p class="text-white font-bold tracking-widest uppercase text-sm">La Evidencia y El Cómo</p>
+                        </div>
+                        <video id="brandVideoCIV2" class="w-full h-auto aspect-video opacity-50 mix-blend-luminosity transition-all duration-500" preload="metadata">
+                            <source src="VID/Guia_de_Transformacion_pt2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REFERENCIAS -->
+        <section id="referencias" class="pt-24 pb-12">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-black tracking-[0.2em] text-gray-400 uppercase mb-4">Material de Apoyo</h2>
+                <div class="w-24 h-2 bg-brand-cyan mx-auto diamond-cut mb-8"></div>
+                <h3 class="text-3xl font-black text-brand-federal uppercase tracking-tight">Referencias y Descargas</h3>
+                
+                <div class="bg-white p-8 diamond-cut border border-gray-200 mt-8 max-w-4xl mx-auto relative group">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-brand-cyan"></div>
+                    <i data-lucide="info" class="w-12 h-12 text-brand-sky absolute top-8 right-8 opacity-10"></i>
+                    <p class="text-gray-700 font-medium leading-relaxed text-left md:text-center relative z-10 text-lg">
+                        Estos tres archivos contienen la misma guía que se utilizó para construir este sitio web, y las actividades evaluativas rediseñadas como se les compartieron a los estudiantes.
+                    </p>
+                    <div class="mt-6 pt-6 border-t border-gray-100 flex flex-col md:flex-row items-center justify-center gap-4">
+                        <span class="text-xs text-brand-federal font-black tracking-widest uppercase bg-gray-50 px-3 py-1 diamond-cut">El Material Incluye:</span>
+                        <p class="text-sm text-gray-500 font-medium text-center">
+                            Conexión con el Porqué, Definición GRASPS, Descripción de Entregables, Checklists, Rúbricas y Cronograma de Trabajo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
+                
+                <a href="PDF/Guía de Transformación Pedagógica Ecosistema de Aprendizajev2.pdf" target="_blank" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-brand-federal diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full items-center text-center transition-colors hover:border-brand-federal">
+                        <div class="w-16 h-16 bg-brand-federal text-brand-sky diamond-shape flex items-center justify-center mb-6 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-text" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="font-black text-brand-federal uppercase tracking-tight mb-4 text-lg">Guía de Transformación</h4>
+                        <span class="mt-auto inline-flex items-center gap-2 bg-gray-50 text-brand-federal text-xs font-bold px-4 py-2 uppercase tracking-widest diamond-cut border border-gray-200 group-hover:bg-brand-federal group-hover:text-white group-hover:border-brand-federal transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+                        </span>
+                    </div>
+                </a>
+
+                <a href="PDF/El_Analista_Estrutural_Fase_1.pdf" target="_blank" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-brand-cyan diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full items-center text-center transition-colors hover:border-brand-cyan">
+                        <div class="w-16 h-16 bg-brand-cyan text-white diamond-shape flex items-center justify-center mb-6 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-check" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="font-black text-brand-federal uppercase tracking-tight mb-4 text-lg">Analista Estructural<br><span class="text-brand-cyan">Fase 1</span></h4>
+                        <span class="mt-auto inline-flex items-center gap-2 bg-gray-50 text-brand-federal text-xs font-bold px-4 py-2 uppercase tracking-widest diamond-cut border border-gray-200 group-hover:bg-brand-cyan group-hover:text-white group-hover:border-brand-cyan transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+                        </span>
+                    </div>
+                </a>
+
+                <a href="PDF/El_Analista_Estrutural_Fase_2.pdf" target="_blank" class="relative group block h-full">
+                    <div class="absolute inset-0 bg-brand-sky diamond-cut mt-3 ml-3"></div>
+                    <div class="relative bg-white p-8 diamond-cut border border-gray-200 z-10 hover-solid-shift flex flex-col h-full items-center text-center transition-colors hover:border-brand-sky">
+                        <div class="w-16 h-16 bg-brand-sky text-brand-federal diamond-shape flex items-center justify-center mb-6 shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-check-2" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="font-black text-brand-federal uppercase tracking-tight mb-4 text-lg">Analista Estructural<br><span class="text-brand-sky">Fase 2</span></h4>
+                        <span class="mt-auto inline-flex items-center gap-2 bg-gray-50 text-brand-federal text-xs font-bold px-4 py-2 uppercase tracking-widest diamond-cut border border-gray-200 group-hover:bg-brand-sky group-hover:text-brand-federal group-hover:border-brand-sky transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Institucional -->
+    <footer class="bg-brand-federal text-gray-400 py-16 text-center border-t-8 border-brand-cyan relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-sky opacity-10 diamond-shape -translate-x-1/2 translate-y-1/2"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <i data-lucide="quote" class="w-10 h-10 mx-auto mb-6 text-brand-sky opacity-50"></i>
+            <p class="text-xl md:text-2xl font-bold italic mb-8 text-white leading-relaxed">"Cuando capacitamos a nuestros docentes con este marco, transformamos a los estudiantes de 'receptores pasivos de información' a 'protagonistas empoderados'. El aprendizaje en UNITEC deja de ser un trámite para convertirse en un ensayo de la vida real."</p>
+            <div class="w-32 h-1 bg-brand-cyan mx-auto mb-8 diamond-cut"></div>
+            <p class="font-black text-brand-sky uppercase tracking-widest text-sm mb-2">Diseñado para el fortalecimiento del Liderazgo Académico.</p>
+            <p class="text-xs font-medium text-gray-400 uppercase tracking-widest">Consultoría Pedagógica Ecosistema de Aprendizaje | UNITEC Visión 2030</p>
+        </div>
+    </footer>
+
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        function setupBrandVideo(overlayId, videoId) {
+            const overlay = document.getElementById(overlayId);
+            const video = document.getElementById(videoId);
+
+            if (overlay && video) {
+                overlay.addEventListener('click', () => {
+                    overlay.classList.add('hidden');
+                    video.classList.remove('opacity-50', 'mix-blend-luminosity');
+                    video.setAttribute('controls', 'true');
+                    video.play();
+                });
+            }
+        }
+
+        setupBrandVideo('videoOverlayCIV1', 'brandVideoCIV1');
+        setupBrandVideo('videoOverlayCIV2', 'brandVideoCIV2');
+    </script>
+</body>
+</html>

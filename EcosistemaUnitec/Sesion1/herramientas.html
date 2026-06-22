@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNITEC | Recursos para Docentes Ecosistema de Aprendizaje</title>
+    <style>
+        :root {
+            --unitec-blue: #06065C;
+            --unitec-cyan: #03AED2;
+            --unitec-sky: #47C8FD;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --muted: #475569;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --white: #ffffff;
+            --amber-50: #fffbeb;
+            --amber-500: #f59e0b;
+            --amber-800: #92400e;
+            --amber-900: #78350f;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: Poppins, Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        ::selection { background: var(--unitec-sky); color: var(--unitec-blue); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--unitec-blue); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--unitec-cyan); }
+
+        .diamond-cut { clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%); }
+        .diamond-shape { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        .hover-solid-shift { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .hover-solid-shift:hover { transform: translate(-8px, -8px); }
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .slide-up { animation: slideUp 0.6s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .container { width: min(100%, 1152px); margin: 0 auto; padding: 0 24px; }
+        .nav {
+            width: 100%;
+            background: var(--unitec-blue);
+            border-bottom: 4px solid var(--unitec-cyan);
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .nav .logo-unitec, footer .logo-unitec {
+            display: block;
+            height: 82px;
+            width: auto;
+            max-width: 370px;
+            object-fit: contain;
+        }
+        .nav-label {
+            color: var(--unitec-sky);
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .hero {
+            background: var(--white);
+            border-bottom: 8px solid var(--unitec-cyan);
+            padding: 64px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-diamond {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 256px;
+            height: 256px;
+            background: var(--unitec-sky);
+            opacity: .10;
+            transform: translate(25%, -25%);
+        }
+        .hero-inner { position: relative; z-index: 1; }
+        .hero h1 {
+            margin: 0 0 16px;
+            font-size: clamp(40px, 6vw, 60px);
+            line-height: 1.05;
+            font-weight: 900;
+            color: var(--unitec-blue);
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+        .hero h1 span { color: var(--unitec-cyan); }
+        .hero p {
+            color: var(--unitec-blue);
+            font-size: clamp(18px, 2.3vw, 20px);
+            max-width: 768px;
+            font-weight: 500;
+            line-height: 1.6;
+            border-left: 4px solid var(--unitec-cyan);
+            padding-left: 16px;
+            margin: 0;
+        }
+
+        main { flex: 1; padding: 64px 0; }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+        .span-2 { grid-column: span 2; }
+        .card-wrap { position: relative; }
+        .card-shadow {
+            position: absolute;
+            inset: 0;
+            margin-top: 12px;
+            margin-left: 12px;
+        }
+        .bg-cyan { background: var(--unitec-cyan); }
+        .bg-blue { background: var(--unitec-blue); }
+        .bg-sky { background: var(--unitec-sky); }
+        .card {
+            position: relative;
+            background: var(--white);
+            padding: clamp(32px, 4vw, 48px);
+            border: 1px solid var(--gray-200);
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-row { display: flex; gap: 32px; align-items: center; }
+        .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .icon-diamond {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--white);
+        }
+        .icon-diamond.large { width: 64px; height: 64px; }
+        .icon-diamond svg { width: 26px; height: 26px; }
+        .icon-diamond.large svg { width: 32px; height: 32px; }
+        .icon-sky { color: var(--unitec-sky); }
+        h2, h3, h4, h5, p { margin-top: 0; }
+        .card h2, .card h3 {
+            color: var(--unitec-blue);
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 1.15;
+            margin: 0;
+        }
+        .card h3 { font-size: 24px; }
+        .card h2 { font-size: 30px; }
+        .subtitle {
+            color: var(--unitec-cyan);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            margin-top: 4px;
+        }
+        .card p {
+            color: #374151;
+            font-size: 14px;
+            line-height: 1.65;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .card .lead { font-size: 18px; }
+        .grow { flex: 1; }
+        .info-box {
+            background: var(--gray-50);
+            border-left: 4px solid var(--unitec-blue);
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+        .info-box h4, .features h4 {
+            color: var(--unitec-blue);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            margin-bottom: 12px;
+        }
+        ul { padding: 0; margin: 0; list-style: none; }
+        li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; color: #374151; font-size: 14px; line-height: 1.5; font-weight: 500; }
+        .check { color: var(--unitec-cyan); flex-shrink: 0; margin-top: 2px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: var(--unitec-blue);
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 20px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            border: 0;
+            transition: background .25s ease;
+        }
+        .btn:hover { background: var(--unitec-cyan); }
+        .btn.cyan { background: var(--unitec-cyan); }
+        .btn.cyan:hover { background: var(--unitec-blue); }
+        .btn.fixed { width: 288px; padding: 20px 24px; }
+        .audio-card {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-100);
+            padding: 16px;
+            transition: border-color .25s ease;
+        }
+        .audio-card:hover { border-color: var(--unitec-cyan); }
+        .tag {
+            background: var(--unitec-cyan);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            padding: 5px 9px;
+        }
+        .audio-title { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .audio-title h4 { color: var(--unitec-blue); font-size: 14px; text-transform: uppercase; margin: 0; }
+        audio { width: 100%; height: 40px; }
+        .license {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            color: var(--unitec-blue);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .13em;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .warning {
+            background: var(--amber-50);
+            border-left: 8px solid var(--amber-500);
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        .warning-row { display: flex; gap: 16px; align-items: flex-start; }
+        .warning-icon {
+            background: var(--amber-500);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        .warning h4 { color: var(--amber-900); font-size: 18px; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; }
+        .warning p { color: var(--amber-800); margin: 0; }
+        .features {
+            background: var(--gray-50);
+            padding: 32px;
+            border: 1px solid var(--gray-200);
+            width: 100%;
+        }
+        .features h4 { font-size: 20px; display: inline-block; border-bottom: 2px solid var(--unitec-cyan); padding-bottom: 8px; margin-bottom: 32px; }
+        .feature { display: flex; gap: 16px; margin-bottom: 32px; }
+        .feature:last-child { margin-bottom: 0; }
+        .feature .small-diamond {
+            background: var(--white);
+            border: 2px solid var(--unitec-cyan);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            color: var(--unitec-blue);
+        }
+        .feature h5 { color: var(--unitec-blue); font-size: 16px; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; }
+        .feature p { margin: 0; }
+        .dimensions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .dimension-tag {
+            background: var(--gray-100);
+            color: var(--unitec-blue);
+            border: 1px solid var(--gray-200);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            padding: 4px 12px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .dot { width: 8px; height: 8px; display: inline-block; }
+        .banner {
+            background: var(--unitec-blue);
+            color: var(--white);
+            padding: clamp(40px, 5vw, 48px);
+            border-left: 8px solid var(--unitec-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-bg { position: absolute; top: 0; right: 0; width: 256px; height: 256px; background: var(--unitec-sky); opacity: .10; transform: translate(33%, -33%); }
+        .banner-content { display: flex; align-items: flex-start; gap: 24px; position: relative; z-index: 1; flex: 1; }
+        .banner h3 { color: var(--white); font-size: 30px; font-weight: 900; text-transform: uppercase; margin: 0 0 16px; }
+        .eyebrow { color: var(--unitec-sky); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .18em; margin-bottom: 8px; display: block; }
+        .banner p { color: #e5e7eb; font-size: 16px; line-height: 1.65; font-weight: 500; }
+        .requirements {
+            margin-top: 20px;
+            background: rgba(255,255,255,.05);
+            border-left: 4px solid var(--unitec-cyan);
+            padding: 20px;
+        }
+        .requirements p { color: var(--unitec-sky); font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 12px; }
+        .requirements li { color: #e5e7eb; align-items: center; }
+        .requirements small { display: block; color: #9ca3af; font-style: italic; margin-top: 16px; }
+        .banner-note {
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.20);
+            padding: 24px;
+            max-width: 384px;
+            position: relative;
+            z-index: 1;
+        }
+        .banner-note p { color: var(--white); font-style: italic; font-size: 14px; margin: 0; }
+        footer {
+            background: var(--unitec-blue);
+            color: #9ca3af;
+            border-top: 8px solid var(--unitec-cyan);
+            padding: 48px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-bg { position: absolute; bottom: 0; right: 0; width: 256px; height: 256px; background: var(--unitec-sky); opacity: .10; transform: translate(25%, 25%); }
+        .footer-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+        footer p { margin: 0; }
+        .footer-title { color: var(--white); font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .18em; margin-bottom: 4px; }
+        .footer-subtitle { color: var(--unitec-sky); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; }
+        svg { width: 20px; height: 20px; }
+
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr; }
+            .span-2 { grid-column: span 1; }
+            .card-row, .banner, .footer-inner { flex-direction: column; align-items: flex-start; }
+            .btn.fixed { width: 100%; }
+            .nav-label { display: none; }
+        }
+        @media (max-width: 768px) {
+            .nav .logo-unitec, footer .logo-unitec { height: 64px; max-width: 290px; }
+            .nav { padding: 16px 20px; }
+            .hero { padding: 48px 20px; }
+            main { padding: 48px 0; }
+            .card { padding: 28px; }
+            .license { position: static; display: inline-flex; margin-bottom: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div><img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec"></div>
+        <div class="nav-label">Recursos para Docentes</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-diamond diamond-shape"></div>
+        <div class="container hero-inner fade-in">
+            <h1>Ecosistema de <span>Aprendizaje</span></h1>
+            <p>Herramientas, discusiones y asistencia impulsada por Inteligencia Artificial para facilitar la transición hacia un modelo formativo basado en capacidades humanas.</p>
+        </div>
+    </section>
+
+    <main class="container slide-up">
+        <div class="grid">
+            <section class="card-wrap">
+                <div class="card-shadow bg-cyan diamond-cut"></div>
+                <div class="card diamond-cut hover-solid-shift">
+                    <div class="card-header">
+                        <div class="icon-diamond bg-cyan diamond-shape">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                        </div>
+                        <div>
+                            <h3>Hub de Conocimiento</h3>
+                            <div class="subtitle">Base Documental</div>
+                        </div>
+                    </div>
+                    <p class="grow">Este portal centralizado sirve como biblioteca directa para docentes UNITEC, y es la principal fuente de verdad que alimenta a nuestro Agente de IA.</p>
+                    <div class="info-box diamond-cut">
+                        <h4>Contenido Disponible</h4>
+                        <ul>
+                            <li><span class="check">✓</span><span>Filosofía fundacional <em>(Libro del Ecosistema de Aprendizaje)</em> y Retrato del Egresado.</span></li>
+                            <li><span class="check">✓</span><span>Herramientas prácticas <em>(Kit de Herramientas del Ecosistema de Aprendizaje)</em> y estrategias <em>Learning to Learn</em>.</span></li>
+                            <li><span class="check">✓</span><span>Guías oficiales de estructuración del <em>UNITEC Planner</em>.</span></li>
+                        </ul>
+                    </div>
+                    <a href="cgsknowledge/index.html" target="_blank" rel="noopener noreferrer" class="btn diamond-cut">Explorar el Hub <span>↗</span></a>
+                </div>
+            </section>
+
+            <section class="card-wrap">
+                <div class="card-shadow bg-blue diamond-cut"></div>
+                <div class="card diamond-cut hover-solid-shift">
+                    <div class="card-header">
+                        <div class="icon-diamond bg-blue diamond-shape icon-sky">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                        </div>
+                        <div>
+                            <h3>Podcast de Discusión</h3>
+                            <div class="subtitle">Ingeniería sin Exámenes</div>
+                        </div>
+                    </div>
+                    <p class="grow">Escucha esta discusión profunda sobre cómo transformar la evaluación tradicional hacia un modelo basado en proyectos, asunción de roles profesionales y metacognición.</p>
+                    <div class="audio-card diamond-cut">
+                        <div class="audio-title">
+                            <span class="tag diamond-cut">Episodio</span>
+                            <h4>Diseño estructural sin exámenes</h4>
+                        </div>
+                        <audio controls>
+                            <source src="AUD/De_calculadoras_humanas_a_ingenieros_éticos.mp3" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-wrap span-2">
+                <div class="card-shadow bg-sky diamond-cut"></div>
+                <div class="card diamond-cut hover-solid-shift">
+                    <div class="license diamond-cut">▣ Licencia Institucional</div>
+                    <div class="card-row">
+                        <div class="grow">
+                            <div class="card-header">
+                                <div class="icon-diamond large bg-blue diamond-shape">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                                </div>
+                                <div>
+                                    <h2>IA "Rosalila"</h2>
+                                    <div class="subtitle">Consultor Pedagógico Copilot</div>
+                                </div>
+                            </div>
+                            <p class="lead">Asistente inteligente diseñado específicamente para guiar a los docentes en la adopción del Ecosistema de Aprendizaje, co-diseñar actividades y transformar la planificación educativa.</p>
+                            <div class="warning diamond-cut">
+                                <div class="warning-row">
+                                    <div class="warning-icon diamond-shape">!</div>
+                                    <div>
+                                        <h4>Regla Crítica de Operación</h4>
+                                        <p>Rosalila <strong>NO es completamente autónoma</strong>. Está diseñada para el trabajo colaborativo (co-diseño) junto a ti. Para que sus propuestas sean válidas, <strong><u>es indispensable proporcionarle el contexto académico (Sílabo o Planner previo)</u></strong> al iniciar la conversación.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://m365.cloud.microsoft:443/chat/?titleId=T_a1694e40-3c6c-c50a-0108-8f62706c0e3e&source=embedded-builder" target="_blank" rel="noopener noreferrer" class="btn cyan diamond-cut" style="width:auto;padding-left:32px;padding-right:32px;">Abrir Rosalila en Copilot <span>↗</span></a>
+                        </div>
+                        <div class="features diamond-cut">
+                            <h4>¿En qué te ayuda Rosalila?</h4>
+                            <div class="feature">
+                                <div class="small-diamond diamond-shape">▦</div>
+                                <div><h5>A. Diseño del Planner</h5><p>Te guía paso a paso en la creación del <em>UNITEC Planner</em>. Asegura que los propósitos, narrativas y rúbricas se alineen con las capacidades humanas.</p></div>
+                            </div>
+                            <div class="feature">
+                                <div class="small-diamond diamond-shape">✦</div>
+                                <div><h5>B. Co-Diseño de Actividades</h5><p>Ayuda a estructurar actividades recomendando herramientas exactas del <em>Kit de Herramientas del Ecosistema de Aprendizaje</em> y estrategias de <em>Learning to Learn (L2L)</em> contextualizadas a tu clase.</p></div>
+                            </div>
+                            <div class="feature">
+                                <div class="small-diamond diamond-shape">◌</div>
+                                <div><h5>C. Consultoría Metodológica</h5><p>Modo experto (Q&A) para resolver dudas conceptuales. Pregúntale <em>"¿Qué es el Learning Pit?"</em> o <em>"¿Cómo evalúo formativamente?"</em> y te citará fuentes oficiales.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-wrap span-2">
+                <div class="card-shadow bg-cyan diamond-cut"></div>
+                <div class="card card-row diamond-cut hover-solid-shift">
+                    <div class="grow">
+                        <div class="card-header">
+                            <div class="icon-diamond bg-blue diamond-shape icon-sky">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                            </div>
+                            <div>
+                                <h3>Taxonomía de Bloom</h3>
+                                <div class="subtitle">Constructor de Metas de Aprendizaje</div>
+                            </div>
+                        </div>
+                        <p>Herramienta interactiva diseñada para facilitar la construcción de metas de aprendizaje, perfectamente contextualizada a las tres dimensiones de la definición de aprendizaje UNITEC.</p>
+                        <div class="dimensions">
+                            <span class="dimension-tag diamond-cut"><span class="dot bg-blue diamond-shape"></span>Concepto</span>
+                            <span class="dimension-tag diamond-cut"><span class="dot bg-cyan diamond-shape"></span>Competencia</span>
+                            <span class="dimension-tag diamond-cut"><span class="dot bg-sky diamond-shape"></span>Carácter</span>
+                        </div>
+                    </div>
+                    <a href="taxonomia.html" target="_blank" rel="noopener noreferrer" class="btn fixed diamond-cut">Consultar Taxonomía <span>↗</span></a>
+                </div>
+            </section>
+        </div>
+
+        <section class="banner diamond-cut">
+            <div class="banner-bg diamond-shape"></div>
+            <div class="banner-content">
+                <div class="icon-diamond bg-cyan diamond-shape"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+                <div>
+                    <span class="eyebrow">Próximos Pasos</span>
+                    <h3>Preparación para la Sesión 2</h3>
+                    <p>En la Sesión 2 estaremos abarcando el diseño del <strong>Planner de UNITEC</strong>, el cual es una herramienta clave para la implementación del Ecosistema de Aprendizaje.</p>
+                    <div class="requirements">
+                        <p>Requisitos para este Taller de Co-diseño:</p>
+                        <ul>
+                            <li><span class="check">✓</span><span>Seleccionar una <strong>asignatura</strong> que desees impactar.</span></li>
+                            <li><span class="check">✓</span><span>Traer el <strong>sílabo</strong> actualizado de la clase.</span></li>
+                            <li><span class="check">✓</span><span>Traer el <strong>cuadro de planificación</strong> (si lo tienes disponible).</span></li>
+                        </ul>
+                        <small>* Es importante tener claro el contenido y las competencias para trabajar efectivamente durante la sesión.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-note diamond-cut"><p>El Agente de IA "Rosalila" es una forma muy práctica de poderse familiarizar con los materiales, así como de poder rediseñar actividades y generar nuevas herramientas antes de nuestra próxima sesión.</p></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bg diamond-shape"></div>
+        <div class="container footer-inner">
+            <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="logo-unitec">
+            <div style="text-align:right">
+                <p class="footer-title">Recursos para Docentes</p>
+                <p class="footer-subtitle">Visión UNITEC 2030 | Ecosistema de Aprendizaje</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
