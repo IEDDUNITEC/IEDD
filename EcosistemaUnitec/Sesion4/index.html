@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4 | Ecosistema de Aprendizaje UNITEC</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: STRICTLY POPPINS AS PER BRAND MANUAL -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'], // Edna's decree: Poppins only.
+                    },
+                    colors: {
+                        unitec: {
+                            federal: '#06065C', /* Federal Blue */
+                            cyan: '#03AED2',    /* Pacific Cyan */
+                            sky: '#47C8FD',     /* Vivid Sky Blue */
+                            gray: '#F3F4F6',
+                            text: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #FAFAFA; /* Option A: Clean light background */
+        }
+        
+        /* Edna's Option A clean styling */
+        .clean-card {
+            background: #ffffff;
+            border: 1px solid #E5E7EB;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .clean-card:hover {
+            transform: translateY(-4px);
+            border-color: #03AED2; /* Pacific Cyan highlight */
+            box-shadow: none;
+        }
+
+        /* Custom scrollbar reflecting brand colors */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #06065C; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #03AED2; }
+
+        .logo-unitec-header {
+            display: block;
+            height: 50px;
+            width: auto;
+            max-width: 240px;
+            object-fit: contain;
+        }
+
+        .logo-unitec-footer {
+            display: block;
+            height: 46px;
+            width: auto;
+            max-width: 230px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-unitec-header {
+                height: 42px;
+                max-width: 210px;
+            }
+
+            .logo-unitec-footer {
+                height: 40px;
+                max-width: 200px;
+            }
+        }
+
+    </style>
+</head>
+<body class="text-unitec-text antialiased flex flex-col min-h-screen">
+
+    <!-- Header / Navbar: Solid Federal Blue matching Option A completely -->
+    <header class="bg-unitec-federal text-white sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="relative flex items-center min-h-10">
+                
+                <!-- BRANDING: Logotipo Institucional UNITEC -->
+                <div class="flex items-center cursor-pointer pr-44">
+                   <img src="IMG/UNITEC-LOGO-BLANCO.png" alt="UNITEC" class="h-20 md:h-22 w-auto object-contain">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <header class="bg-unitec-federal text-white py-20 relative overflow-hidden border-t border-white/10">
+        <!-- Decorative background elements: Diamonds instead of circles -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+            <div class="absolute top-10 left-10 w-64 h-64 border-2 border-white transform rotate-45"></div>
+            <div class="absolute -bottom-20 -right-20 w-96 h-96 border-2 border-white transform rotate-45"></div>
+            <div class="absolute top-1/2 left-1/2 w-[800px] h-[800px] border border-white transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-4 border border-unitec-cyan text-xs font-bold tracking-widest uppercase mb-6 text-unitec-cyan">
+                Programa de Formación Docente
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight">
+                Sesión 4: Implementación y Formación del Carácter
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10 font-medium">
+                Discutiremos cómo se ha realizado la puesta en marcha en el aula mediante el piloto de implementación y las experiencias de los docentes, además de profundizar en lo que implica la verdadera formación del carácter.
+            </p>
+            <a href="#modulos" class="inline-flex items-center gap-2 bg-unitec-cyan text-unitec-federal font-black uppercase tracking-wider text-sm px-8 py-4 hover:bg-unitec-sky transition-colors">
+                Ir a los Módulos <i class="ph-bold ph-arrow-down text-lg"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Recorrido del Curso (Timeline recap) -->
+    <section id="recorrido" class="py-16 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-unitec-federal tracking-tight">El Recorrido del Curso</h2>
+                <p class="text-gray-500 mt-2 font-medium text-sm">Lo que hemos construido hasta llegar aquí.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Sesión 1 -->
+                <div class="clean-card p-6 border-t-4 border-t-unitec-federal">
+                    <div class="w-10 h-10 bg-gray-100 text-unitec-federal flex items-center justify-center font-black mb-4 border border-gray-200">S1</div>
+                    <h3 class="font-bold text-unitec-federal text-lg mb-2 leading-tight">Fundamentos y Retrato</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Definición del aprendizaje en el ecosistema, el objetivo final con el <strong class="text-unitec-cyan">retrato del egresado</strong> y la transición desde el modelo anterior.</p>
+                </div>
+                <!-- Sesión 2 -->
+                <div class="clean-card p-6 relative border-t-4 border-t-unitec-cyan">
+                    <div class="hidden md:block absolute top-1/2 -left-4 w-8 border-t-2 border-dashed border-gray-300"></div>
+                    <div class="w-10 h-10 bg-gray-100 text-unitec-cyan flex items-center justify-center font-black mb-4 border border-gray-200">S2</div>
+                    <h3 class="font-bold text-unitec-federal text-lg mb-2 leading-tight">El Planner de Unitec y Ceutec</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Definimos la herramienta central y la piedra angular para construir actividades alineadas a los principios del ecosistema.</p>
+                </div>
+                <!-- Sesión 3 -->
+                <div class="clean-card p-6 relative border-t-4 border-t-unitec-sky">
+                    <div class="hidden md:block absolute top-1/2 -left-4 w-8 border-t-2 border-dashed border-gray-300"></div>
+                    <div class="w-10 h-10 bg-gray-100 text-unitec-sky flex items-center justify-center font-black mb-4 border border-gray-200">S3</div>
+                    <h3 class="font-bold text-unitec-federal text-lg mb-2 leading-tight">Transformación y Herramientas</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Transformación de actividades tradicionales (tareas GRASPS y no GRASPS), y revisión de los Toolkits pedagógicos y de Metacognición.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos de la Sesión 4 -->
+    <section id="modulos" class="py-20 bg-gray-50 flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 border-b border-gray-200 pb-4">
+                <div>
+                    <h2 class="text-3xl font-black text-unitec-federal tracking-tight mb-2">Módulos de la Sesión 4</h2>
+                    <p class="text-gray-500 font-medium text-sm">Seleccione un módulo para acceder al contenido, recursos y actividades.</p>
+                </div>
+                <div class="bg-white px-4 py-2 border border-gray-200 flex items-center gap-2">
+                    <i class="ph-bold ph-clock text-unitec-cyan"></i>
+                    <span class="text-xs font-bold text-unitec-federal uppercase tracking-wider">Progreso: 5 Módulos</span>
+                </div>
+            </div>
+
+            <!-- Grid de Módulos -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Módulo 1 (Destacado por ser el introductorio/filosófico) -->
+                <a href="m1_caracter.html" class="lg:col-span-2 clean-card p-8 flex flex-col md:flex-row gap-8 items-center cursor-pointer group">
+                    <div class="w-20 h-20 shrink-0 bg-gray-100 flex items-center justify-center text-unitec-cyan group-hover:bg-unitec-federal group-hover:text-white transition-colors border border-gray-200">
+                        <i class="ph-fill ph-star text-4xl"></i>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase mb-2 block">Módulo 1</span>
+                        <h3 class="text-2xl font-black text-unitec-federal mb-3 leading-tight tracking-tight">Diez Ideas Marco para rediseñar la educación del Carácter</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed font-medium">
+                            Una reflexión estratégica fundamental. La formación del carácter no es un añadido, es constitutiva de una buena educación en nuestro ecosistema.
+                        </p>
+                    </div>
+                    <div class="shrink-0">
+                        <div class="flex items-center justify-center w-12 h-12 border-2 border-gray-200 text-gray-400 group-hover:border-unitec-cyan group-hover:bg-unitec-cyan group-hover:text-unitec-federal transition-all">
+                            <i class="ph-bold ph-arrow-right text-xl"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Los 3 Modelos de Metas (3Cs) alineados y unificados bajo la misma paleta -->
+                
+                <!-- Módulo 2 -->
+                <a href="m2_constru.html" class="clean-card p-6 cursor-pointer group flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-gray-100 border border-gray-200 flex items-center justify-center text-unitec-federal group-hover:bg-unitec-federal group-hover:text-white transition-colors">
+                            <i class="ph-fill ph-brain text-3xl"></i>
+                        </div>
+                        <span class="text-[10px] font-black border border-gray-200 text-gray-500 px-3 py-1 uppercase tracking-widest">Conceptual</span>
+                    </div>
+                    <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase mb-2 block">Módulo 2</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 leading-tight">Modelo Constructivista para desarrollo de metas conceptuales</h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-1 font-medium">Aprenda a guiar a los estudiantes en la construcción activa del significado a través de la indagación.</p>
+                    <div class="text-unitec-cyan font-bold text-xs uppercase tracking-wider flex items-center gap-1 group-hover:text-unitec-federal transition-all">
+                        Ver Módulo <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Módulo 3 -->
+                <a href="m3_dip.html" class="clean-card p-6 cursor-pointer group flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-gray-100 border border-gray-200 flex items-center justify-center text-unitec-federal group-hover:bg-unitec-cyan group-hover:text-unitec-federal transition-colors">
+                            <i class="ph-fill ph-wrench text-3xl"></i>
+                        </div>
+                        <span class="text-[10px] font-black border border-gray-200 text-gray-500 px-3 py-1 uppercase tracking-widest">Competencia</span>
+                    </div>
+                    <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase mb-2 block">Módulo 3</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 leading-tight">Modelo DIP para desarrollo de metas de competencia</h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-1 font-medium">Estrategias para diseñar actividades que desarrollen destrezas y habilidades aplicables en escenarios reales.</p>
+                    <div class="text-unitec-cyan font-bold text-xs uppercase tracking-wider flex items-center gap-1 group-hover:text-unitec-federal transition-all">
+                        Ver Módulo <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Módulo 4 -->
+                <a href="m4_car.html" class="clean-card p-6 cursor-pointer group flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-gray-100 border border-gray-200 flex items-center justify-center text-unitec-federal group-hover:bg-unitec-federal group-hover:text-white transition-colors">
+                            <i class="ph-fill ph-heart text-3xl"></i>
+                        </div>
+                        <span class="text-[10px] font-black border border-gray-200 text-gray-500 px-3 py-1 uppercase tracking-widest">Carácter</span>
+                    </div>
+                    <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase mb-2 block">Módulo 4</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 leading-tight">Modelo CAR para desarrollo de metas de carácter</h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-1 font-medium">Integración de disposiciones, valores y hábitos de la mente en el diseño curricular diario.</p>
+                    <div class="text-unitec-cyan font-bold text-xs uppercase tracking-wider flex items-center gap-1 group-hover:text-unitec-federal transition-all">
+                        Ver Módulo <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Módulo 5 -->
+                <a href="m5_5e.html" class="clean-card p-6 cursor-pointer group flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-14 h-14 bg-gray-100 border border-gray-200 flex items-center justify-center text-unitec-federal group-hover:bg-unitec-cyan group-hover:text-unitec-federal transition-colors">
+                            <i class="ph-fill ph-recycle text-3xl"></i>
+                        </div>
+                        <span class="text-[10px] font-black border border-gray-200 text-gray-500 px-3 py-1 uppercase tracking-widest">Metodología</span>
+                    </div>
+                    <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase mb-2 block">Módulo 5</span>
+                    <h3 class="text-lg font-bold text-unitec-federal mb-3 leading-tight">Modelos de las 5Es</h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-1 font-medium">Engage, Explore, Explain, Elaborate, Evaluate. Estructuración del ciclo de aprendizaje en el ecosistema.</p>
+                    <div class="text-unitec-cyan font-bold text-xs uppercase tracking-wider flex items-center gap-1 group-hover:text-unitec-federal transition-all">
+                        Ver Módulo <i class="ph-bold ph-arrow-right"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- BRANDING: Logotipo Institucional UNITEC -->
+            <div class="flex items-center">
+               <img src="IMG/UNITEC-COLOR-HORIZONTAL.png" alt="UNITEC" class="h-20 md:h-22 w-auto object-contain">
+            </div>
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                Programa de Formación Docente • UNITEC
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
